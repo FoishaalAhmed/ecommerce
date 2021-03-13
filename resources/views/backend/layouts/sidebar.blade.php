@@ -59,6 +59,59 @@
                 </ul>
             </li>
 
+            <li class="treeview @if(request()->is('admin/pages') || request()->is('admin/pages/create') || request()->is('admin/pages/*') ) {{'active'}} @endif">
+                <a href="#">
+                <i class="fa fa-file"></i>
+                <span>{{__('Pages')}}</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="@if(request()->is('admin/pages/create')) {{'active'}} @endif">
+                        <a href="{{route('pages.create')}}"><i class="fa fa-plus"></i> {{__('New Page')}}</a>
+                    </li>
+
+                    <li class="@if(request()->is('admin/pages')) {{'active'}} @endif">
+                        <a href="{{route('pages.index')}}"><i class="fa fa-list"></i> {{__('Pages')}}</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="@if(request()->is('admin/categories')) {{'active'}} @endif">
+
+                <a href="{{route('categories.index')}}">
+                <i class="fa fa-list-alt"></i> <span>{{__('Categories')}}</span>
+                </a>
+
+            </li>
+
+            <li class="@if(request()->is('admin/queries')) {{'active'}} @endif">
+
+                <a href="{{route('queries.index')}}">
+                <i class="fa fa-question-circle"></i> <span>{{__('Queries')}}</span>
+                </a>
+
+            </li>
+
+            <li class="@if(request()->is('admin/faqs')) {{'active'}} @endif">
+
+                <a href="{{route('faqs.index')}}">
+                <i class="fa fa-question-circle"></i> <span>{{__('Faqs')}}</span>
+                </a>
+
+            </li>
+
+            <li class="@if(request()->is('admin/contact')) {{'active'}} @endif">
+
+                <a href="{{route('contact')}}">
+                <i class="fa fa-envelope"></i> <span>{{__('Contact')}}</span>
+                </a>
+
+            </li>
+
             <li class="@if(request()->is('admin/sizes')) {{'active'}} @endif">
 
                 <a href="{{route('sizes.index')}}">

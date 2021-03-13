@@ -43,4 +43,5 @@
 <script src="{{asset('public/backend/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <link rel="icon" href="{{asset('public/frontend/img/logo-1.png')}}" type="image/gif" sizes="16x16">
 @section('head')
-@sho
+@show
+

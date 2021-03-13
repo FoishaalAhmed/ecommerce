@@ -15,11 +15,11 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- Content Header (user header) -->
-                <div class="box box-teal box-solid">
+                <div class="box box-info box-solid">
                     <div class="box-header with-border">
                         <h3 class="box-title">Size</h3>
                         <div class="box-tools pull-right">
-                        	<a href="#" class="btn btn-sm bg-green" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> New Size</a>
+                        	<a href="#" class="btn btn-sm bg-orange" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> New Size</a>
                         </div>		
                     </div>
                     <!-- /.box-header -->
@@ -40,7 +40,7 @@
                                     <td>{{$size->name}}</td>
                                     <td>   
                                         
-                                    	<a class="btn btn-sm bg-teal" href="#" data-toggle="modal" data-target="#edit-modal" data-id="{{$size->id}}" data-name="{{$size->name}}"><span class="glyphicon glyphicon-edit"></span></a>
+                                    	<a class="btn btn-sm bg-aqua" href="#" data-toggle="modal" data-target="#edit-modal" data-id="{{$size->id}}" data-name="{{$size->name}}"><span class="glyphicon glyphicon-edit"></span></a>
 
                                     	<form action="{{route('sizes.destroy',$size->id)}}" method="post" style="display: none;" id="delete-form-{{ $size->id}}">
                                             @csrf
@@ -87,7 +87,7 @@
                 <div class="col-md-12">
                     <center>
                         <button type="reset" class="btn btn-sm bg-red" data-dismiss="modal">Reset</button>
-                        <button type="submit" class="btn btn-sm bg-teal">Save</button>
+                        <button type="submit" class="btn btn-sm bg-aqua">Save</button>
                     </center>
                 </div>
             </form>
@@ -122,7 +122,7 @@
                 <div class="col-md-12">
                     <center>
                         <button type="reset" class="btn btn-sm bg-red" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-sm bg-teal">Update</button>
+                        <button type="submit" class="btn btn-sm bg-aqua">Update</button>
                     </center>
                 </div>
             </form>

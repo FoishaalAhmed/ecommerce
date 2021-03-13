@@ -4,7 +4,7 @@
     <div class="pull-right hidden-xs">
         <b>Develop By</b> <a href="https://ictbanglabd.com/contact">ICTBANGLABD</a>
     </div>
-    <strong>Copyright &copy; {{date('Y')}} <a href="{{URL::to('/')}}">Creative Village</a>.</strong> All rights
+    <strong>Copyright &copy; {{date('Y')}} <a href="{{URL::to('/')}}">Banglabesh</a>.</strong> All rights
     reserved.
 </footer>
 <!-- Control Sidebar -->
