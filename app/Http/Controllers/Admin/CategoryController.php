@@ -25,8 +25,7 @@ class CategoryController extends Controller
         // print_r($categories);
         // echo "</pre>";
         $categories = Category::orderBy('name', 'asc')->get();
-        $parents    = Category::where('parent_id', 0)->orderBy('name', 'asc')->select('id', 'name')->get();
-        return view('backend.admin.category', compact('categories', 'parents'));
+        return view('backend.admin.category', compact('categories'));
     }
 
     /**
@@ -52,8 +51,7 @@ class CategoryController extends Controller
     {
         $category   = Category::findOrFail($id);
         $categories = Category::orderBy('name', 'asc')->get();
-        $parents    = Category::where('parent_id', 0)->orderBy('name', 'asc')->select('id', 'name')->get();
-        return view('backend.admin.category', compact('categories', 'category', 'parents'));
+        return view('backend.admin.category', compact('categories', 'category'));
     }
 
     /**

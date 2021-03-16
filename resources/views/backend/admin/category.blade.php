@@ -45,7 +45,7 @@
                                                     <label for="">{{__('Parent')}}</label>
                                                     <select name="parent_id" id="parent_id" class="form-control select2" style="width: 100%">
                                                         <option value="0" @if ($category->parent_id == 0) {{'selected'}} @endif >{{__('None')}}</option>
-                                                        @foreach ($parents as $item)
+                                                        @foreach ($categories as $item)
                                                             <option value="{{$item->id}}" @if ($category->parent_id == $item->id) {{'selected'}} @endif>{{$item->name}}</option>
                                                         @endforeach
                                                     </select>
@@ -78,7 +78,7 @@
                                                     <label for="">{{__('Parent')}}</label>
                                                     <select name="parent_id" id="parent_id" class="form-control select2" style="width: 100%">
                                                         <option value="0" @if (old('parent_id') == 0) {{'selected'}} @endif >{{__('None')}}</option>
-                                                        @foreach ($parents as $item)
+                                                        @foreach ($categories as $item)
                                                             <option value="{{$item->id}}" @if (old('parent_id') == $item->id) {{'selected'}} @endif>{{$item->name}}</option>
                                                         @endforeach
                                                     </select>
