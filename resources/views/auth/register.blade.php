@@ -1,91 +1,75 @@
 @extends('layouts.app')
-
+@section('title', 'Register')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
-
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="container-fluid" >
+  <div class="dtl-2nd-nav">
+    <div class="row" style="background-image: linear-gradient( rgb(152, 158, 152),rgb(209, 209, 209));">
+      <div class="container">
+        <div class="row" style="text-align: center; padding-top: 10px; padding-bottom: 10px; " >
+          <div class="col-">
+            <a href="#" style="text-decoration: none;" >Home</a> /
+            <a href="#" style="text-decoration: none;" >SingUP</a> 
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+<!----MainConteint-->
+<div class="container-fluid" style="background-image: linear-gradient( rgb(152, 158, 152),rgb(255, 255, 255));padding-top: 20px;">
+  <div class="row check-out"  >
+
+ 
+
+
+    <div class="row">
+      <div class="col-75">
+        <div class=" check-out22"  >
+          <div class="row">
+            <div class="col-2"></div>
+  
+            <form action="{{route('register')}}" method="POST" >
+                @csrf
+              <div class="row">
+                <div class="col-50">
+                  <h3>SingUp</h3>
+                  @include('includes.error')
+                  <label for="fname"><i class="fa fa-user"></i> Name</label>
+                  <input type="text" id="name" name="name" placeholder="John M. Doe" value="{{old('name')}}">
+
+                  <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                  <input type="text" id="email" name="email" placeholder="ictbanglabd@gmail.com" value="{{old('email')}}">
+
+                  <label for="phone"><i class="fas fa-phone-volume"></i> Phone</label>
+                  <input type="text" id="phone" name="phone" placeholder="+88 01919 61 31 52" value="{{old('phone')}}">
+
+                  <label for="password"><i class="fas fa-key"></i> Password</label>
+                  <input type="password" id="password" name="password" placeholder="********" style="width: 100%">
+
+                  <label for="confirm-password"><i class="fas fa-key"></i>Confirm Password</label>
+                  <input type="password" id="confirm-password" name="password_confirmation" placeholder="********" style="width: 100%">
+
+                  <label for="adr"><i class="fas fa-id-badge"></i> Address</label>
+                  <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" value="{{old('address')}}">
+
+                </div>
+              </div>
+              <label>
+                <input type="checkbox" checked="checked" name="sameadr" readonly> 	I have read and agree to the website terms and conditions *
+              </label>
+              <input type="submit" style="background-color: darkgreen; width: 100%; color: white; " value="Submit" class="btn">
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      
+  
+  
+    </div>
+    
+  </div>
+</div>
+<!----MainConteint-->
 @endsection

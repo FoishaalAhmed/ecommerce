@@ -30,17 +30,7 @@ class HomeController extends Controller
 
         } else {
 
-            // $book_id = Session::get('book_id');
-
-            // if ($book_id) {
-
-            //     $book = Book::findOrFail($book_id);
-
-            //     return redirect()->route('book.detail', [$book_id, strtolower(str_replace(' ', '-', $book->name))]);
-            // } else {
-
-            //     return redirect()->route('user.dashboard');
-            // }
+            return redirect(route('user.dashboard'));
         }
     }
 }
