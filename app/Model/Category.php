@@ -18,16 +18,16 @@ class Category extends Model
         'parent_id' => 'required|numeric',
     ];
 
-    // public function getAllCategoryWithParent()
-    // {
-    //     $categories = DB::table('categories')
-    //                       ->select('categories.*', 'parent.name as parent_name')
-    //                       ->leftJoin('categories as parent', 'parent.parent_id', '=', 'categories.id')
-    //                       ->orderBy('categories.name', 'asc')
-    //                       ->get();
-    //     return $categories;
+    public function getAllCategoryWithParent()
+    {
+        $categories = DB::table('categories')
+                        ->leftJoin('categories as parent', 'categories.parent_id', '=', 'parent.id')
+                          ->select('categories.*', 'parent.name as parent_name')
+                          ->orderBy('categories.name', 'asc')
+                          ->get();
+        return $categories;
                              
-    // }
+    }
 
     public function storeCategory(Object $request)
     {

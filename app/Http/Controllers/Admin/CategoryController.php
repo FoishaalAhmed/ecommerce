@@ -20,11 +20,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // $categories = $this->categoryObject->getAllCategoryWithParent();
-        // echo "<pre>";
-        // print_r($categories);
-        // echo "</pre>";
-        $categories = Category::orderBy('name', 'asc')->get();
+        $categories = $this->categoryObject->getAllCategoryWithParent();
         return view('backend.admin.category', compact('categories'));
     }
 

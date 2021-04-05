@@ -99,16 +99,24 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="width: 15%">Sl.</th>
-                                            <th style="width: 70%">Name</th>
-                                            <th style="width: 15%">Action</th>
+                                            <th style="width: 10%">Sl.</th>
+                                            <th style="width: 40%">Categories</th>
+                                            <th style="width: 40%">Parent</th>
+                                            <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($categories as $key => $category)
                                         <tr>
                                             <td>{{$loop->index + 1}}</td>
-                                            <td>{{$category->name}}</td>
+                                            <td>{{$category->name}} </td>
+                                            <td>
+                                                @if ($category->parent_name == null)
+                                                    {{'None'}}
+                                                @else
+                                                    {{$category->parent_name}}
+                                                @endif 
+                                            </td>
                                             <td>   
                                                 
                                                 <a class="btn btn-sm bg-teal" href="{{route('categories.edit', $category->id)}}"><span class="glyphicon glyphicon-edit"></span></a>

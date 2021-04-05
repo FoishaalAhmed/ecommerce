@@ -38,6 +38,7 @@
                                     <th style="width: 10%;">{{__('Action')}}</th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
                                 @foreach ($users as $key => $user)
                                 <tr>

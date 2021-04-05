@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Category')}}</label>
@@ -61,13 +61,15 @@
                                                     @if (old('categories'))
                                                         @if (in_array($category->id, old('categories'))) {{'selected'}} @endif 
                                                     @endif
-                                                    >{{$category->name}}</option>
+                                                    >{{$category->name}} @if ($category->parent_name != null)
+                                                        ({{$category->parent_name}})
+                                                    @endif </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Size')}}</label>
@@ -83,7 +85,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Color')}}</label>
@@ -119,7 +121,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Previous Price')}}</label>
-                                            <input type="number" class="form-control" placeholder="{{__('Previous Price')}}" name="previous_price" value="{{old('previous_price')}}" autocomplete="off" required step="0.01">
+                                            <input type="number" class="form-control" placeholder="{{__('Previous Price')}}" name="previous_price" value="{{old('previous_price')}}" autocomplete="off" step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +129,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Seving Percentage')}}</label>
-                                            <input type="number" class="form-control" placeholder="{{__('Seving Percentage')}}" name="saving" value="{{old('saving')}}" autocomplete="off" required step="0.01">
+                                            <input type="number" class="form-control" placeholder="{{__('Seving Percentage')}}" name="saving" value="{{old('saving')}}" autocomplete="off" step="0.01">
                                         </div>
                                     </div>
                                 </div>

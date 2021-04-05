@@ -337,6 +337,6 @@ input[type='number'] {
 }
 
 .select2-container .select2-selection--multiple .select2-selection__rendered {
-    height: 27px !important;
+    height: 25px !important;
 }
 

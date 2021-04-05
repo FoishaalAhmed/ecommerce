@@ -34,7 +34,7 @@ class ProductRequest extends FormRequest
             'sizes'          => 'nullable|array',
             'colors'         => 'nullable|array',
             'description'    => 'nullable|string',
-            "photo.*"        => "nullable|mimes:jpeg,jpg,png,gif,webp|max:100",
+            "photo.*"        => "nullable|mimes:jpeg,jpg,png,gif,webp|max:200",
         ];
 
         if ($this->getMethod() == 'POST') {
@@ -42,7 +42,7 @@ class ProductRequest extends FormRequest
             return $rules + [
 
                 'slug'  => 'required|string|max:350|unique:products,slug',
-                'cover' => 'mimes:jpeg,jpg,png,gif,webp|max:100|required',
+                'cover' => 'mimes:jpeg,jpg,png,gif,webp|max:200|required',
 
             ];
             
@@ -51,7 +51,7 @@ class ProductRequest extends FormRequest
             return $rules + [
 
                 'slug'  => 'required|string|max:350|unique:products,slug,' . $this->product,
-                'cover' => 'mimes:jpeg,jpg,png,gif,webp|max:100|nullable',
+                'cover' => 'mimes:jpeg,jpg,png,gif,webp|max:200|nullable',
 
             ];
         }

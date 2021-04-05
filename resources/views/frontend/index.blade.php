@@ -114,8 +114,8 @@
 						style="margin-top: 25px;border-top: 2px solid black;border-radius: 50px 0px 0px 0px;">
 					</div>
 					<div class="col-4" style="text-align: center;">
-						<h2 style="margin: 0px;">Lorem ipsum amet.</h2>
-						<p>Lorem ipsum dolor sit amet.</p>
+						<h2 style="margin: 0px;">Mens Collection</h2>
+						{{-- <p>Lorem ipsum dolor sit amet.</p> --}}
 					</div>
 					<div class="col-4"
 						style="margin-top: 25px;border-top: 2px solid black;border-radius: 0px 50px 0px 0px;">
@@ -123,90 +123,56 @@
 				</div>
 			</div>
 			<div id="multi-item-example"
-				class="carousel slide carousel-multi-item carousel-multi-item-2  w3-container w3-center w3-animate-zoom"
-				data-ride="carousel" style="position: relative;">
+				class="carousel slide carousel-multi-item carousel-multi-item-2  w3-container w3-center w3-animate-zoom" data-ride="carousel" style="position: relative;">
 				<!--Slides-->
 				<div class="carousel-inner" role="listbox">
 					<!--First slide-->
 					<div class="carousel-item active">
+						@php
+							$firstSixMenProducts  = array_slice($menProducts, 0, 6);
+							$secondSixMenProducts = array_slice($menProducts, 6, 6);
+
+						@endphp
+						@foreach ($firstSixMenProducts as $MenProducts)
+							
+						
 						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
 							<div class="card">
 								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/sajek-veally-1.webp')}}" alt="Card image cap">
+									<img class="img-fluid" src="{{asset($MenProducts->cover)}}" alt="Card image cap">
 									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
+										<div class="text"><img src="{{asset($MenProducts->photo)}}" style="width: 300px;"
 												alt=""></div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
-										alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/sajek-veally-1.webp')}}" alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
-										alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
-										alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
-										alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
+
+						@endforeach
 					</div>
 					<!--/.First slide-->
 					<!--Second slide-->
 					<div class="carousel-item">
+						@foreach ($secondSixMenProducts as $MenProductsItem)
+						
 						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
 							<div class="card">
 								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/sajek-veally-1.webp')}}" alt="Card image cap">
+									<img class="img-fluid" src="{{asset($MenProductsItem->cover)}}" alt="Card image cap">
+									<div class="overlay">
+										<div class="text"><img src="{{asset($MenProductsItem->photo)}}" style="width: 300px;"
+												alt=""></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						@endforeach
+
+						{{-- <div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
+							<div class="card">
+								<div class="container22">
+									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
+										alt="Card image cap">
 									<div class="overlay">
 										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
 												alt=""></div>
@@ -229,18 +195,6 @@
 						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
 							<div class="card">
 								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
-										alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
 									<img class="img-fluid" src="{{asset('public/frontend/img/sajek-veally-1.webp')}}" alt="Card image cap">
 									<div class="overlay">
 										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
@@ -271,82 +225,9 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 					<!--/.Second slide-->
-					<!--Third slide-->
-					<div class="carousel-item">
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/sajek-veally-1.webp')}}" alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
-										alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
-										alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/sajek-veally-1.webp')}}" alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/sajek-veally-1.webp')}}" alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2" style="padding-left: 0px; padding-right: 0px; ">
-							<div class="card">
-								<div class="container22">
-									<img class="img-fluid" src="{{asset('public/frontend/img/Sundarbans-National-Park-1.jpg')}}"
-										alt="Card image cap">
-									<div class="overlay">
-										<div class="text"><img src="{{asset('public/frontend/img/Hoodies-Banner-Images.png')}}" style="width: 300px;"
-												alt=""></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--/.Third slide-->
 				</div>
 				<!--/.Slides-->
 				<!--Controls-->

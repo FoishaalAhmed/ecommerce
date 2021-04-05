@@ -52,7 +52,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Category')}}</label>
@@ -62,13 +62,15 @@
                                                     @if ($product_categories)
                                                         @if (in_array($category->id, $product_categories)) {{'selected'}} @endif 
                                                     @endif
-                                                    >{{$category->name}}</option>
+                                                    >{{$category->name}} @if ($category->parent_name != null)
+                                                        ({{$category->parent_name}})
+                                                    @endif</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Size')}}</label>
@@ -84,7 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Color')}}</label>
@@ -183,7 +185,7 @@
                 <!-- Content Header (Room header) -->
                 <div class="box box-success box-solid">
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{__('Room Photo')}}</h3>
+                        <h3 class="box-title">{{__('Product Photo')}}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">

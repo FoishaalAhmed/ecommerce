@@ -18,10 +18,12 @@ class ProductController extends Controller
 {
 
     protected $productObject;
+    protected $categoryObject;
 
     public function __construct()
     {
         $this->productObject = new Product();
+        $this->categoryObject = new Category();
     }
 
     /**
@@ -42,7 +44,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('name', 'asc')->get();
+        $categories = $this->categoryObject->getAllCategoryWithParent();
         $sizes      = Size::orderBy('name', 'asc')->get();
         $colors     = Color::orderBy('name', 'asc')->get();
         return view('backend.admin.product.create', compact('categories', 'sizes', 'colors'));
@@ -104,7 +106,7 @@ class ProductController extends Controller
             array_push($product_categories, $value->category_id);
         }
 
-        $categories = Category::orderBy('name', 'asc')->get();
+        $categories = $this->categoryObject->getAllCategoryWithParent();
         $sizes      = Size::orderBy('name', 'asc')->get();
         $colors     = Color::orderBy('name', 'asc')->get();
         return view('backend.admin.product.edit', compact('categories', 'sizes', 'colors', 'product_sizes', 'product_colors', 'product_categories', 'product', 'product_photos'));
