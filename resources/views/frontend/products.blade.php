@@ -9,8 +9,8 @@
         <div class="container">
           <div class="row" style="text-align: center; padding-top: 10px; padding-bottom: 10px; ">
             <div class="col-">
-              <a href="#" style="text-decoration: none;">Home</a> /
-              <a href="#" style="text-decoration: none;">Shop</a>
+              <a href="{{URL::to('/')}}" style="text-decoration: none;">Home</a> /
+              <a href="{{route('front.products', [0, 'all-products'])}}" style="text-decoration: none;">Shop</a>
             </div>
           </div>
         </div>
@@ -105,7 +105,11 @@
                     <div class="conta12">
                         <img src="{{asset($product->cover)}}" style="height: 250px; width: 100%; " alt="Avatar" class="image12">
                         <div class="overlay12">
-                        <div class="text12"><img src="{{asset($product->photo)}}" style="height: 100%;width: 100%;" alt=""></div>
+                          <div class="text12">
+                              <h6 style="font-weight: bold;" >{{$product->name}}</h6>
+                              <p>{{$product->current_price}}/=</p>
+                              <a href="{{route('front.product', $product->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;" >Detail</a>
+                          </div>
                         </div>
                     </div>
                     </div>
@@ -124,7 +128,7 @@
                     <div class="card-footer">
                     <div class="row">
                         <div class="col-6">
-                        <a href="#" style="text-decoration: none;"><span style="font-size: 10px;"><i class="fa fa-check-circle" style="font-size: 10px;"></i> &nbsp; Add To Wishlist </span></a>
+                        <a href="{{route('front.product', $product->slug)}}" style="text-decoration: none;"><span style="font-size: 10px;"><i class="fa fa-check-circle" style="font-size: 10px;"></i> &nbsp; Buy Now </span></a>
                         </div>
                         <div class="col-6" style="text-align: right;">
                         <a href="{{route('front.product', $product->slug)}}" style="text-decoration: none;"><span style="font-size: 10px;"> <i class="fa fa-eye" style="font-size: 10px;"></i>&nbsp; Quick View </span></a>

@@ -8,6 +8,19 @@ use Validator;
 
 class ProductReviewController extends Controller
 {
+    private $reviewObject;
+
+    public function __construct()
+    {
+        $this->reviewObject = new ProductReview();
+    }
+
+    public function index()
+    {
+        $reviews = $this->reviewObject->getAllReviews();
+        return view('backend.admin.review', compact('reviews'));
+    }
+
     public function store(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -32,9 +45,9 @@ class ProductReviewController extends Controller
 
         } else {
 
-            $reviewObject = new ProductReview();
+            
 
-            $reviewObject->storeReview($request);
+            $this->reviewObject->storeReview($request);
 
             $success_output = '<div class="alert alert-success"> Review Successful! </div>';
         }
@@ -46,5 +59,11 @@ class ProductReviewController extends Controller
         );
 
         echo json_encode($output);
+    }
+
+    public function status(Int $id, Int $status)
+    {
+        $this->reviewObject->changeReviewStatus($id,$status);
+        return back();
     }
 }

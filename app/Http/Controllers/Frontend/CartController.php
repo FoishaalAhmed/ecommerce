@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\General;
 use App\Model\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -11,8 +12,8 @@ class CartController extends Controller
 {
     public function index()
     {
-        //Cart::destroy();
-        return view('frontend.cart');
+        $shippingCharge  = General::where('name', 'shipping-charge')->first();
+        return view('frontend.cart', compact('shippingCharge'));
     }
 
     public function store(Request $request)

@@ -16,14 +16,13 @@ class Product extends Model
     {
         $products = DB::table('products')
                         ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id')
                         ->where('product_categories.category_id', 1)
                         ->orderBy('products.created_at', 'desc')
                         ->groupBy('products.id')
                         ->take(12)
-                        ->select('products.slug', 'products.id', 'products.cover', 'product_photos.photo')
+                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
                         ->get()
-            ->toArray();
+                        ->toArray();
         return $products;
     }
 
@@ -31,14 +30,13 @@ class Product extends Model
     {
         $products = DB::table('products')
                         ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id')
                         ->where('product_categories.category_id', 6)
                         ->orderBy('products.created_at', 'desc')
                         ->groupBy('products.id')
                         ->take(12)
-                        ->select('products.slug', 'products.id', 'products.cover', 'product_photos.photo')
+                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
                         ->get()
-            ->toArray();
+                        ->toArray();
         return $products;
     }
 
@@ -46,14 +44,13 @@ class Product extends Model
     {
         $products = DB::table('products')
                         ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id')
                         ->where('product_categories.category_id', 2)
                         ->orderBy('products.created_at', 'desc')
                         ->groupBy('products.id')
                         ->take(12)
-                        ->select('products.slug', 'products.id', 'products.cover', 'product_photos.photo')
+                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
                         ->get()
-            ->toArray();
+                        ->toArray();
         return $products;
     }
 
@@ -61,12 +58,11 @@ class Product extends Model
     {
         $products = DB::table('products')
                         ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id')
                         ->where('product_categories.category_id', 7)
                         ->orderBy('products.created_at', 'desc')
                         ->groupBy('products.id')
-                        ->take(12)
-                        ->select('products.slug', 'products.id', 'products.cover', 'product_photos.photo')
+                        ->take(6)
+                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
                         ->get()
                         ->toArray();
         return $products;
@@ -76,13 +72,12 @@ class Product extends Model
     {
         $products = DB::table('products')
                         ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id')
                         ->where('product_categories.category_id', 8)
                         ->orderBy('products.created_at', 'desc')
                         ->groupBy('products.id')
                         ->groupBy('products.id')
-                        ->take(12)
-                        ->select('products.slug', 'products.id', 'products.cover', 'product_photos.photo')
+                        ->take(6)
+                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
                         ->get()
                         ->toArray();
         return $products;

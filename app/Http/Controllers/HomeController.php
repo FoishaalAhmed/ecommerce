@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,21 @@ class HomeController extends Controller
 
         } else {
 
-            return redirect(route('user.dashboard'));
+            $checkout = Session::get('checkout');
+
+            if ($checkout) {
+
+                Session::forget('checkout');
+
+                return redirect()->route('checkout');
+
+            } else {
+
+                return redirect(route('user.dashboard'));
+            }
+            
+
+            
         }
     }
 }

@@ -38,7 +38,15 @@
 
             </li>
 
-            <li class="treeview @if(request()->is('admin/products') || request()->is('admin/products/create') || request()->is('admin/products/*') ) {{'active'}} @endif">
+            <li class="@if(request()->is('admin/orders')) {{'active'}} @endif">
+
+                <a href="{{route('orders.index')}}">
+                <i class="fa fa-shopping-cart"></i> <span>{{__('Orders')}}</span>
+                </a>
+
+            </li>
+
+            <li class="treeview @if(request()->is('admin/products') || request()->is('admin/products/create') || request()->is('admin/products/*') || request()->is('admin/reviews') ) {{'active'}} @endif">
                 <a href="#">
                 <i class="fa fa-product-hunt"></i>
                 <span>{{__('Products')}}</span>
@@ -56,10 +64,22 @@
                         <a href="{{route('products.index')}}"><i class="fa fa-list"></i> {{__('Products')}}</a>
                     </li>
 
+                    <li class="@if(request()->is('admin/reviews')) {{'active'}} @endif">
+                        <a href="{{route('reviews.index')}}"><i class="fa fa-star"></i> {{__('Reviews')}}</a>
+                    </li>
+
                 </ul>
             </li>
 
-             <li class="@if(request()->is('admin/categories')) {{'active'}} @endif">
+            <li class="@if(request()->is('admin/sliders')) {{'active'}} @endif">
+
+                <a href="{{route('sliders.index')}}">
+                <i class="fa fa-picture-o"></i> <span>{{__('Sliders')}}</span>
+                </a>
+
+            </li>
+
+            <li class="@if(request()->is('admin/categories')) {{'active'}} @endif">
 
                 <a href="{{route('categories.index')}}">
                 <i class="fa fa-list-alt"></i> <span>{{__('Categories')}}</span>

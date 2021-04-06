@@ -9,6 +9,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/password', 'ProfileController@password')->name('password.change');
     Route::post('/profile-update', 'ProfileController@update')->name('profile.update');
     /** profile route end **/
+    Route::get('/admin/reviews', 'ProductReviewController@index')->name('reviews.index');
+    Route::get('/admin/reviews/{id}/status/{status}', 'ProductReviewController@status')->name('reviews.status');
 
 
 });
@@ -16,7 +18,9 @@ Route::group(['middleware' => ['auth']], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::post('/send-product-review', 'ProductReviewController@store')->name('reviews.store');
+
 
 Route::group(['namespace' => 'Frontend'], function () {
 
@@ -32,9 +36,13 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('/update-cart', 'CartController@update')->name('carts.update');
     Route::post('/delete-cart', 'CartController@delete')->name('carts.delete');
 
+    Route::get('/checkout', 'CheckoutController@index')->name('checkout');
+    Route::post('/place-order', 'CheckoutController@order')->name('place.order');
+
     Route::group(['prefix' => '/user', 'middleware' => 'auth'], function () {
 
         Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
+
     });
 
     Route::get('/{slug}', 'AboutController@pages')->name('pages');

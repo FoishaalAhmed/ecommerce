@@ -6,8 +6,8 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['ad
     Route::put('/contact/{id}/update', 'ContactController@update')->name('contact.update');
     Route::get('/queries', 'QueryController@index')->name('queries.index');
     Route::delete('/queries/destroy/{id}', 'QueryController@destroy')->name('queries.destroy');
-
     Route::post('/products/delete', 'ProductController@delete')->name('delete.product.photo');
+    Route::get('/orders/{id}/status/{status}', 'OrderController@status')->name('orders.status');
 
     Route::resources([
 
@@ -19,5 +19,8 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['ad
         'teams'          => 'TeamController',
         'faqs'           => 'FaqController',
         'products'       => 'ProductController',
+        'sliders'        => 'SliderController',
+        'generals'       => 'GeneralController',
+        'orders'         => 'OrderController',
     ]);
 });

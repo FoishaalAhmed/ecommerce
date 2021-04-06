@@ -102,26 +102,25 @@
                                                 <span class="float-right font-15" style="color: #000;">৳ 65</span>
                                             </div> --}}
                                             <div class="card-summary-item my-2">
-                                                <span>Shipping Fee Discount</span>
-                                                <span class="float-right font-15" style="color: #000;">-৳ 65</span>
+                                                <span>Shipping Fee</span>
+                                                <span class="float-right font-15" style="color: #000;">৳ @if ($shippingCharge != null) {{$shippingCharge->value}} @else {{'0'}}  @endif</span>
                                             </div>
                                             <div class="input-group my-3">
                                                 <input type="text" class="form-control font-12"
                                                     placeholder="Enter Voucher Code" aria-label="Recipient's username"
                                                     aria-describedby="button-addon2">
                                                 <div class="input-group-append">
-                                                    <button
-                                                        class="btn btn-md btn-outline-success m-0 px-3 py-2 z-depth-0 waves-effect"
-                                                        type="button" id="button-addon2">Apply</button>
+                                                    <button class="btn btn-md btn-outline-success m-0 px-3 py-2 z-depth-0 waves-effect" type="button" id="button-addon2">Apply</button>
                                                 </div>
                                             </div>
                                             <div class="card-summary-item my-2">
                                                 <span>Total</span>
-                                                <span class="float-right font-16" style="color: #f57224;">৳ <?php echo Cart::total(); ?>
+                                                <span class="float-right font-16" style="color: #f57224;">৳ 
+                                                    <?php if($shippingCharge != null) $shipping = (int)$shippingCharge->value; else $shipping = 0; echo $shipping + (int)str_replace(',', '',Cart::total()); ?>
                                                 </span>
                                             </div>
                                             <div class="card-summary-item-btn btn-success my-2 text-center mt-3" style="padding: 10px;" >
-                                                <a href="#"  > <span style=" color: #f1f1f1; " >PROCEED TO CHECKOUT</span> </a>
+                                                <a href="{{route('checkout')}}"> <span style=" color: #f1f1f1; " >PROCEED TO CHECKOUT</span> </a>
                                             </div>
                                         </form>
                                     </div>
@@ -228,7 +227,7 @@
                         <p style="margin-bottom: 0px;">Shipping</p>
                     </th>
                     <th style="text-align: right;" >
-                        <p style="margin-bottom: 0px;color: rgb(112, 116, 116);">Flat rate: <?php echo Cart::tax(); ?></p>
+                        <p style="margin-bottom: 0px;color: rgb(112, 116, 116);">Flat rate:৳ @if ($shippingCharge != null) {{$shippingCharge->value}} @else {{'0'}}  @endif</p>
                     </th>
                 </tr>
                 <tr>
@@ -236,7 +235,7 @@
                         <p style="margin-bottom: 0px;">Total</p>
                     </th>
                     <th style="text-align: right;" >
-                        <p style="margin-bottom: 0px;"> <span style="color: #f71008;" > <?php echo Cart::total(); ?> </span> </p> 
+                        <p style="margin-bottom: 0px;"> <span style="color: #f71008;" > ৳ <?php if($shippingCharge != null) $shipping = (int)$shippingCharge->value; else $shipping = 0; echo $shipping + (int) str_replace(',', '',Cart::total()); ?>  </span> </p> 
                         {{-- <small>(includes <span style="color: #f71008;" >₹26.26</span> Tax)</small> --}}
                     </th>
                 </tr>
@@ -245,7 +244,9 @@
             <div class="row" style="text-align: right;margin-bottom: 10px;" >
                 <div class="col-6"></div>
                 <div class="col-6" style="float: right;">
-                    <a class="btn btn-success" style="border-radius: 50px 0px 0px 50px;" >Proceed to checkout</a>
+                    <a href="{{route('checkout')}}" class="btn btn-success" style="border-radius: 50px 0px 0px 50px;" >Proceed to checkout</a>
+                    
+
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Model\Category;
+use App\Model\General;
 use App\Model\Product;
 use App\Model\ProductCategory;
 use App\Model\ProductColor;
@@ -63,17 +64,11 @@ class ProductController extends Controller
 
         $relatedProducts = $this->productObject->getRelatedProducts($categories, $product->id);
         $productReviews  = ProductReview::where('product_id', $product->id)->get();
-
-
-
-
-        // echo "<pre>";
-        // print_r($productReviews);
-        // //print_r($product->id);
-        // echo "</pre>";
-
-        //$catego
-        //$products = $this->productObject->getProductByCategory($category_id);
-        return view('frontend.product', compact('product', 'productPhotos', 'productCategories', 'productSizes', 'productColors', 'relatedProducts', 'productReviews'));
+        $deliveryTime    = General::where('name', 'delivery-time')->first();
+        $returnPolicy    = General::where('name', 'return-policy')->first();
+        return view('frontend.product', compact(
+            'product', 'productPhotos', 'productCategories', 
+            'productSizes', 'productColors', 'relatedProducts', 
+            'productReviews', 'deliveryTime', 'returnPolicy'));
     }
 }

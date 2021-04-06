@@ -131,13 +131,13 @@
                 <div class="col-7">
                     <br>
                     <p>
-                        Expected delivery in 10-14 days.
+                        @if ($deliveryTime != null) {{$deliveryTime->value}} @endif
                     </p>
                 </div>
                 <br>
                 <div class="col-12">
                     <p style="color: red;">
-                        Check size guide carefully before placing order. No return is accepted during COVID19.
+                        @if ($returnPolicy != null) {{$returnPolicy->value}} @endif
                     </p>
                 </div>
                 @if ($productColors->isNotEmpty())
@@ -332,7 +332,11 @@
                         <img src="{{asset($related->cover)}}" style="height: 250px; width: 100%; " alt="Avatar"
                             class="image12">
                         <div class="overlay12">
-                            <div class="text12"><img src="{{asset($related->photo)}}" style="height: 100%;width: 100%;" alt=""></div>
+                            <div class="text12">
+                                <h2 style="font-weight: bold;" >{{$related->name}}</h2>
+                                <p>{{$related->current_price}}/=</p>
+                                <a href="{{route('front.product', $related->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;" >Detail</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -351,7 +355,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" style="text-decoration: none;"><span style="font-size: 10px;"><i class="fa fa-check-circle" style="font-size: 10px;"></i> &nbsp; Add to wishlist</span></a>
+                            <a href="{{route('front.product', $product->slug)}}" style="text-decoration: none;"><span style="font-size: 10px;"><i class="fa fa-check-circle" style="font-size: 10px;"></i> &nbsp; Select Option</span></a>
                         </div>
                         <div class="col-6" style="text-align: right;">
                             <a href="{{route('front.product', $product->slug)}}" style="text-decoration: none;"><span style="font-size: 10px;"> <i class="fa fa-eye" style="font-size: 10px;"></i>&nbsp; Quick View </span></a>
@@ -370,9 +374,9 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="cartView-content-Delivery">
-                    <p style="text-align: center; font-weight: 900; ">Expected delivery in 10-14 days.</p>
+                    <p style="text-align: center; font-weight: 900; ">@if ($deliveryTime != null) {{$deliveryTime->value}} @endif</p>
                     <hr>
-                    <p style="text-align: center;">Check size guide carefully before placing order. No return is accepted during COVID19</p>
+                    <p style="text-align: center;">@if ($returnPolicy != null) {{$returnPolicy->value}} @endif</p>
                 </div>
                 <hr>
             </div>
@@ -385,7 +389,7 @@
                     <div class="col-md-12">
                         <div class="rate">
                             <h2>{{$product->current_price}}/=</h2>
-                            <p><del style="color: #c40f0f;"> @if ($product->previous_price != null) {{$product->previous_price}}/= @endif </del> &nbsp; {{$product->saving}}% </p>
+                            <p><del style="color: #c40f0f;"> @if ($product->previous_price != null) {{$product->previous_price}}/= @endif </del> &nbsp; @if ($product->saving != null) {{$product->saving}}% @endif </p>
                             <span>
                             Categories: <span>@foreach ($productCategories as $key => $category) @if ($key != 0) {{', '}} @endif {{$category->name}}  @endforeach</span>
                             </span>
@@ -468,12 +472,7 @@
                                                 <p class="title-many mb-2" style="color: black;font-weight: 800;">
                                                     {{$related->current_price}}/= <del style="color: red;margin-bottom: 2px;">@if ($related->previous_price != null) {{$related->previous_price}}/= @endif</del>
                                                 </p>
-                                                <button class="btn btn-success">
-                                                Add Cart
-                                                </button>
-                                                <button class="btn btn-info">
-                                                Add Wishlist
-                                                </button>
+                                                <a href="{{route('front.product', $related->slug)}}" class="btn btn-success"> Detail </a>
                                             </div>
                                         </div>
                                     </div>
