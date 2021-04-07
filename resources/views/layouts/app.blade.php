@@ -115,7 +115,7 @@
 		<div class="container" style="margin-top: -8px;margin-bottom: 10px;">
 			<div class="row desktop-nav" style=" border-radius: 20px;">
 				<div class="col-2">
-					<a href="#"><img src="{{asset('public/frontend/img/logo.png')}}" style="margin-top: 20px;" alt=""></a>
+					<a href="{{URL::to('/')}}"><img src="{{asset('public/frontend/img/logo.png')}}" style="margin-top: 20px;" alt=""></a>
 				</div>
 				<div class="col-1"></div>
 				<div class="col-9 desktop-nav">
@@ -123,7 +123,7 @@
 						<div class="container-fluid">
 							<ul class="navbar-nav">
 								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="#">Home</a>
+									<a class="nav-link active" aria-current="page" href="{{URL::to('/')}}">Home</a>
 								</li>
 								@php
 									use App\Model\Category;
@@ -191,7 +191,8 @@
 											<span class="closebtn9" onclick="closeSearch()"
 												title="Close Overlay9">×</span>
 											<div class="overlay-content9">
-												<form action="/action_page.php">
+												<form action="{{route('search')}}" method="GET">
+													@csrf
 													<input type="text" placeholder="Search.." name="search">
 													<button type="submit"><i class="fa fa-search"></i></button>
 												</form>
@@ -201,6 +202,21 @@
 												class="fas fa-search"></i></button>
 									</a>
 								</li>
+
+								@auth
+								<li class="nav-item">
+									<div class="dropdown">
+										<button class="dropbtn" style="background: none;color: black;font-size: 15px; margin-top: 23px;"> My Accounts <i class="fa fa-caret-down"></i> </button>
+										<div class="dropdown-content" style="padding: 15px;border-top: 3px solid red;">
+											<a href="{{route('user.dashboard')}}"> Orders </a>
+											<a href="{{route('user.profile')}}"> Profile </a>
+											<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Sign out')}}</a>
+                                
+                                			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
+										</div>
+									</div>
+								</li>
+								@endauth
 							</ul>
 						</div>
 				</div>
@@ -210,61 +226,81 @@
 			<div class="nav mobile-responsive">
 				<div class="">
 					<span>
-						<span><a href="#"> <img src="{{asset('public/frontend/img/logo.png')}}" style="height: 50px; width: 50px; " alt="">
-							</a></span>
-						<span><a href="#"> home </a></span>
-						<span><a href="#">home 2</a></span>
-						<span><a href="#"> home 3 </a></span>
+						<span><a href="{{URL::to('/')}}"> <img src="{{asset('public/frontend/img/logo.png')}}" style="height: 50px; width: 50px; " alt=""></a></span>
+
+						@foreach ($parents as  $parent)
+
+						@php
+							$childs = Category::where('parent_id', $parent->id)->orderBy('name', 'asc')->get();
+						@endphp
+
+						@if ($childs->isEmpty())
+						
+							<span><a href="{{route('front.products', [$parent->id, strtolower(str_replace(' ', '-', $parent->name))])}}"> {{$parent->name}} </a></span>
+
+						@endif
+
+						@endforeach
+
 						<span>
 							<div class="dropdown">
-								<button class="dropbtn"
-									style="background: none;color: black;font-size: 15px; margin-top: 23px;"> Apparel <i
-										class="fa fa-caret-down"></i> </button>
+								<button class="dropbtn" style="background: none;color: black;font-size: 15px; margin-top: 23px;"> More <i class="fa fa-caret-down"></i> </button>
 								<div class="dropdown-content" style="padding: 15px;border-top: 3px solid red;">
-									<a href="#"> T-Shart </a>
 									<div class="dropdown2">
-										<button class="dropbtn2" style="background: none;"> T-Shart-2 <i
-												class="fa fa-caret-down"></i> </button>
+										@foreach ($parents as  $parent)
+
+											@php
+												$reschilds = Category::where('parent_id', $parent->id)->orderBy('name', 'asc')->get();
+											@endphp
+
+										@if ($reschilds->isNotEmpty())
+											<button class="dropbtn2" style="background: none;"> {{$parent->name}} <i class="fa fa-caret-down"></i> </button> <br>
+										@endif
 										<div class="dropdown-content2">
-											<a href="#">Men's</a>
-											<a href="#">Men'S2</a>
-										</div>
-									</div>
-									<a href="#"> T-Shart </a>
-									<a href="#"> T-Shart </a>
-									<a href="#"> T-Shart </a>
-									<div class="dropdown2">
-										<button class="dropbtn2" style="background: none;"> T-Shart-2 <i
-												class="fa fa-caret-down"></i> </button>
-										<div class="dropdown-content2">
-											<a href="#">Men's</a>
-											<a href="#">Men'S2</a>
-											<a href="#">Men's</a>
-											<a href="#">Men'S2</a>
-											<a href="#">Men's</a>
-											<a href="#">Men'S2</a>
+
+											@foreach ($reschilds as $reschild)
+
+											@php
+												$resgrandchilds = Category::where('parent_id', $reschild->id)->orderBy('name', 'asc')->get();
+											@endphp
+
+											@if ($resgrandchilds->isEmpty())
+												<a href="{{route('front.products', [$reschild->id, strtolower(str_replace(' ', '-', $reschild->name))])}}">{{$reschild->name}}</a>
+											@else
+
 											<div class="dropdown2">
-												<button class="dropbtn2" style="background: none;"> T-Shart-2 <i
-														class="fa fa-caret-down"></i> </button>
+												<button class="dropbtn2" style="background: none;"> {{$reschild->name}}<i class="fa fa-caret-down"></i> </button>
 												<div class="dropdown-content2">
-													<a href="#">Men's</a>
-													<a href="#">Men'S2</a>
+													@foreach ($resgrandchilds as $resgrandchild)
+														<a href="{{route('front.products', [$resgrandchild->id, strtolower(str_replace(' ', '-', $resgrandchild->name))])}}">{{$resgrandchild->name}}</a>
+														
+													@endforeach
+
 												</div>
 											</div>
+												
+											@endif
+												
+											@endforeach
+
+											
+											
 										</div>
+										@endforeach
 									</div>
 								</div>
 							</div>
 						</span>
 						<span>
-							<a href="#"><i class="fas fa-cart-plus"></i></a>
+							<a href="#"><i class="fas fa-cart-plus"></i> <span style="color: rgb(222, 247, 3);padding:5px;font-weight:bold;" id="cart-count">{{Cart::count()}}</span></a>
 						</span>
 						<span>
 							<a href="#">
 								<div id="myOverlay11" class="overlay11">
 									<span class="closebtn11" onclick="closeSearch()" title="Close Overlay11">×</span>
 									<div class="overlay-content11">
-										<form action="/action_page.php">
+										<form action="{{route('search')}}" method="GET">
+												@csrf
 											<input type="text" placeholder="Search.." name="search">
 											<button type="submit"><i class="fa fa-search"></i></button>
 										</form>
@@ -341,19 +377,19 @@
 					<br>
 					<br>
 					<div class="footer-mdmd">
-						<span> <span style="font-weight: 800;">></span> <span><a href="{{route('about')}}"> <span class="mdmd2">About Us</span> </a></span> </span>
+						<span> <span style="font-weight: 800;"></span> <span><a href="{{route('about')}}"> <span class="mdmd2">About Us</span> </a></span> </span>
 						<hr style="margin-top: 10px; margin-bottom: 10px; ">
 
-						<span> <span style="font-weight: 800;">></span> <span><a href="{{route('front.contact')}}"> <span class="mdmd2">Contact Us</span> </a></span> </span>
+						<span> <span style="font-weight: 800;"></span> <span><a href="{{route('front.contact')}}"> <span class="mdmd2">Contact Us</span> </a></span> </span>
 						<hr style="margin-top: 10px; margin-bottom: 10px; ">
 
-						<span> <span style="font-weight: 800;">></span> <span><a href="{{route('pages', 'return-shipment')}}"> <span class="mdmd2">Return & Shipment</span> </a></span> </span>
+						<span> <span style="font-weight: 800;"></span> <span><a href="{{route('pages', 'return-shipment')}}"> <span class="mdmd2">Return & Shipment</span> </a></span> </span>
 						<hr style="margin-top: 10px; margin-bottom: 10px; ">
 
-						<span> <span style="font-weight: 800;">></span> <span><a href="{{route('pages', 'terms-conditions')}}"> <span class="mdmd2">Terms & Conditions</span> </a></span> </span>
+						<span> <span style="font-weight: 800;"></span> <span><a href="{{route('pages', 'terms-conditions')}}"> <span class="mdmd2">Terms & Conditions</span> </a></span> </span>
 						<hr style="margin-top: 10px; margin-bottom: 10px; ">
 
-						<span> <span style="font-weight: 800;">></span> <span><a href="{{route('pages', 'privacy-policy')}}"> <span class="mdmd2">Privacy Policy</span> </a></span> </span>
+						<span> <span style="font-weight: 800;"></span> <span><a href="{{route('pages', 'privacy-policy')}}"> <span class="mdmd2">Privacy Policy</span> </a></span> </span>
 						<hr style="margin-top: 10px; margin-bottom: 10px; ">
 					</div>
 				</div>
@@ -365,14 +401,11 @@
 						<hr>
 					</div>
 					<ul class="cloud" role="navigation" aria-label="Webdev word cloud">
-						<li><a href="#" data-weight="6" style="color: whitesmoke; font-size: 18px; ">FlexBox</a></li>
-						<li><a href="#" data-weight="6" style="color: whitesmoke; font-size: 18px; ">T-Shirts</a></li>
-						<li><a href="#" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Mugs</a></li>
-						<li><a href="#" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Grid</a></li>
-						<li><a href="#" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Rest</a></li>
-						<li><a href="#" data-weight="6" style="color: whitesmoke; font-size: 18px; ">FlexBox</a></li>
-						<li><a href="#" data-weight="6" style="color: whitesmoke; font-size: 18px; ">T-Shirts</a></li>
-						<li><a href="#" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Mugs</a></li>
+						<li><a href="{{route('about')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">About Us</a></li>
+						<li><a href="{{route('front.contact')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Contact Us</a></li>
+						<li><a href="{{route('pages', 'return-shipment')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Return & Shipment</a></li>
+						<li><a href="{{route('pages', 'terms-conditions')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Terms & Conditions</a></li>
+						<li><a href="{{route('pages', 'privacy-policy')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Privacy Policy</a></li>
 					</ul>
 				</div>
 				<div class="col-4">
@@ -381,16 +414,12 @@
 						<hr>
 					</div>
 					<ul class="cloud" role="navigation" aria-label="Webdev word cloud">
-						<li><a href="#" data-weight="4">Crop </a></li>
-						<li><a href="#" data-weight="1">Hoodies </a></li>
-						<li><a href="#" data-weight="5">Durga </a></li>
-						<li><a href="#" data-weight="8">T-Shirts</a></li>
-						<li><a href="#" data-weight="6">FlexBox</a></li>
-						<li><a href="#" data-weight="4">T-Shirts</a></li>
-						<li><a href="#" data-weight="5">Mugs</a></li>
-						<li><a href="#" data-weight="6">Grid</a></li>
-						<li><a href="#" data-weight="2">Rest</a></li>
-						<li><a href="#" data-weight="9">Accessories</a></li>
+						@foreach ($parents as $key => $item)
+							
+						
+						<li><a href="{{route('front.products', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}" data-weight="{{++$key}}">{{$item->name}}</a></li>
+
+						@endforeach
 					</ul>
 				</div>
 			</div>

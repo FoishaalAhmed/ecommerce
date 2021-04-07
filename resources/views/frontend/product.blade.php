@@ -69,8 +69,8 @@
             <div class="container">
                 <div class="row" style="text-align: center; padding-top: 10px; padding-bottom: 10px; ">
                     <div class="col-">
-                        <a href="#" style="text-decoration: none;">Home</a> /
-                        <a href="#" style="text-decoration: none;">Products</a> /
+                        <a href="{{URL::to('/')}}" style="text-decoration: none;">Home</a> /
+                        <a  style="text-decoration: none;">Products</a> /
                         <a style="text-decoration: none;"> {{$product->name}} </a>
                     </div>
                 </div>

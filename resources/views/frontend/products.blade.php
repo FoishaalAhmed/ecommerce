@@ -10,7 +10,7 @@
           <div class="row" style="text-align: center; padding-top: 10px; padding-bottom: 10px; ">
             <div class="col-">
               <a href="{{URL::to('/')}}" style="text-decoration: none;">Home</a> /
-              <a href="{{route('front.products', [0, 'all-products'])}}" style="text-decoration: none;">Shop</a>
+              <a style="text-decoration: none;">Shop</a>
             </div>
           </div>
         </div>
@@ -169,8 +169,7 @@
                             <p class="title-many mb-2" style="color: black;font-weight: 800;">{{$product->current_price}}/= <del style="color: red;margin-bottom: 2px;">@if ($product->previous_price != null) {{$product->previous_price}}/= @endif</del> <span
                                 style="color: green; font-weight: 200; "> &nbsp; &nbsp; &nbsp;  @if ($product->saving != null) Off {{$product->saving}}% @endif</span>
                             </p>
-                            <button class="btn btn-success"> Add Cart </button>
-                            <button class="btn btn-info"> Add Wishlist </button>
+                            <a href="{{route('front.product', $product->slug)}}" class="btn btn-success"> Detail </a>
                             </div>
                         </div>
                     </div>

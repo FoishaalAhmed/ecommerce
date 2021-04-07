@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::get('/', 'HomeController@index');
     Route::get('/about', 'AboutController@index')->name('about');
+    Route::get('/search', 'AboutController@search')->name('search');
     Route::get('/contact', 'ContactController@index')->name('front.contact');
     Route::post('/query', 'ContactController@query')->name('query');
     Route::get('/products/{category_id}/{category_name}', 'ProductController@products')->name('front.products');
@@ -42,6 +43,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::group(['prefix' => '/user', 'middleware' => 'auth'], function () {
 
         Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
+        Route::get('/profile', 'DashboardController@profile')->name('user.profile');
 
     });
 

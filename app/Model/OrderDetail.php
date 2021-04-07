@@ -18,4 +18,14 @@ class OrderDetail extends Model
                             ->get();
         return $orderDetails;
     }
+
+    public function getUserAllOrder()
+    {
+        $orderDetails = DB::table('order_details')
+                            ->leftJoin('products', 'order_details.product_id', '=', 'products.id')
+                            ->where('order_details.user_id', auth()->id())
+                            ->select('order_details.*', 'products.name', 'products.cover')
+                            ->get();
+        return $orderDetails;
+    }
 }

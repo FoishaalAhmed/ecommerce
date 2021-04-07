@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Category;
 use App\Model\Page;
+use App\Model\Product;
 use App\Model\Team;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,18 @@ class AboutController extends Controller
         $about = Page::where('slug', 'about-us')->first();
         $teams = Team::orderBy('priority', 'desc')->get();
         return view('frontend.about', compact('about', 'teams'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $categoryObject = new Category();
+        $categories     = $categoryObject->getAllCategoryWithParent();
+        $category       = '';
+        $products       = Product::orderby('name', 'asc')->where('name', 'like', '%' . $search . '%')->paginate(24);
+
+        return view('frontend.products', compact('products', 'category', 'categories'));
     }
 
     public function pages($slug)
