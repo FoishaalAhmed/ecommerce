@@ -31,6 +31,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('/query', 'ContactController@query')->name('query');
     Route::get('/products/{category_id}/{category_name}', 'ProductController@products')->name('front.products');
     Route::get('/product/{slug}', 'ProductController@product')->name('front.product');
+    Route::post('/product/filter', 'ProductController@filter')->name('filter.products');
 
     Route::get('/carts', 'CartController@index')->name('carts');
     Route::post('/add-to-cart', 'CartController@store')->name('carts.store');

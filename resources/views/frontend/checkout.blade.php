@@ -114,11 +114,61 @@
             </div>
         </div>
         <div class="container cart">
-            <div class="row">
-                <div class="col-5" >
+            <div class="row" style="margin-top:20px;" >
+                <div class="col-md-6" style="padding-left:0px;" >
+                <div class="col-75" style="padding-left:0px;">
+                <div class=" check-out" style="padding-left:15px;">
+                    @include('includes.error')
+                    <form action="{{route('place.order')}}" method="POST" style="width:80%;width: 80%;border: 1px solid;border-right-color:currentcolor;border-right-style: solid;border-right-width: 1px;padding: 10px;border-right: none;">
+                        @csrf
+                        <div class="row">
+                            <div class="col-50">
+                                <h3>Shipping Address</h3>
+                                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                <input type="text" id="fname" name="name" placeholder="John M. Doe" value="{{auth()->user()->name}}" required>
+                                <label for="phone"><i class="fas fa-phone-volume"></i> Phone</label>
+                                <input type="text" id="phone" name="phone" placeholder="+88 01919 61 31 52" value="{{auth()->user()->phone}}" required>
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input type="text" id="email" name="email" placeholder="ictbanglabd@gmail.com" value="{{auth()->user()->email}}" required>
+                                <label for="adr"><i class="fas fa-id-badge"></i> Address</label>
+                                <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" value="{{auth()->user()->address}}" required>
+                            </div>
+                            {{-- <div class="col-50">
+                                <h3>Payment</h3>
+                                <label for="fname">Accepted Cards</label>
+                                <div class="icon-container">
+                                    <i class="fab fa-cc-visa" style="color:navy;"></i>
+                                    <i class="fab fa-cc-amex" style="color:blue;"></i>
+                                    <i class="fab fa-cc-mastercard" style="color:red;"></i>
+                                    <i class="fab fa-cc-discover" style="color:orange;"></i>
+                                </div>
+                                <label for="cname">Name on Card</label>
+                                <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                <label for="ccnum">Credit card number</label>
+                                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                                <label for="expmonth">Exp Month</label>
+                                <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                                <div class="row">
+                                    <div class="col-50">
+                                        <label for="expyear">Exp Year</label>
+                                        <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                    </div>
+                                    <div class="col-50">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" id="cvv" name="cvv" placeholder="352">
+                                    </div>
+                                </div>
+                            </div> --}}
+                        </div>
+                        <label>
+                        <input type="checkbox" checked="checked" name="sameadr"> I accept all <a href="{{route('pages', 'terms-conditions')}}"> Terms & Conditions</a>
+                        </label>
+                        <input type="submit" style="background-color: darkgreen;" value="Place Order" class="btn">
+                    </form>
                 </div>
-                <div class="col-2" style="width: 4%;" ></div>
-                <div class="col-5" style="border: 1px solid black; width: 48%; " >
+            </div>
+                </div>
+                <div class="col-md-6" style="border: 1px solid black;" >
                     <h2 style="font-weight: 800;" >
                         Cart totals
                     </h2>
@@ -154,7 +204,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row" style="margin-top:50px;" >
             <div class="col-75">
                 <div class="container check-out22">
                     @include('includes.error')
@@ -206,7 +256,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <!-----responsive check_out_page-->

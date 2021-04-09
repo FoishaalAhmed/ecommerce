@@ -20,13 +20,13 @@
             </div>
         </div>
         <div class="w3-display-middle  w3-large w3-container w3-padding-16 w3-black">
-            <div class="row">
+            <div class="row fstslidr">
                 <div class="col-6 w3-container w3-center w3-animate-top">
                     
                 </div>
                 <div class="col-6 w3-container w3-center w3-animate-top">
                     <a class="fstsliderwrite" href="{{$slider->link}}">
-                        <h6 style="font-weight: 800;color: white;">{{$slider->text}}
+                        <h6 id="bangla" style="font-weight: 800;color: white;">{{$slider->text}}
                         </h6>
                     </a>
                 </div>
@@ -96,10 +96,10 @@
                             <div class="container22">
                                 <img class="img-fluid" src="{{asset($MenProducts->cover)}}" alt="Card image cap">
                                 <div class="overlay">
-                                    <div class="text">
-                                        <h6 style="font-weight: bold;">{{$MenProducts->name}}</h6>
+                                    <div class="text2">
+                                        <h5  style="font-weight: bold;">{{$MenProducts->name}}</h5>
                                         <p>{{$MenProducts->current_price}}/=</p>
-                                        <a href="{{route('front.product', $MenProducts->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;">Detail</a>
+                                        <a href="{{route('front.product', $MenProducts->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -116,11 +116,11 @@
                             <div class="container22">
                                 <img class="img-fluid" src="{{asset($MenProductsItem->cover)}}" alt="Card image cap">
                                 <div class="overlay">
-                                    <div class="text">
+                                    <div class="text25">
                                         <h6 style="font-weight: bold;">{{$MenProductsItem->name}}</h6>
                                         <p>{{$MenProductsItem->current_price}}/=</p>
                                         <a href="{{route('front.product', $MenProductsItem->slug)}}" class="btn btn-sm btn-Secondary"
-                                            style="background-color: #ffffff;">Detail</a>
+                                            style="background-color: #ffffff;">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -140,8 +140,7 @@
                                 class="fas fa-angle-left fa-3x pr-3"></i></a>
                         </div>
                         <div class="col-3"></div>
-                        <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="#"><button
-                            type="button" style="border-radius: 50px;"
+                        <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="{{route('front.products', [1, 'men'])}}"><button type="button" style="border-radius: 50px;"
                             class="btn btn-info">EXPLORE</button></a></div>
                         <div class="col-3"></div>
                         <div class="col-md-2" style="text-align: center;">
@@ -185,7 +184,7 @@
                         <div class="flip-card-back">
                             <h6>{{$mug->name}}</h6>
                             <p>{{$mug->current_price}}/=</p>
-                            <a href="{{route('front.product', $mug->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;">Detail</a>
+                            <a href="{{route('front.product', $mug->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -198,8 +197,7 @@
                     <!-- <a class="black-text" href="#multi-item-example3" data-slide="prev"><i class="fas fa-angle-left fa-3x pr-3"></i></a> -->
                 </div>
                 <div class="col-3"></div>
-                <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="#"><button
-                    type="button" style="border-radius: 50px;" class="btn btn-info">more</button></a></div>
+                <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="{{route('front.products', [7, 'mug'])}}"><button type="button" style="border-radius: 50px;" class="btn btn-info">more</button></a></div>
                 <div class="col-3"></div>
                 <div class="col-md-2" style="text-align: center;">
                     <!-- <a class="black-text" href="#multi-item-example3" data-slide="next"><i class="fas fa-angle-right fa-3x pl-3"></i></a> -->
@@ -244,7 +242,7 @@
                                         <h6 style="font-weight: bold;">{{$WomenProducts->name}}</h6>
                                         <p>{{$WomenProducts->current_price}}/=</p>
                                         <a href="{{route('front.product', $WomenProducts->slug)}}" class="btn btn-sm btn-Secondary"
-                                            style="background-color: #ffffff;">Detail</a>
+                                            style="background-color: #ffffff;">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +263,7 @@
                                         <h6 style="font-weight: bold;">{{$WomenProductsItem->name}}</h6>
                                         <p>{{$WomenProductsItem->current_price}}/=</p>
                                         <a href="{{route('front.product', $WomenProductsItem->slug)}}" class="btn btn-sm btn-Secondary"
-                                            style="background-color: #ffffff;">Detail</a>
+                                            style="background-color: #ffffff;">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -288,8 +286,7 @@
                                     class="fas fa-angle-left fa-3x pr-3"></i></a>
                             </div>
                             <div class="col-3"></div>
-                            <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="#"><button
-                                type="button" style="border-radius: 50px;"
+                            <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="{{route('front.products', [2, 'women'])}}"><button type="button" style="border-radius: 50px;"
                                 class="btn btn-info">EXPLORE</button></a></div>
                             <div class="col-3"></div>
                             <div class="col-md-2" style="text-align: center;">
@@ -331,7 +328,7 @@
                             <div class="flip-card-back">
                                 <h6>{{$mobileCover->name}}</h6>
                                 <p>{{$mobileCover->current_price}}/=</p>
-                                <a href="{{route('front.product', $mobileCover->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;">Detail</a>
+                                <a href="{{route('front.product', $mobileCover->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -344,8 +341,7 @@
                         <!-- <a class="black-text" href="#multi-item-example3" data-slide="prev"><i class="fas fa-angle-left fa-3x pr-3"></i></a> -->
                     </div>
                     <div class="col-3"></div>
-                    <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="#"><button
-                        type="button" style="border-radius: 50px;" class="btn btn-info">more</button></a></div>
+                    <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="{{route('front.products', [8, 'mobile-cover'])}}"><button type="button" style="border-radius: 50px;" class="btn btn-info">more</button></a></div>
                     <div class="col-3"></div>
                     <div class="col-md-2" style="text-align: center;">
                         <!-- <a class="black-text" href="#multi-item-example3" data-slide="next"><i class="fas fa-angle-right fa-3x pl-3"></i></a> -->
@@ -386,11 +382,11 @@
                                 <div class="container22">
                                     <img class="img-fluid" src="{{asset($KidProducts->cover)}}" alt="Card image cap">
                                     <div class="overlay">
-                                        <div class="text">
+                                        <div class="text" style="text-align: center;" >
                                             <h6 style="font-weight: bold;">{{$KidProducts->name}}</h6>
                                             <p>{{$KidProducts->current_price}}/=</p>
                                             <a href="{{route('front.product', $KidProducts->slug)}}" class="btn btn-sm btn-Secondary"
-                                                style="background-color: #ffffff;">Detail</a>
+                                                style="background-color: #ffffff;">Buy Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -411,7 +407,7 @@
                                             <h6 style="font-weight: bold;">{{$KidProductsItem->name}}</h6>
                                             <p>{{$KidProductsItem->current_price}}/=</p>
                                             <a href="{{route('front.product', $KidProductsItem->slug)}}" class="btn btn-sm btn-Secondary"
-                                                style="background-color: #ffffff;">Detail</a>
+                                                style="background-color: #ffffff;">Buy Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -432,8 +428,7 @@
                                     class="fas fa-angle-left fa-3x pr-3"></i></a>
                             </div>
                             <div class="col-3"></div>
-                            <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="#"><button
-                                type="button" style="border-radius: 50px;"
+                            <div class="col-2" style="    text-align: center;margin-top: 10px;"><a href="{{route('front.products', [6, 'kids'])}}"><button type="button" style="border-radius: 50px;"
                                 class="btn btn-info">EXPLORE</button></a></div>
                             <div class="col-3"></div>
                             <div class="col-md-2" style="text-align: center;">
@@ -470,25 +465,25 @@
                             <div class="conta12">
                                 <img src="{{asset($recentProduct->cover)}}" style="height: 250px; width: 100%; " alt="Avatar" class="image12">
                                 <div class="overlay12">
-                                    <div class="text">
+                                    <div class="text" style="text-align: center;" >
                                         <h2 style="font-weight: bold;" >{{$recentProduct->name}}</h2>
                                         <p>{{$recentProduct->current_price}}/=</p>
-                                        <a href="{{route('front.product', $recentProduct->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;" >Detail</a>
+                                        <a href="{{route('front.product', $recentProduct->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;" >Buy Now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="row" style="text-align: left;font-weight: bold;" >
-                                <a style="text-decoration: none;"  href="#" style="margin-bottom: 15px;" >
+                                <a style="text-decoration: none;font-size:20px;"  href="#" style="margin-bottom: 15px;" >
                                 {{$recentProduct->name}}
                                 </a>
                             </div>
                             <del>
-                            <span>@if ($recentProduct->previous_price != null) {{$recentProduct->previous_price}}/= @endif   </span>
+                            <span style="margin-right:20px;">@if ($recentProduct->previous_price != null) {{$recentProduct->previous_price}}/= @endif   </span>
                             </del>
-                            &nbsp; &nbsp; 
-                            <ins><span style="font-size: 15px; font-weight: bold;color: green;" >{{$recentProduct->current_price}}/=</span></ins>
+                            &nbsp; &nbsp;
+                            <ins><span style="font-size: 20px; font-weight: bold;color: green;margin-left: -37px;" >{{$recentProduct->current_price}}/=</span></ins>
                         </div>
                         <div class="card-footer">
                             <div class="row">

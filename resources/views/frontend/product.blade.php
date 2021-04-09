@@ -350,7 +350,7 @@
                     <span>@if ($related->previous_price != null) {{$related->previous_price}}/= @endif</span>
                     </del>
                     &nbsp; &nbsp;
-                    <ins><span style="font-size: 15px; font-weight: bold;color: green;">{{$related->current_price}}/=</span></ins>
+                    <ins><span style="font-size: 15px; font-weight: bold;color: green;margin-left: -37px;">{{$related->current_price}}/=</span></ins>
                 </div>
                 <div class="card-footer">
                     <div class="row">

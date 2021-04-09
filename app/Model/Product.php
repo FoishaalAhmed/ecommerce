@@ -121,6 +121,23 @@ class Product extends Model
         return $products;
     }
 
+    public function getFilteredProducts($categories = null, $priceStart, $priceEnd)
+    {
+        $query = DB::table('products')
+                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                        ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id');
+
+        if ($categories != null) $query->whereIn('product_categories.category_id', $categories);
+
+        $query->whereBetween('products.current_price', [$priceStart, $priceEnd])
+                        ->orderBy('products.created_at', 'desc')
+                        ->groupBy('products.id')
+                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price', 'products.previous_price', 'products.saving', 'product_photos.photo');
+        $products = $query->get();
+
+        return $products;
+    }
+
     public function storeProduct(Object $request)
     {
         $image = $request->file('cover');

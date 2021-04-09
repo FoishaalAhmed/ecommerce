@@ -27,6 +27,8 @@ class ProductController extends Controller
     public function products($category_id = 0, $category_name)
     {
         $categories = $this->categoryObject->getAllCategoryWithParent();
+        $highestPrice = Product::orderBy('current_price', 'desc')->first();
+        $lowestPrice  = Product::orderBy('current_price', 'asc')->first();
 
         if ($category_id == 0) {
 
@@ -40,7 +42,7 @@ class ProductController extends Controller
         }
         
         
-        return view('frontend.products', compact('products', 'category', 'categories'));
+        return view('frontend.products', compact('products', 'category', 'categories', 'highestPrice', 'lowestPrice'));
     }
 
     public function product($slug)
@@ -70,5 +72,22 @@ class ProductController extends Controller
             'product', 'productPhotos', 'productCategories', 
             'productSizes', 'productColors', 'relatedProducts', 
             'productReviews', 'deliveryTime', 'returnPolicy'));
+    }
+
+    public function filter(Request $request)
+    {
+        $fetch_category = $request->categories;
+        $priceStart   = $request->priceStart;
+        $priceEnd     = $request->highestPrice;
+        $categories   = $this->categoryObject->getAllCategoryWithParent();
+        $highestPrice = Product::orderBy('current_price', 'desc')->first();
+        $lowestPrice  = Product::orderBy('current_price', 'asc')->first();
+        $category = '';
+
+        $products     = $this->productObject->getFilteredProducts($fetch_category, $priceStart, $priceEnd);
+
+        return view('frontend.filter', compact('products', 'category', 'categories', 'highestPrice', 'lowestPrice'));
+
+        //echo json_encode($request->categories);
     }
 }
