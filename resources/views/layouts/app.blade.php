@@ -6,496 +6,501 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BanglaBesh | @yield('title')</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{{asset('public/frontend/css/bootstrap.min.css')}}">
-        <!--main Style-->
+        <title> Banglabesh | @yield('title') </title>
         <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}">
-        <!---Font Asowm-->
-        <link rel="stylesheet" href="{{asset('public/frontend/css/all.min.css')}}">
-        <!-----responsive-->
         <link rel="stylesheet" href="{{asset('public/frontend/css/responsive.css')}}">
-        <!---slider-->
-        <link rel="stylesheet" href="{{asset('public/frontend/css/slider.css')}}">
-        <!----animation-->
-        <link rel="stylesheet" href="{{asset('public/frontend/css/animation.css')}}">
-        <!-----Test Slider----->
-        <link rel="stylesheet" href="{{asset('public/frontend/css/slickslider/slick.css')}}">
-        <link rel="stylesheet" href="{{asset('public/frontend/css/slickslider/slick-theme.css')}}">
-        <link rel="stylesheet" href="{{asset('public/frontend/css/afnan css.css')}}">
-        <!---Font Awesome-->
-        <link rel="stylesheet" href="{{asset('public/frontend/css/font/css/brands.css')}}">
-        <link rel="stylesheet" href="{{asset('public/frontend/css/font/css/brands.min.css')}}">
-        <link rel="stylesheet" href="{{asset('public/frontend/css/font/css/fontawesome.css')}}">
-        <link rel="stylesheet" href="{{asset('public/frontend/css/font/css/fontawesome.min.css')}}">
-        <link rel="stylesheet" href="{{asset('public/frontend/css/font/css/svg-with-js.min.css')}}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="{{asset('public/frontend/css/font/js/brands.js')}}"></script>
-        <script src="{{asset('public/frontend/css/font/js/brands.min.js')}}"></script>
-        <script src="{{asset('public/frontend/css/font/js/fontawesome.js')}}"></script>
-        <script src="{{asset('public/frontend/css/font/js/fontawesome.min.js')}}"></script>
-        <script src="{{asset('public/frontend/css/font/js/all.js')}}"></script>
-        @section('header')
-        @show
+        <link rel="stylesheet" href="{{asset('public/frontend/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+            integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     </head>
-    <body style="background: #ffffff;background-image: linear-gradient(aliceblue, #ffffff);">
-        <div class="container-fluid" style="padding: 0px; background-image: linear-gradient(rgb(250, 252, 255), rgb(170, 170, 168), rgb(197, 204, 235));">
-            <div class="container-fluid desktop-head">
-                <div class="" style="height: 2px;background-color: red;margin-left: -12px;margin-right: -12px;"></div>
-                {{-- 
-                <div class="">
-                    <div class="row" style="border-bottom:1px solid darkgray;height: 30px;">
-                        <div class="col-7" style="height: 30px;"></div>
-                        <div class="col-2" style="border-right: 1px solid darkgray;text-align: right;height: 30px;">
-                            <p><a href="{{route('pages', 'return-shipment')}}" style="text-decoration: none; color: darkgray;  ">Return & Shipment</a></p>
+    <body>
+        <div class="container-fluid" style="border-top: 2px solid red;">
+            <!-------Header Section------->
+            <div class="container-fluid" style="width: 75%;">
+                <div class="header">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="col-md-2  nav-logo">
+                            <a class="navbar-brand" href="#"><img src="{{asset('public/frontend/img/logo.png')}}" alt=""></a>
                         </div>
-                        <div class="col-2" style="margin-left: px; margin-top: -21px;height: 30px;">
-                            <p>
-                                <a href="#">
-                            <div class="dropdown">
-                            <button class="dropbtn" style="background: none;">My Account <i
-                                class="fa fa-caret-down"></i> </button>
-                            <div class="dropdown-content" style="padding: 15px; ">
-                            <form class="form-inline" action="{{route('login')}}" method="POST">
-                            @csrf
-                            <br>
-                            <input type="email" id="email" placeholder="Enter email" name="email"> <br>
-                            <br>
-                            <input type="password" id="pwd" placeholder="Enter password" name="password">
-                            <label>
-                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} > Remember me
-                            </label> <br> <br>
-                            <button class="btn btn-success" style="border-radius: 10px; padding: 2px; padding-left: 5px; padding-right: 5px; " type="submit">Login</button>
-                            <button style="float: right;" type="button">
-                            <a href="{{route('register')}}">Register</a>
-                            </button> 
-                            </form>
-                            </div>
-                            </div>
-                            </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                --}}
-            </div>
-            <div class="container-fluid responsive-head ">
-                <div class="" style="height: 2px;background-color: red;margin-left: -20px;margin-right: -10px;"></div>
-                {{-- 
-                <div class="">
-                    <div class="row" style="border-bottom:1px solid darkgray;height: 30px;">
-                        <div class="col-6" style="border-right: 1px solid darkgray;text-align: right;height: 30px;">
-                            <p><a href="#" style="text-decoration: none; color: darkgray;">Return & Shipment</a></p>
-                        </div>
-                        <div class="col-6" style="margin-left: px; margin-top: -21px;height: 30px;">
-                            <p style="margin-top: -23px;">
-                                <a href="#">
-                            <div class="dropdown">
-                            <button class="dropbtn" style="background: none;">My Account <i
-                                class="fa fa-caret-down"></i> </button>
-                            <div class="dropdown-content" style="padding: 15px;">
-                            <form class="form-inline" action="/action_page.php"> <br>
-                            <input type="email" id="email" placeholder="Enter email" name="email"> <br>
-                            <br>
-                            <input type="password" id="pwd" placeholder="Enter password" name="pswd">
-                            <label>
-                            <input type="checkbox" name="remember"> Remember me
-                            </label> <br> <br>
-                            <button class="btn btn-success" style="border-radius: 10px; padding: 2px; padding-left: 5px; padding-right: 5px; " type="submit">Login</button> 
-                            <button style="float: right;" type="button"><a href="{{route('register')}}">Register</a></button>
-                            </form>
-                            </div>
-                            </div>
-                            </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                --}}
-            </div>
-            <!----Nav bar-->
-            <div class="container" style="margin-top: -8px;margin-bottom: 10px;">
-                <div class="row desktop-nav" style=" border-radius: 20px;">
-                    <div class="col-2">
-                        <a href="{{URL::to('/')}}"><img src="{{asset('public/frontend/img/logo.png')}}" style="margin-top: 20px;" alt=""></a>
-                    </div>
-                    <div class="col-1"></div>
-                    <div class="col-9 desktop-nav">
-                        <nav class="navbar navbar-expand-lg navbar-light " style="font-size: 15px; margin-top: -2px">
-                            <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7">
                                 <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="{{URL::to('/')}}">Home</a>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                                     </li>
-                                    @php
-                                    use App\Model\Category;
-                                    $parents = Category::where('parent_id', 0)->orderBy('name', 'asc')->get();
-                                    @endphp
-                                    @foreach ($parents as  $parent)
-                                    @php
-                                    $childs = Category::where('parent_id', $parent->id)->orderBy('name', 'asc')->get();
-                                    @endphp
-                                    @if ($childs->isEmpty())
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('front.products', [$parent->id, strtolower(str_replace(' ', '-', $parent->name))])}}">{{$parent->name}}</a>
-                                    </li>
-                                    @else
-                                    <li class="nav-item">
-                                        <div class="dropdown">
-                                            <button class="dropbtn" style="background: none;color: black;font-size: 15px; margin-top: 23px;"> {{$parent->name}} <i class="fa fa-caret-down"></i> </button>
-                                            <div class="dropdown-content" style="padding: 15px;border-top: 3px solid red;">
-                                                @foreach ($childs as $child)
-                                                @php
-                                                $grandchilds = Category::where('parent_id', $child->id)->orderBy('name', 'asc')->get();
-                                                @endphp
-                                                @if ($grandchilds->isEmpty())
-                                                <a href="{{route('front.products', [$child->id, strtolower(str_replace(' ', '-', $child->name))])}}"> {{$child->name}} </a>
-                                                @else
-                                                <div class="dropdown2">
-                                                    <button class="dropbtn2" style="background: none;"> <a href="#"> {{$child->name}} <i class="fa fa-caret-down"></i> </a> </button>
-                                                    <div class="dropdown-content2">
-                                                        @foreach ($grandchilds as $grand)
-                                                        <a href="{{route('front.products', [$grand->id, strtolower(str_replace(' ', '-', $grand->name))])}}">{{$grand->name}}</a>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                                @endif
-                                                @endforeach
-                                            </div>
+                                        <a href="#">
+                                            <div class="btn-group">
+                                                <button style="background-color: transparent;" type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Kids
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
                                         </div>
-                                    </li>
-                                    @endif
-                                    @endforeach
-                                    <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="#"><i
-                                            class="fas fa-cart-plus"></i><span style="color: rgb(222, 247, 3);padding:5px;font-weight:bold;" id="cart-count">{{Cart::count()}}</span></a>
-                                    </li>
-                                    <!-----Search Bar----->
-                                    <li class="nav-item" style="padding-right: 0px;">
-                                        <a class="nav-link" aria-current="page" href="#">
-                                            <div id="myOverlay9" class="overlay9">
-                                                <span class="closebtn9" onclick="closeSearch()"
-                                                    title="Close Overlay9">×</span>
-                                                <div class="overlay-content9">
-                                                    <form action="{{route('search')}}" method="GET">
-                                                        @csrf
-                                                        <input type="text" placeholder="Search.." name="search">
-                                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <button class="openBtn9" onclick="openSearch()"><i
-                                                class="fas fa-search"></i></button>
+                                        </div>
                                         </a>
                                     </li>
-                                    @guest
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('login')}}">{{__('Login')}}</a>
-                                    </li>
-                                    @endguest
-                                    @auth
-                                    <li class="nav-item">
-                                        <div class="dropdown">
-                                            <button class="dropbtn" style="background: none;color: black;font-size: 15px; margin-top: 23px;"> My Accounts <i class="fa fa-caret-down"></i> </button>
-                                            <div class="dropdown-content" style="padding: 15px;border-top: 3px solid red;">
-                                                <a href="{{route('user.dashboard')}}"> Orders </a>
-                                                <a href="{{route('user.profile')}}"> Profile </a>
-                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Sign out')}}</a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
+                                        <a class="nav-link" href="#">
+                                            <div class="btn-group">
+                                                <button type="button" style="margin-top: -8px;background-color: transparent;"
+                                                    class="btn  dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Men
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="dropdown-item" type="button">Action</button>
+                                                    <button class="dropdown-item" type="button">Another action</button>
+                                                    <button class="dropdown-item" type="button">Something else here</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </li>
-                                    @endauth
+                                    <li class="nav-item">
+                                        <a style="color: black;" class="nav-link " href="#">Mobile Cover</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a style="color: black;" class="nav-link " href="#">Mugs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="#">
+                                            <div class="btn-group">
+                                                <button type="button" style="margin-top: -8px;background-color: transparent;"
+                                                    class="btn  dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Women
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="dropdown-item" type="button">Action</button>
+                                                    <button class="dropdown-item" type="button">Another action</button>
+                                                    <button class="dropdown-item" type="button">Something else here</button>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
-                    </div>
+                            <div class="col-md-3" style="text-align: right;margin-top: -8px;">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="#">
+                                        <i style="color: black;" class="fa fa-cart-arrow-down" aria-hidden="true">
+                                        <span style="font-weight: bold; color: red;padding-left: 5px;">5</span></i></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" style="text-decoration:none ; color: whitesmoke; ">
+                                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
+                                                <div><i
+                                                    style="color: black;padding-left: 10px; padding-right: 10px;padding-top: 0px; padding-bottom: 0px;"
+                                                    data-toggle="modal" data-target="#exampleModal" class="fas fa-search"></i></div>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel" style="width: 100%;">
+                                                                    <form class="form-inline md-form mr-auto">
+                                                                        <input style="width: 85%;" class="form-control mr-sm-2" type="text"
+                                                                            placeholder="Search" aria-label="Search">
+                                                                        <button class="btn btn-unique btn-rounded btn-sm my-0 waves-effect waves-light"
+                                                                            style="padding-top: 8px;padding-bottom: 8px;" type="submit"><i
+                                                                            class="fas fa-search"></i></button>
+                                                                    </form>
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" style="text-decoration: none; color: black;" href="#">
+                                        Login
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </nav>
                 </div>
-                <!-----responsive Nav------->
-                <!-- <nav class="navbar navbar-inverse mobile-responsive" style="border: none; background-color: white;color: black;margin-bottom: 5px;" >
-                    <div class="container-fluid">
-                    
-                    
-                      <div class="row">
-                        <div class="col-md-2" style="margin-top: 15px;" >
-                          
-                          <div class="navbar-header">
-                    <a  class="navbar-brand" href="./index.html">
-                              <img src="{{asset('public/frontend/img/logo.png')}}"  width="100px" height="50px"  alt=""> </a>
-                    
-                            <button style="color: black;background: #75359b;" type="button" onclick="$('#myNavbar').toggle();" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                              <span class="icon-bar"></span> <br>
-                              <span class="icon-bar"></span> 
-                              <span class="icon-bar"></span>                     
-                            </button>
-                            
-                          </div>
+                <div class="header-responsive" style="width: 360px;margin-left: -74px;">
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <a href="#">Home</a>
+                        <a href="#">Mobile Cover</a>
+                        <a href="#">Mugs</a>
+                        <a href="#">
+                            <button class="btn btn dropdown-toggle " onclick="myFunction1()">kids</button>
+                            <div id="kids" class="dfdf">
+                        <a href="#">Shirt</a>
+                        <a href="#">Shirt</a>
+                        <a href="#">Shirt</a>
                         </div>
-                    
-                        <div class="collapse navbar-collapse" style="margin-top: 10px;" id="myNavbar">
-                          <div class="col-md-8" style="text-align: center;margin: auto;margin-top: 15px;">
-                            <ul class="nav navbar-nav">
-                              <li><a style="color: black;padding: 10px;" class="active" href="./index.html">Home</a></li>
-                              
-                              <li><a style="color: black;padding: 10px;" target="_blank" href="./About.html">About</a></li>
-                              <li><a style="color: black;padding: 10px;" target="_blank" href="./Events And Programme.html">Events And Progrem </a></li>
-                              <li><a style="color: black;padding: 10px;" target="_blank" href="./See More News.html"> News </a></li>
-                              <li><a style="color: black;padding: 10px;" target="_blank" href="./Photo Gallery.html">Photo</a></li>
-                              <li><a style="color: black;padding: 10px;" target="_blank" href="./Video Gallery .html">Veideo</a></li>
-                              <li><a style="color: black;padding: 10px;" target="_blank" href="./Bloges.html"> Bloges </a></li>
-                            </ul>
-                          </div>
-                          
-                    
-                      </div>
-                    
-                      </div>
+                        <script>
+                            function myFunction1() {
+                              var x = document.getElementById("kids");
+                              if (x.style.display == "block") {
+                                x.style.display = "none";
+                              } else {
+                                x.style.display = "block";
+                              }
+                            }
+                        </script>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn dropdown-toggle " onclick="myFunction()">Men</button>
+                            <div id="myDIV" class="dfdf">
+                        <a href="#">pant</a>
+                        <a href="#">pant</a>
+                        <a href="#">pant</a>
+                        </div>
+                        <script>
+                            function myFunction() {
+                              var x = document.getElementById("myDIV");
+                              if (x.style.display == "block") {
+                                x.style.display = "none";
+                              } else {
+                                x.style.display = "block";
+                              }
+                            }
+                        </script>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn dropdown-toggle " onclick="myFunction3()">Women</button>
+                            <div id="women" class="dfdf">
+                        <a href="#">Clock</a>
+                        <a href="#">Clock</a>
+                        <a href="#">Clock</a>
+                        </div>
+                        <script>
+                            function myFunction3() {
+                              var x = document.getElementById("women");
+                              if (x.style.display == "block") {
+                                x.style.display = "none";
+                              } else {
+                                x.style.display = "block";
+                              }
+                            }
+                        </script>
+                        </a>
                     </div>
-                    </nav> -->
-                <div class="nav mobile-responsive">
-                    <div class="">
-                        <span>
-                            <span><a href="{{URL::to('/')}}"> <img src="{{asset('public/frontend/img/logo.png')}}" style="height: 50px; width: 50px; " alt=""></a></span>
-                            <button style="color: black;background: #75359b;" type="button" onclick="$('#myNavbar').toggle();" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            menu
-                            </button>
-                            <div class="collapse navbar-collapse" style="margin-top: 10px;" id="myNavbar">
-                                @foreach ($parents as  $parent)
-                                @php
-                                $childs = Category::where('parent_id', $parent->id)->orderBy('name', 'asc')->get();
-                                @endphp
-                                @if ($childs->isEmpty())
-                                <a href="{{route('front.products', [$parent->id, strtolower(str_replace(' ', '-', $parent->name))])}}">{{$parent->name}}</a>
-                                @else
-                                <a href="#">
-                                    <div class="dropdown">
-                                        <button class="dropbtn" style="background: none;color: black;font-size: 15px; margin-top: 23px;" > {{$parent->name}} <i class="fa fa-caret-down"></i> </button>
-                                        <div class="dropdown-content" style="padding: 15px;border-top: 3px solid red;" >
-											@foreach ($childs as $child)
-                                                @php
-                                                $grandchilds = Category::where('parent_id', $child->id)->orderBy('name', 'asc')->get();
-                                                @endphp
-                                                @if ($grandchilds->isEmpty())
-                                <a href="{{route('front.products', [$child->id, strtolower(str_replace(' ', '-', $child->name))])}}"> {{$child->name}} </a>
-								@else
-                                <div class="dropdown2">
-                                <button class="dropbtn2" style="background: none;" >{{$child->name}} <i class="fa fa-caret-down"></i> </button>
-                                <div class="dropdown-content2"  >
-								@foreach ($grandchilds as $grand)
-                                <a href="{{route('front.products', [$grand->id, strtolower(str_replace(' ', '-', $grand->name))])}}">{{$grand->name}}</a>
-								@endforeach
-
-                                </div>
-                                </div>
-								@endif
-								@endforeach
-                                </div>
-                                </div>
-                                </a>
-                                @endif
-								@endforeach
+                    <div id="main">
+                        <div class="row">
+                            <div class="col-6">
+                                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
                             </div>
-                            <span>
-                            <a href="#"><i class="fas fa-cart-plus"></i> <span style="color: rgb(222, 247, 3);padding:5px;font-weight:bold;" id="cart-count">{{Cart::count()}}</span></a>
-                            </span>
-                            <span>
+                            <div class="col-6">
                                 <a href="#">
-                                    <div id="myOverlay11" class="overlay11">
-                                        <span class="closebtn11" onclick="closeSearch()" title="Close Overlay11">×</span>
-                                        <div class="overlay-content11">
-                                            <form action="{{route('search')}}" method="GET">
-                                                @csrf
-                                                <input type="text" placeholder="Search.." name="search">
-                                                <button type="submit"><i class="fa fa-search"></i></button>
-                                            </form>
+                                <img src="{{asset('public/frontend/img/logo.png')}}" width="100px" height="50px" style="margin-left: 52px;" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        function openNav() {
+                          document.getElementById("mySidenav").style.width = "250px";
+                          document.getElementById("main").style.marginLeft = "250px";
+                          document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                        }
+                        
+                        function closeNav() {
+                          document.getElementById("mySidenav").style.width = "0";
+                          document.getElementById("main").style.marginLeft = "0";
+                          document.body.style.backgroundColor = "white";
+                        }
+                    </script>
+                </div>
+            </div>
+            <!---Fixed Nav Footer For mobile ----->
+            <div class="container-fluid fixedfooter " style="background-color: black;color: whitesmoke;left: 0;width: 360px;">
+                <div class="row" style="text-align: center;margin: auto;">
+                    <div class="" style="margin-right: 55px;">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; ">
+                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
+                                <div><i class="fas fa-home"></i></div>
+                                <div class="m-footer">Shop</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="" style="margin-right: 55px;">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; ">
+                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
+                                <div><i class="fa fa-user" aria-hidden="true"></i>
+                                </div>
+                                <div class="m-footer">My Account</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="" style="margin-right: 55px;">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; ">
+                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
+                                <div data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-search"></i></div>
+                                <div class="m-footer" data-toggle="modal" data-target="#exampleModalCenter"> Search </div>
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content" style="bottom: -235px; left: -8px;">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                    <form class="form-inline md-form mr-auto">
+                                                        <input style="width: 85%;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                                                        <button class="btn btn-unique btn-rounded btn-sm my-0 waves-effect waves-light" style="padding-top: 8px;padding-bottom: 8px;" type="submit"><i class="fas fa-search"></i></button>
+                                                    </form>
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <button class="openBtn11" onclick="openSearch()"><i class="fas fa-search"></i></button>
-                                    <script>
-                                        function openSearch() {
-                                        	document.getElementById("myOverlay11").style.display = "block";
-                                        }
-                                        
-                                        function closeSearch() {
-                                        	document.getElementById("myOverlay11").style.display = "none";
-                                        }
-                                    </script>
-                                </a>
-                            </span>
-                            @guest
-                            <span>
-                            <a class="nav-link" href="{{route('login')}}">{{__('Login')}}</a>
-                            </span>
-                            @endguest
-                            @auth
-                            <span>
-                                <div class="dropdown">
-                                    <button class="dropbtn" style="background: none;color: black;font-size: 15px; margin-top: 23px;"> My Accounts <i class="fa fa-caret-down"></i> </button>
-                                    <div class="dropdown-content" style="padding: 15px;border-top: 3px solid red;">
-                                        <a href="{{route('user.dashboard')}}"> Orders </a>
-                                        <a href="{{route('user.profile')}}"> Profile </a>
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Sign out')}}</a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
-                                    </div>
                                 </div>
-                            </span>
-                            @endauth
-                        </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; ">
+                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
+                                <div><i class="fas fa-heart"></i></div>
+                                <div class="m-footer">Wishlist</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
+            @section('content')
+            @show
         </div>
-        <hr style="margin-top: 0px;margin-bottom: 0px;">
-        @section('content')
-        @show
-        <!-----Footer----->
-        <div class="container-fluid " style="background-color: #2b2f32;">
-            <div class="row footerlogoicon">
-                <img style="padding: 0px;" src="{{asset('public/frontend/img/footerbg-1.jpg')}}" alt="">
+        <br><br>
+        <!-----Footer desktop---->
+        <div class="container-fluid footer-desktop" style="background-color: #2b2f32; margin-top: 20px; ">
+            <div class="row">
+                <img style="padding: 0px; width: 100% !important;" src="{{asset('public/frontend/img/footerbg-1.jpg')}}" alt="">
             </div>
             <br><br>
             <div class="container">
-                <div class="row ">
+                <div class="row">
                     <div class="col-4">
-                        <div class="footerlogoicon">
+                        <div class="">
                             <img src="{{asset('public/frontend/img/logo.png')}}" alt="">
                         </div>
-                        <br>
-                        <div class="footerlogoicon" style="color: white">
+                        <br><br><br>
+                        <div class="" style="color: white;">
                             <p style="margin: 0px; color: white;">{!!$contact->address!!}</p>
-                            <br>
                             <p style="margin: 0px; color: white;">Phone: {{$contact->phone}}</p>
                             <p style="margin: 0px; color: white;">Email: {{$contact->email}}</p>
                         </div>
                         <br>
-                        <div class="footer-icon footerlogoicon">
+                        <div class="footer-icon">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-2">
                                     <span>
-                                    <a href="{{$contact->facebook}}" title="facebook"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="{{$contact->facebook}}" style="text-decoration: none; color: white;" title="facebook">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                                class="bi bi-facebook" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                                            </svg>
+                                        </a>
                                     </span>
                                 </div>
-                                <div class="col-1">
+                                <div class="col-2">
                                     <span>
-                                    <a href="{{$contact->instagram}}" title="instagram"><i class="fab fa-instagram"></i></a>
+                                        <a href="{{$contact->instagram}}" style="text-decoration: none; color: white;" title="instagram">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                                class="bi bi-instagram" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                                            </svg>
+                                        </a>
                                     </span>
                                 </div>
-                                <div class="col-1">
+                                <div class="col-2">
                                     <span>
-                                    <a href="{{$contact->twitter}}" title="twitter"><i class="fab fa-twitter"></i></a>
+                                        <a href="{{$contact->twitter}}" style="text-decoration: none; color: white;" title="twitter">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                                class="bi bi-twitter" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                            </svg>
+                                        </a>
                                     </span>
                                 </div>
+                                {{-- <div class="col-1">
+                                    <span>
+                                        <a href="#" style="text-decoration: none; color: white;" title="whatsapp">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                                class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                                            </svg>
+                                        </a>
+                                    </span>
+                                </div> --}}
                             </div>
                         </div>
                         <br><br>
                     </div>
-                    <div class="col-3 quicklink">
+                    <div class="col-3">
                         <div class="">
                             <span style="color: white;">Quick Links</span>
                         </div>
                         <br>
                         <br>
                         <div class="footer-mdmd">
-                            <span> <span style="font-weight: 800;"></span> <span><a href="{{route('about')}}"> <span class="mdmd2">About Us</span> </a></span> </span>
-                            <hr style="margin-top: 10px; margin-bottom: 10px; ">
-                            <span> <span style="font-weight: 800;"></span> <span><a href="{{route('front.contact')}}"> <span class="mdmd2">Contact Us</span> </a></span> </span>
-                            <hr style="margin-top: 10px; margin-bottom: 10px; ">
-                            <span> <span style="font-weight: 800;"></span> <span><a href="{{route('pages', 'return-shipment')}}"> <span class="mdmd2">Return & Shipment</span> </a></span> </span>
-                            <hr style="margin-top: 10px; margin-bottom: 10px; ">
-                            <span> <span style="font-weight: 800;"></span> <span><a href="{{route('pages', 'terms-conditions')}}"> <span class="mdmd2">Terms & Conditions</span> </a></span> </span>
-                            <hr style="margin-top: 10px; margin-bottom: 10px; ">
-                            <span> <span style="font-weight: 800;"></span> <span><a href="{{route('pages', 'privacy-policy')}}"> <span class="mdmd2">Privacy Policy</span> </a></span> </span>
-                            <hr style="margin-top: 10px; margin-bottom: 10px; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('about')}}"> <span class="mdmd2">About Us</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('front.contact')}}"> <span class="mdmd2">Contact Us</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'return-shipment')}}"> <span class="mdmd2">Return & Shipment</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'terms-conditions')}}"> <span class="mdmd2">Terms & Conditions</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'privacy-policy')}}"> <span class="mdmd2">Privacy Policy</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('faq')}}"> <span class="mdmd2">FAQ</span> </a>
                         </div>
                     </div>
                     <div class="col-1"></div>
-                    <!------ tag ------>
-                    <div class="col-4 quicklinkrs">
-                        <div class="row tag" style="text-align: center;">
-                            <h2 style="color: white;">Quick Link</h2>
-                            <hr>
-                        </div>
-                        <ul class="cloud" role="navigation" aria-label="Webdev word cloud">
-                            <li><a href="{{route('about')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">About Us</a></li>
-                            <li><a href="{{route('front.contact')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Contact Us</a></li>
-                            <li><a href="{{route('pages', 'return-shipment')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Return & Shipment</a></li>
-                            <li><a href="{{route('pages', 'terms-conditions')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Terms & Conditions</a></li>
-                            <li><a href="{{route('pages', 'privacy-policy')}}" data-weight="6" style="color: whitesmoke; font-size: 18px; ">Privacy Policy</a></li>
-                        </ul>
-                    </div>
+                    <!------tag------>
                     <div class="col-4">
-                        <div class="row tag" style="text-align: center;">
+                        <div class="row">
                             <h2 style="color: white;">Product categories</h2>
                             <hr>
                         </div>
                         <ul class="cloud" role="navigation" aria-label="Webdev word cloud">
+							@php
+							use App\Model\Category;
+							$parents = Category::where('parent_id', 0)->orderBy('name', 'asc')->get();
+							@endphp
                             @foreach ($parents as $key => $item)
                             <li><a href="{{route('front.products', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}" data-weight="{{++$key}}">{{$item->name}}</a></li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
-                <!-----Responsive Footer ----->
-                <div class="footerhid">
-                    <div class="row">
-                        <ul class="cloud" role="navigation" aria-label="Webdev word cloud">
-                            <li><a href="#" data-weight="4"><img style="padding: 0px;" src="{{asset('public/frontend/img/logo.png')}}" alt=""> </a></li>
-                            <li><a href="{{$contact->facebook}}" data-weight="5"><i class="fab fa-facebook-f"></i> </a></li>
-                            <li><a href="{{$contact->instagram}}" data-weight="5"><i class="fab fa-instagram"></i> </a></li>
-                            <li><a href="{{$contact->twitter}}" data-weight="5"><i class="fab fa-twitter"></i> </a></li>
-                            {{-- 
-                            <li><a href="#" data-weight="5"><i class="fab fa-whatsapp"></i> </a></li>
-                            --}}
-                        </ul>
+            </div>
+            <div class="row">
+                <div class="col-6" style="color: whitesmoke;">© Copyright 2021 HJBRL.COM | All Rights Reserved</div>
+                <div class="col-6" style="text-align: right;color: whitesmoke;">Developed by <a href="#"
+                    style="text-decoration: none; color: wheat;">ICT Bangla BD</a></div>
+            </div>
+        </div>
+        <!-----Footer responsive-->
+        <div class="container-fluid footer-responsive" style="background-color: #2b2f32; margin-top: 20px; ">
+            <div class="row">
+                <img style="padding: 0px;width: 360px;" src="{{asset('public/frontend/img/footerbg-1.jpg')}}" alt="">
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-4">
+                    <div class="">
+                        <img src="{{asset('public/frontend/img/logo.png')}}" width="80%" alt="">
                     </div>
-                    <div class="row" style="text-align: center; width: 48%; color: white;">
-                        <p style="margin: 0px; color: white;">{!!$contact->address!!}</p>
-                        <!-- <p style="margin: 0px; color: white;">Kolkata 700102</p> -->
-                        <p style="margin: 0px; color: white;">Phone: {{$contact->phone}} <span>Email: {{$contact->email}}</span> </p>
-                        <!-- <p style="margin: 0px; color: white;">Email: help@hjbrl.com</p> -->
+                    <br>
+                    <div class="" style="color: white;">
+                        <p style="margin: 0px; color: white;font-size: 12px;">{!!$contact->address!!}</p>
+                        <p style="margin: 0px; color: white;font-size: 12px;">Phone: {{$contact->phone}}</p>
+                        <p style="margin: 0px; color: white;font-size: 12px;">Email: {{$contact->email}}</p>
                     </div>
-                    <div class="row " style="margin-top: 30px;width: 48%;">
-                        <div class="col-" style="color: #ffffff;text-align: center;">Developed by <a href="https://ictbanglabd.com/contact" style="text-decoration: none; color: wheat;">ICT Bangla BD</a></div>
-                        <div class="col-" style="color: whitesmoke;"> © Copyright 2021 BanglaBesh | All Rights Reserved
+                    <div class="footer-icon">
+                        <div class="row">
+                            <div class="col-2">
+                                <span>
+                                    <a href="{{$contact->facebook}}" style="text-decoration: none; color: white;" title="facebook">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                                            class="bi bi-facebook" viewBox="0 0 16 16">
+                                            <path
+                                                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                                        </svg>
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="col-2">
+                                <span>
+                                    <a href="{{$contact->instagram}}" style="text-decoration: none; color: white;" title="instagram">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                                            class="bi bi-instagram" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                                        </svg>
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="col-2">
+                                <span>
+                                    <a href="{{$contact->twitter}}" style="text-decoration: none; color: white;" title="twitter">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                                            class="bi bi-twitter" viewBox="0 0 16 16">
+                                            <path
+                                                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                        </svg>
+                                    </a>
+                                </span>
+                            </div>
+                            {{-- <div class="col-1">
+                                <span>
+                                    <a href="#" style="text-decoration: none; color: white;" title="whatsapp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
+                                            class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                            <path
+                                                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                                        </svg>
+                                    </a>
+                                </span>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
+                <div class="col-4">
+                    <div class="">
+                        <span style="color: white;">Quick Links</span>
+                        <hr style="margin-top: 2px; margin-bottom: 1px;border-top: 2px  solid whitesmoke;">
+                    </div>
+                    <br>
+                    <div class="footer-mdmd">
+                        <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('about')}}"> <span class="mdmd2">About Us</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('front.contact')}}"> <span class="mdmd2">Contact Us</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'return-shipment')}}"> <span class="mdmd2">Return & Shipment</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'terms-conditions')}}"> <span class="mdmd2">Terms & Conditions</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'privacy-policy')}}"> <span class="mdmd2">Privacy Policy</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('faq')}}"> <span class="mdmd2">FAQ</span> </a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h2 style="color: white;font-size: 15px;margin-top: -7px;">Product categories</h2>
+                    <hr>
+                    <ul style="margin-top: -7px;" class="cloud" role="navigation" aria-label="Webdev word cloud">
+                        @foreach ($parents as $key => $item)
+						<li><a href="{{route('front.products', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}" data-weight="{{++$key}}">{{$item->name}}</a></li>
+						@endforeach
+                </div>
             </div>
-            <!-----Responsive Footer ----->
+            <div class="row" style="background-color: rgb(29, 28, 28);padding-top: 5px;padding-bottom: 20px;">
+                <div class="col-6" style="color: whitesmoke;font-size: 10px;">© Copyright 2021 BanglaBesh| All Rights Reserved
+                </div>
+                <div class="col-6" style="text-align: right; color: whitesmoke;font-size: 10px; ">Developed by <a href="ictbanglabd.com/contact" style="text-decoration: none; color: wheat;">ICT Bangla BD</a></div>
+            </div>
+            <br><br>
         </div>
-        <div class="row footerdown">
-            <div class="col-6"> © Copyright 2021 BanglaBesh | All Rights Reserved </div>
-            <div class="col-6" style="text-align: right;">Developed by <a href="https://ictbanglabd.com/contact" style="text-decoration: none; color: wheat;">ICT Bangla BD</a></div>
-        </div>
-        </div>
-        <!--  Bootstrap JS -->
+        <!----Banner Slider----->
+        <script></script>
+        <script src="{{asset('public/frontend/js/jQuery.js')}}"></script>
+        <script src="{{asset('public/frontend/js/properjs.js')}}"></script>
         <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('public/frontend/js/all.min.js')}}"></script>
-        <!--- slider -->
-        <script src="{{asset('public/frontend/js/slider.js')}}"></script>
-        <!-- slick slided js -->
-        <script src="{{asset('public/frontend/css/slickslider/slick.min.js')}}"></script>
-        <script src="{{asset('public/frontend/css/slickslider/slick.js')}}"></script>
-        <script src="{{asset('public/frontend/css/slickslider/custom-slider.js')}}"></script>
-        <script src="{{asset('public/frontend/js/slidre-2.js')}}"></script>
-        <!-- jQuery 3 -->
-        <script src="{{asset('public/backend/bower_components/jquery/dist/jquery.min.js')}}"></script>
-        {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> --}}
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script>
-            function openSearch() {
-                document.getElementById("myOverlay9").style.display = "block";
-            }
-            
-            function closeSearch() {
-                document.getElementById("myOverlay9").style.display = "none";
-            }
-            
-            
-        </script>
         @section('footer')
         @show
     </body>

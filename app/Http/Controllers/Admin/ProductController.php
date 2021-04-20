@@ -7,8 +7,8 @@ use App\Http\Requests\ProductRequest;
 use App\Model\Category;
 use App\Model\Color;
 use App\Model\Product;
-use App\Model\ProductCategory;
-use App\Model\ProductColor;
+use App\Model\CategoryProduct;
+use App\Model\ColorProduct;
 use App\Model\ProductPhoto;
 use App\Model\ProductSize;
 use App\Model\Size;
@@ -83,8 +83,8 @@ class ProductController extends Controller
     {
         $product    = Product::findOrFail($id);
         $product_size = ProductSize::where('product_id', $id)->select('size_id')->get();
-        $product_color = ProductColor::where('product_id', $id)->select('color_id')->get();
-        $product_category = ProductCategory::where('product_id', $id)->select('category_id')->get();
+        $product_color = ColorProduct::where('product_id', $id)->select('color_id')->get();
+        $product_category = CategoryProduct::where('product_id', $id)->select('category_id')->get();
         $product_photos = ProductPhoto::where('product_id', $id)->select('photo','id')->get();
 
         $product_sizes = array();

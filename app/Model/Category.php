@@ -18,6 +18,11 @@ class Category extends Model
         'parent_id' => 'required|numeric',
     ];
 
+    public function products()
+    {
+        return $this->belongsToMany('App\Model\Product');
+    }
+
     public function getAllCategoryWithParent()
     {
         $categories = DB::table('categories')

@@ -12,6 +12,11 @@ class Product extends Model
         'name', 'slug', 'current_price', 'previous_price', 'saving', 'quantity', 'description', 'cover',
     ];
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Model\Category');
+    }
+
     public function getMenProducts()
     {
         $products = DB::table('products')
@@ -165,7 +170,7 @@ class Product extends Model
 
         foreach ($request->categories as $key => $value) {
 
-            $productCategory = new ProductCategory();
+            $productCategory = new CategoryProduct();
             $productCategory->category_id = $value;
             $productCategory->product_id = $product_id;
             $productCategory->save();
@@ -185,7 +190,7 @@ class Product extends Model
 
             foreach ($request->colors as $key => $value) {
 
-                $productColor = new ProductColor();
+                $productColor = new ColorProduct();
                 $productColor->color_id = $value;
                 $productColor->product_id = $product_id;
                 $productColor->save();
@@ -242,10 +247,11 @@ class Product extends Model
         $product_id              = $id;
 
 
-        ProductCategory::where('product_id', $id)->delete();
+        CategoryProduct::where('product_id', $id)->delete();
+
         foreach ($request->categories as $key => $value) {
 
-            $productCategory = new ProductCategory();
+            $productCategory = new CategoryProduct();
             $productCategory->category_id = $value;
             $productCategory->product_id = $product_id;
             $productCategory->save();
@@ -270,18 +276,19 @@ class Product extends Model
 
         if ($request->colors != null) {
 
-            ProductColor::where('product_id', $id)->delete();
+            ColorProduct::where('product_id', $id)->delete();
 
             foreach ($request->colors as $key => $value) {
 
-                $productColor = new ProductColor();
+                $productColor = new ColorProduct();
                 $productColor->color_id = $value;
                 $productColor->product_id = $product_id;
                 $productColor->save();
             }
+
         } else {
 
-            ProductColor::where('product_id', $id)->delete();
+            ColorProduct::where('product_id', $id)->delete();
         }
 
         if ($files = $request->file('photo')) {

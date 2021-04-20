@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Category;
 use App\Model\General;
 use App\Model\Product;
-use App\Model\ProductCategory;
-use App\Model\ProductColor;
+use App\Model\CategoryProduct;
+use App\Model\ColorProduct;
 use App\Model\ProductPhoto;
 use App\Model\ProductReview;
 use App\Model\ProductSize;
@@ -48,8 +48,8 @@ class ProductController extends Controller
     public function product($slug)
     {
         $productSizeObject     = new ProductSize();
-        $productColorObject    = new ProductColor();
-        $productCategoryObject = new ProductCategory();
+        $productColorObject    = new ColorProduct();
+        $productCategoryObject = new CategoryProduct();
 
         $product           = Product::where('slug', $slug)->firstOrFail();
         $productPhotos     = ProductPhoto::where('product_id', $product->id)->select('photo')->get();

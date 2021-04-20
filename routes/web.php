@@ -25,6 +25,7 @@ Route::post('/send-product-review', 'ProductReviewController@store')->name('revi
 Route::group(['namespace' => 'Frontend'], function () {
 
     Route::get('/', 'HomeController@index');
+    Route::get('/faqs', 'HomeController@faq')->name('faq');
     Route::get('/about', 'AboutController@index')->name('about');
     Route::get('/search', 'AboutController@search')->name('search');
     Route::get('/contact', 'ContactController@index')->name('front.contact');

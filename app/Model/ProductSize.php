@@ -11,12 +11,14 @@ class ProductSize extends Model
         'product_id', 'size_id',
     ];
 
+    protected $table = 'product_size';
+
     public function getProductSizes(Int $product_id)
     {
-        $sizes = DB::table('product_sizes')
-                     ->join('sizes', 'product_sizes.size_id', '=', 'sizes.id')
+        $sizes = DB::table('product_size')
+                     ->join('sizes', 'product_size.size_id', '=', 'sizes.id')
                      ->select('sizes.name', 'sizes.id')
-                     ->where('product_sizes.product_id', $product_id)
+                     ->where('product_size.product_id', $product_id)
                      ->orderBy('sizes.id', 'asc')
                      ->get();
         return $sizes;
