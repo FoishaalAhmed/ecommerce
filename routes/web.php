@@ -39,6 +39,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('/update-cart', 'CartController@update')->name('carts.update');
     Route::post('/delete-cart', 'CartController@delete')->name('carts.delete');
 
+    Route::post('/add-to-wishlist', 'WishlistController@store')->name('wishlists.store');
+
     Route::get('/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('/place-order', 'CheckoutController@order')->name('place.order');
 
@@ -46,6 +48,9 @@ Route::group(['namespace' => 'Frontend'], function () {
 
         Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
         Route::get('/profile', 'DashboardController@profile')->name('user.profile');
+        Route::get('/update-profile', 'DashboardController@update')->name('user.profile.update');
+        Route::get('/wishlists', 'WishlistController@index')->name('wishlists');
+        Route::post('/delete-wishlist', 'WishlistController@delete')->name('wishlists.delete');
 
     });
 

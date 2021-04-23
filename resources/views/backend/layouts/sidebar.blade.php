@@ -87,6 +87,14 @@
 
             </li>
 
+            <li class="@if(request()->is('admin/categoryShows')) {{'active'}} @endif">
+
+                <a href="{{route('categoryShows.index')}}">
+                <i class="fa fa-list-alt"></i> <span>{{__('Front Categories')}}</span>
+                </a>
+
+            </li>
+
             <li class="@if(request()->is('admin/queries')) {{'active'}} @endif">
 
                 <a href="{{route('queries.index')}}">

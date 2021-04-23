@@ -128,8 +128,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class="col-md-12">
-                                            <label>{{__('Seving Percentage')}}</label>
-                                            <input type="number" class="form-control" placeholder="{{__('Seving Percentage')}}" name="saving" value="{{old('saving')}}" autocomplete="off" step="0.01">
+                                            <label>{{__('Saving Percentage')}}</label>
+                                            <input type="number" class="form-control" placeholder="{{__('Saving Percentage')}}" name="saving" value="{{old('saving')}}" autocomplete="off" step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -137,6 +137,12 @@
                                     <div class="col-md-12">
                                         <label>{{__('Description')}}</label>
                                         <textarea name="description" class="form-control textarea" >{{old('description')}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>{{__('Tags')}}</label>
+                                        <textarea name="tags" class="form-control" rows="3" placeholder="{{__('Tags')}}" required> {{old('tags')}}</textarea>
                                     </div>
                                 </div>
                             </div>

@@ -1,45 +1,49 @@
-<div class="row" style="margin-left: 0px; margin-right: 0px;">
-                    
-                    
-                    @foreach ($products as $product)
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="conta12">
-                                    <img src="{{asset($product->cover)}}" style="height: 250px; width: 100%; " alt="Avatar" class="image12">
-                                    <div class="overlay12">
-                                        <div class="text12">
-                                            <h6 style="font-weight: bold;" >{{$product->name}}</h6>
-                                            <p>{{$product->current_price}}/=</p>
-                                            <a href="{{route('front.product', $product->slug)}}" class="btn btn-sm btn-Secondary" style="background-color: #ffffff;" >Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row" style="text-align: left;font-weight: bold;">
-                                    <a href="{{route('front.product', $product->slug)}}" style="text-decoration: none;" href="#" style="margin-bottom: 15px;">
-                                    {{$product->name}}
-                                    </a>
-                                </div>
-                                <del>
-                                <span> @if ($product->previous_price != null) {{$product->previous_price}}/= @endif  </span>
-                                </del>
-                                &nbsp; &nbsp;
-                                <ins><span style="font-size: 20px; font-weight: bold;color: green;margin-left: -17px;text-decoration: none;">{{$product->current_price}}/=</span></ins>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a href="{{route('front.product', $product->slug)}}" style="text-decoration: none;"><span style="font-size: 10px;"><i class="fa fa-check-circle" style="font-size: 10px;"></i> &nbsp; Buy Now </span></a>
-                                    </div>
-                                    <div class="col-6" style="text-align: right;">
-                                        <a href="{{route('front.product', $product->slug)}}" style="text-decoration: none;"><span style="font-size: 10px;"> <i class="fa fa-eye" style="font-size: 10px;"></i>&nbsp; Quick View </span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+@php
+use App\Model\CategoryProduct;                   
+$productCategoryObject = new CategoryProduct();
+@endphp
 
-                    </div>
+<div class="row">
+
+    @foreach ($products as $product)
+    <div class="col-md-3" style="padding-right:1px; padding-left:1px;">
+        <div class="containe">
+            <img src="{{asset($product->cover)}}" alt="Avatar" class="image">
+            <div class="overlay">
+                <div class="btn-group">
+                    <a href="{{route('front.product', $product->slug)}}">
+                    <button type="button" class="btn btn icon">
+                    <i class="fa fa-heart"></i>
+                    </button>
+                    </a>
+                    <a href="{{route('front.product', $product->slug)}}">
+                        <button type="button" class="btn btn icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor"
+                                class="bi bi-eye" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                <path
+                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="" style="color: black;text-align: center;">
+                <p><small>@php
+                    $productCategories = $productCategoryObject->getProductCategories($product->id);
+                    @endphp @foreach ($productCategories as $key => $item)
+                    @if ($key > 0) {{', '}} @endif {{$item->name}}
+                    @endforeach</small>
+                </p>
+                <p style="margin-bottom: 5px;">{{$product->name}}</p>
+                <p><span style="font-size: 20px;font-weight: bold;">{{$product->current_price}}</span><span
+                    style="font-size: 20px;font-weight: bold;">/=</span> &nbsp; &nbsp; <span
+                    style="color: red;"><del> @if ($product->previous_price != null)
+                    {{$product->previous_price}}/=@endif</del></span> 
+                </p>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>

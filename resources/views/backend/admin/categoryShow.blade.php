@@ -1,7 +1,7 @@
 
 
 @extends('backend.layouts.app')
-@section('title', 'Slider')
+@section('title', 'Category Shows')
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
@@ -10,7 +10,7 @@
             <small>Version 2.0</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('sliders.index')}}"><i class="fa fa-group"></i> Slider</a></li>
+            <li><a href="{{route('categoryShows.index')}}"><i class="fa fa-group"></i> Category Shows</a></li>
         </ol>
     </section>
     <div class="content">
@@ -19,53 +19,76 @@
                 <!-- Content Header (user header) -->
                 <div class="box box-teal box-solid">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Slider</h3>
+                        <h3 class="box-title">Category Shows</h3>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body" id="box-body">
                         @include('includes.error')
-                        @if (isset($slider))
+                        @if (isset($categoryShow))
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{route('sliders.update', $slider->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                <form action="{{route('categoryShows.update', $categoryShow->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                     @csrf
                                     @method('put')
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <label for="">{{__('Product Link')}}</label>
-                                                <input type="text" class="form-control" name="link"  placeholder="{{__('Product Link')}}" value="{{$slider->link}}" required="" autocomplete="off">
+                                                <label for="">{{__('Title')}}</label>
+                                                <input type="text" class="form-control" name="title"  placeholder="{{__('Title')}}" value="{{$categoryShow->title}}" required="" autocomplete="off">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <label for="">{{__('Slider Text')}}</label>
-                                                <textarea name="text" id="" rows="5" class="form-control" name="text"  placeholder="{{__('Slider Text')}}" autocomplete="off">{{$slider->text}}</textarea>
+                                                <label for="">{{__('Category')}}</label>
+                                                <select name="category_id" style="width: 100%" class="form-control select2" id="category_id" required="">
+                                                    <option value="">{{__('Select Category')}}</option>
+                                                    @foreach ($categories as $category)
+
+                                                    <option value="{{$category->id}}" @if ($categoryShow->category_id == $category->id) {{'selected'}}
+                                                        
+                                                    @endif>{{$category->name}} @if ($category->parent_name != null) ({{$category->parent_name}})
+                                                        
+                                                    @endif</option>
+                                                        
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label for="">{{__('Type')}}</label>
+                                                <select name="type" style="width: 100%" class="form-control select2" id="type" required="" onchange="showBackgroundPhoto()">
+
+                                                    <option value="1" @if ($categoryShow->type == 1) {{'selected'}} @endif>{{__('First Four')}} </option>
+
+                                                    <option value="2" @if ($categoryShow->type == 2) {{'selected'}} @endif>{{__('Last One')}} </option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="box box-teal box-solid">
                                             <div class="box-header with-border">
-                                                <h3 class="box-title"> {{__('Slider Photo')}} </h3>
+                                                <h3 class="box-title"> {{__('Category Shows Photo')}} </h3>
                                             </div>
                                             <div class="box-body box-profile">
-                                                <img class="profile-user-img img-responsive img-circle" src="{{asset($slider->photo)}}" alt="Product picture" id="slider-photo">
+                                                <img class="profile-user-img img-responsive img-circle" src="{{asset($categoryShow->photo)}}" alt="Product picture" id="photo">
                                                 <input type="file" name="photo" onchange="readPicture(this)">
                                             </div>
                                             <!-- /.box-body -->
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+
+                                    <div class="col-md-3" style="display : @if($categoryShow->background == Null) {{'none'}} @endif" id="background">
                                         <div class="box box-teal box-solid">
                                             <div class="box-header with-border">
                                                 <h3 class="box-title"> {{__('Background Photo')}} </h3>
                                             </div>
                                             <div class="box-body box-profile">
-                                                <img class="profile-user-img img-responsive img-circle" src="{{asset($slider->background)}}" alt="Product picture" id="background-photo">
+                                                <img class="profile-user-img img-responsive img-circle" src="{{asset($categoryShow->background)}}" alt="Product picture" id="background-photo">
                                                 <input type="file" name="background" onchange="readBackgroundPicture(this)">
                                             </div>
                                             <!-- /.box-body -->
@@ -84,42 +107,64 @@
                         @else
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{route('sliders.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                <form action="{{route('categoryShows.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <label for="">{{__('Product Link')}}</label>
-                                                <input type="text" class="form-control" name="link"  placeholder="{{__('Product Link')}}" value="{{old('link')}}" required="" autocomplete="off">
+                                                <label for="">{{__('Title')}}</label>
+                                                <input type="text" class="form-control" name="title"  placeholder="{{__('Title')}}" value="{{old('title')}}" required="" autocomplete="off">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <label for="">{{__('Slider Text')}}</label>
-                                                <textarea name="text" id="" rows="3" class="form-control" name="text"  placeholder="{{__('Slider Text')}}" autocomplete="off">{{old('text')}}</textarea>
+                                                <label for="">{{__('Category')}}</label>
+                                                <select name="category_id" style="width: 100%" class="form-control select2" id="category_id" required="">
+                                                    <option value="">{{__('Select Category')}}</option>
+                                                    @foreach ($categories as $category)
+
+                                                    <option value="{{$category->id}}" @if (old('category_id') == $category->id) {{'selected'}}
+                                                        
+                                                    @endif>{{$category->name}} @if ($category->parent_name != null) ({{$category->parent_name}})
+                                                        
+                                                    @endif</option>
+                                                        
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label for="">{{__('Type')}}</label>
+                                                <select name="type" style="width: 100%" class="form-control select2" id="type" required="" onchange="showBackgroundPhoto()">
+
+                                                    <option value="1" @if (old('type') == 1) {{'selected'}} @endif>{{__('First Four')}} </option>
+
+                                                    <option value="2" @if (old('type') == 2) {{'selected'}} @endif>{{__('Last One')}} </option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="box box-teal box-solid">
                                             <div class="box-header with-border">
-                                                <h3 class="box-title"> {{__('Slider Photo')}} </h3>
+                                                <h3 class="box-title"> {{__('Category Shows Photo')}} </h3>
                                             </div>
                                             <div class="box-body box-profile">
-                                                <img class="profile-user-img img-responsive img-circle" src="//placehold.it/200x200" alt="Product picture" id="slider-photo">
+                                                <img class="profile-user-img img-responsive img-circle" src="//placehold.it/200x200" alt="Product picture" id="photo">
                                                 <input type="file" name="photo" onchange="readPicture(this)" required="">
                                             </div>
                                             <!-- /.box-body -->
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3" style="display : @if(old('type') != 2) {{'none'}} @endif" id="background">
                                         <div class="box box-teal box-solid">
                                             <div class="box-header with-border">
                                                 <h3 class="box-title"> {{__('Background Photo')}} </h3>
                                             </div>
                                             <div class="box-body box-profile">
                                                 <img class="profile-user-img img-responsive img-circle" src="//placehold.it/200x200" alt="Product picture" id="background-photo">
-                                                <input type="file" name="background" onchange="readBackgroundPicture(this)" required="">
+                                                <input type="file" name="background" onchange="readBackgroundPicture(this)">
                                             </div>
                                             <!-- /.box-body -->
                                         </div>
@@ -140,30 +185,36 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 5%">Sl.</th>
-                                            <th style="width: 40%">Slider Text</th>
-                                            <th style="width: 35%">Product Link</th>
+                                            <th style="width: 20%">Category</th>
+                                            <th style="width: 35%">Title</th>
+                                            <th style="width: 20%">Type</th>
                                             <th style="width: 10%">Photo</th>
                                             <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($sliders as $key => $slider)
+                                        @foreach ($categoryShows as $key => $categoryShow)
                                         <tr>
                                             <td>{{$loop->index + 1}}</td>
-                                            <td>{{$slider->text}} </td>
-                                            <td>{{$slider->link}} </td>
+                                            <td>{{$categoryShow->name}} </td>
+                                            <td>{{$categoryShow->title}} </td>
+                                            <td>@if ($categoryShow->type == 1)
+                                                {{'First Four'}}
+                                            @else
+                                                {{'Last One'}}
+                                            @endif </td>
                                             <td>
-                                                <img src="{{asset($slider->photo)}}" alt="" style="width: 50px; height:50px;">  
+                                                <img src="{{asset($categoryShow->photo)}}" alt="" style="width: 50px; height:50px;">  
                                             </td>
                                             <td>
-                                                <a class="btn btn-sm bg-teal" href="{{route('sliders.edit', $slider->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
-                                                <form action="{{route('sliders.destroy',$slider->id)}}" method="post" style="display: none;" id="delete-form-{{ $slider->id}}">
+                                                <a class="btn btn-sm bg-teal" href="{{route('categoryShows.edit', $categoryShow->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <form action="{{route('categoryShows.destroy',$categoryShow->id)}}" method="post" style="display: none;" id="delete-form-{{ $categoryShow->id}}">
                                                     @csrf
                                                     {{method_field('DELETE')}}
                                                 </form>
                                                 <a class="btn btn-sm bg-red" href="" onclick="if(confirm('Are You Sure To Delete?')){
                                                     event.preventDefault();
-                                                    getElementById('delete-form-{{ $slider->id}}').submit();
+                                                    getElementById('delete-form-{{ $categoryShow->id}}').submit();
                                                     }else{
                                                     event.preventDefault();
                                                     }"><span class="glyphicon glyphicon-trash"></span></a>
@@ -191,7 +242,7 @@
             var reader = new FileReader();
     
             reader.onload = function (e) {
-                $('#slider-photo')
+                $('#photo')
                 .attr('src', e.target.result)
                 .width(200)
                 .height(200);
@@ -215,6 +266,19 @@
             };
     
             reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function showBackgroundPhoto() {
+        let type = $('#type').val();
+
+        if (type == 1) {
+
+            $('#background').hide();
+            
+        } else {
+
+            $('#background').show();
         }
     }
 </script>

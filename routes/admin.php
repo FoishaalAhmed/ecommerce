@@ -22,5 +22,6 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['ad
         'sliders'        => 'SliderController',
         'generals'       => 'GeneralController',
         'orders'         => 'OrderController',
+        'categoryShows'  => 'FrontCategoryShowController',
     ]);
 });

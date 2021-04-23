@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -31,6 +32,19 @@ class HomeController extends Controller
 
         } else {
 
+            $product_id = Session::get('product_id');
+
+            if ($product_id) {
+
+                $wishlist             = new Wishlist();
+                $wishlist->product_id = $product_id;
+                $wishlist->user_id    = auth()->user()->id;
+                $wishlist->save();
+
+                Session::forget('product_id');
+                return redirect(route('wishlists'));
+            }
+
             $checkout = Session::get('checkout');
 
             if ($checkout) {
@@ -39,10 +53,9 @@ class HomeController extends Controller
 
                 return redirect()->route('checkout');
 
-            } else {
+            } 
 
-                return redirect(route('user.dashboard'));
-            }
+            return redirect(route('user.dashboard'));
             
 
             

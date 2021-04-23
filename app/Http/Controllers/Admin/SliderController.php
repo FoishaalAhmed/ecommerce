@@ -61,6 +61,7 @@ class SliderController extends Controller
      */
     public function update(SliderRequest $request, $id)
     {
+        //dd($request);
         $this->sliderObject->updateSlider($request, $id);
         return redirect()->route('sliders.index');
     }

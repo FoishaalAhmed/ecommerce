@@ -122,7 +122,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Previous Price')}}</label>
-                                            <input type="number" class="form-control" placeholder="{{__('Previous Price')}}" name="previous_price" value="{{$product->previous_price}}" autocomplete="off" required step="0.01">
+                                            <input type="number" class="form-control" placeholder="{{__('Previous Price')}}" name="previous_price" value="{{$product->previous_price}}" autocomplete="off" step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>{{__('Seving Percentage')}}</label>
-                                            <input type="number" class="form-control" placeholder="{{__('Seving Percentage')}}" name="saving" value="{{$product->saving}}" autocomplete="off" required step="0.01">
+                                            <input type="number" class="form-control" placeholder="{{__('Seving Percentage')}}" name="saving" value="{{$product->saving}}" autocomplete="off" step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -138,6 +138,12 @@
                                     <div class="col-md-12">
                                         <label>{{__('Description')}}</label>
                                         <textarea name="description" class="form-control textarea" >{{$product->description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>{{__('Tags')}}</label>
+                                        <textarea name="tags" class="form-control" rows="3" placeholder="{{__('Tags')}}" required> {{$product->tags}}</textarea>
                                     </div>
                                 </div>
                             </div>

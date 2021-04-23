@@ -128,6 +128,11 @@
                                         Login
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">{{__('Sign out')}}</a>
+                                
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -501,6 +506,9 @@
         <script src="{{asset('public/frontend/js/jQuery.js')}}"></script>
         <script src="{{asset('public/frontend/js/properjs.js')}}"></script>
         <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('public/frontend/js/zoomscript.js')}}"></script>
+        <script src="{{asset('public/frontend/js/zoomsl.js')}}"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         @section('footer')
         @show
     </body>

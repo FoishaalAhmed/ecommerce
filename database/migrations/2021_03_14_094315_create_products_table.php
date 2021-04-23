@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->mediumText('description')->nullable();
             $table->string('cover');
+            $table->mediumText('tags');
             $table->timestamps();
 
         });

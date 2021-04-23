@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSlidersTable extends Migration
+class CreateFrontCategoryShowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sliders', function (Blueprint $table) {
+        Schema::create('front_category_shows', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('text')->nullable();
+            $table->bigInteger('category_id')->unsigned();
+            $table->string('title');
             $table->string('photo');
-            $table->string('background');
-            $table->string('link', 350);
+            $table->tinyInteger('type');
+            $table->string('background')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateSlidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sliders');
+        Schema::dropIfExists('front_category_shows');
     }
 }

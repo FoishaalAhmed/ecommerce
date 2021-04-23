@@ -24,23 +24,13 @@ class ProductController extends Controller
         $this->categoryObject = new Category();
     }
 
-    public function products($category_id = 0, $category_name)
+    public function products($category_id, $category_name)
     {
-        $categories = $this->categoryObject->getAllCategoryWithParent();
-        $highestPrice = Product::orderBy('current_price', 'desc')->first();
-        $lowestPrice  = Product::orderBy('current_price', 'asc')->first();
-
-        if ($category_id == 0) {
-
-            $products = $this->productObject->getAllProduct();
-            $category = '';
-
-        } else {
-
-            $category = Category::where('id', $category_id)->firstOrFail()->name;
-            $products = $this->productObject->getProductByCategory($category_id);
-        }
-        
+        $categories   = $this->categoryObject->getAllCategoryWithParent();
+        $highestPrice = Product ::orderBy('current_price', 'desc')->first();
+        $lowestPrice  = Product ::orderBy('current_price', 'asc')->first();
+        $category     = Category::where('id', $category_id)->firstOrFail()->name;
+        $products     = $this->productObject->getProductByCategory($category_id);
         
         return view('frontend.products', compact('products', 'category', 'categories', 'highestPrice', 'lowestPrice'));
     }

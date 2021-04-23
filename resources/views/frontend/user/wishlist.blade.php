@@ -10,7 +10,7 @@
           <div class="container">
             <div class="row" style="text-align: center; padding-top: 10px; padding-bottom: 10px;margin: auto; ">
               <div class="col-12">
-                <a  style="text-decoration: none;color: black;">Orders</a>
+                <a  style="text-decoration: none;color: black;">Wishlist</a>
               </div>
             </div>
           </div>
@@ -22,7 +22,7 @@
         <div class="row" style="border-top: 1px solid black; border-bottom: 1px solid black;margin: 0px; ">
           <div class="col-md-12 col-xm3" style="padding-top: 10px; padding-bottom: 10px; ">
             <p style="margin-bottom: 0px;">
-              <span><i class="fa fa-home"></i></span>  You Have order {{sizeof($orders)}} Item
+              <span><i class="fa fa-home"></i></span>  You Have {{sizeof($wishlists)}} Item's in Your Wishlist
             </p>
           </div>
         </div>
@@ -36,13 +36,10 @@
                       <table class="table table-bordered">
                         <thead>
                           <tr>
-                                <th style=" width:30%"> Product</th>
-                                <th style="text-align: center; width:10%" > Quantity </th>
-                                <th style="text-align: center; width:10%" > Price </th>
-                                <th style="text-align: center; width:10%" > Total </th>
-
-                                <th style="text-align: center; width:20%" > Delivered </th>
-                                <th style="text-align: center; width:10%" > Status </th>
+                                <th style=" width:15%"> Image</th>
+                                <th style=" width:55%"> Product</th>
+                                <th style="text-align: center; width:15%" > Price </th>
+                                <th style="text-align: center; width:15%" > Status </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,38 +49,19 @@
                                 //     print_r(Cart::content());
                                 // echo "</pre>";
                             @endphp
-                            @foreach ($orders as $key => $item)
+                            @foreach ($wishlists as $key => $item)
                           <tr>
                             <td scope="row">
                                 <img src="{{asset($item->cover)}}" style="height: 120px; float: left;padding-right: 20px; " alt="">
-                            {{$item->name}} 
-
-                                @if ($item->size != null)
-                                    <br>
-                                    Size: {{$item->size}} 
-                                @endif
-
-                                @if ($item->color != null)
-                                    <br>
-                                    Color: {{$item->color}} 
-                                @endif
                             </td>
                             <td class="font-18">
-                              <h6 class="font-14 mb-0"> {{$item->quantity}}</h6>
+                              <h6 class="font-14 mb-0"> {{$item->name}} </h6>
                               
                             </td>
-                            <td class="font-18">TK. {{$item->price}}
+                            <td class="font-18">TK. {{$item->current_price}}
                             </td>
                             
-                            <td class="font-18">Tk.{{$item->total}}</td>
-                            <td class="font-18"> @if($item->delivered_date_time != null) {{date('d M, Y h:i A', strtotime($item->delivered_date_time))}} @endif</td>
-                            <td class="font-18">@if ($item->status == 0) {{'Pending'}}
-                                                
-                                @elseif($item->status == 1) {{'Delivered'}}
-
-                                @else
-                                    {{'Canceled'}}
-                                @endif</td>
+                            <td class="cart-deleted"> <a href="#" class="btn btn-sm btn-danger" onclick="removeWishlist({{$item->id}})"><i class="far fa-trash-alt"></i></a></td>
                           </tr>
                           @endforeach
                         </tbody>
@@ -99,5 +77,53 @@
     </section>
 
 
+@endsection
+
+@section('footer')
+
+    <script>
+      function removeWishlist(id) {
+
+            event.preventDefault();
+
+            $.ajaxSetup({
+    
+                headers: {'X-CSRF-Token' : '{{csrf_token()}}'}
+        
+            });
+
+            var url = '{{route("wishlists.delete")}}';
+
+            $.ajax({
+
+                url: url,
+                method: 'POST',
+                data: {'id': id,},
+
+                success: function(data2){
+
+                        Swal.fire({
+
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Wishlist Removed Successfully!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        location.reload(); 
+                    
+                },
+
+                error: function(error) {
+
+                    console.log(error);
+                }
+
+
+            });
+        }
+    </script>
+    
 @endsection
 

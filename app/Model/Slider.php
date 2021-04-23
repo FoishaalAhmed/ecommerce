@@ -13,18 +13,25 @@ class Slider extends Model
 
     public function storeSlider(Object $request)
     {
+        //product image
         $image = $request->file('photo');
+        $image_name      = date('YmdHis');
+        $ext             = strtolower($image->getClientOriginalExtension());
+        $image_full_name = $image_name . '.' . $ext;
+        $upload_path     = 'public/images/sliders/';
+        $image_url       = $upload_path . $image_full_name;
+        $success         = $image->move($upload_path, $image_full_name);
+        $this->photo     = $image_url;
 
-        if ($image) {
+        $background = $request->file('background');
 
-            $image_name      = date('YmdHis');
-            $ext             = strtolower($image->getClientOriginalExtension());
-            $image_full_name = $image_name . '.' . $ext;
-            $upload_path     = 'public/images/sliders/';
-            $image_url       = $upload_path . $image_full_name;
-            $success         = $image->move($upload_path, $image_full_name);
-            $this->photo     = $image_url;
-        }
+        $image_name      = date('YmdHis');
+        $ext             = strtolower($background->getClientOriginalExtension());
+        $image_full_name = $image_name . '.' . $ext;
+        $upload_path     = 'public/images/sliders/';
+        $image_url       = $upload_path . $image_full_name;
+        $success         = $background->move($upload_path, $image_full_name);
+        $this->background= $image_url;
 
         $this->text  = $request->text;
         $this->link  = $request->link;
@@ -38,6 +45,7 @@ class Slider extends Model
     public function updateSlider(Object $request, Int $id)
     {
         $slider = $this::findOrFail($id);
+
         $image  = $request->file('photo');
 
         if ($image) {
@@ -50,7 +58,22 @@ class Slider extends Model
             $upload_path     = 'public/images/sliders/';
             $image_url       = $upload_path . $image_full_name;
             $success         = $image->move($upload_path, $image_full_name);
-            $slider->photo     = $image_url;
+            $slider->photo   = $image_url;
+        }
+
+        $background  = $request->file('background');
+
+        if ($background) {
+
+            if (file_exists($slider->background)) unlink($slider->background);
+
+            $image_name      = date('YmdHis');
+            $ext             = strtolower($background->getClientOriginalExtension());
+            $image_full_name = $image_name . '.' . $ext;
+            $upload_path     = 'public/images/sliders/';
+            $image_url       = $upload_path . $image_full_name;
+            $success         = $background->move($upload_path, $image_full_name);
+            $slider->background = $image_url;
         }
 
         $slider->text  = $request->text;
@@ -66,6 +89,7 @@ class Slider extends Model
     {
         $slider = $this::findOrFail($id);
         if (file_exists($slider->photo)) unlink($slider->photo);
+        if (file_exists($slider->background)) unlink($slider->background);
         $destroySlider = $slider->delete();
 
         $destroySlider ?

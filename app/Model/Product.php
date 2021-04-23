@@ -9,7 +9,7 @@ use DB;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'slug', 'current_price', 'previous_price', 'saving', 'quantity', 'description', 'cover',
+        'name', 'slug', 'current_price', 'previous_price', 'saving', 'quantity', 'description', 'cover', 'tags', 
     ];
 
     public function categories()
@@ -17,97 +17,26 @@ class Product extends Model
         return $this->belongsToMany('App\Model\Category');
     }
 
-    public function getMenProducts()
-    {
-        $products = DB::table('products')
-                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->where('product_categories.category_id', 1)
-                        ->orderBy('products.created_at', 'desc')
-                        ->groupBy('products.id')
-                        ->take(12)
-                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
-                        ->get()
-                        ->toArray();
-        return $products;
-    }
-
-    public function getKidProducts()
-    {
-        $products = DB::table('products')
-                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->where('product_categories.category_id', 6)
-                        ->orderBy('products.created_at', 'desc')
-                        ->groupBy('products.id')
-                        ->take(12)
-                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
-                        ->get()
-                        ->toArray();
-        return $products;
-    }
-
-    public function getWomenProducts()
-    {
-        $products = DB::table('products')
-                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->where('product_categories.category_id', 2)
-                        ->orderBy('products.created_at', 'desc')
-                        ->groupBy('products.id')
-                        ->take(12)
-                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
-                        ->get()
-                        ->toArray();
-        return $products;
-    }
-
-    public function getMugProducts()
-    {
-        $products = DB::table('products')
-                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->where('product_categories.category_id', 7)
-                        ->orderBy('products.created_at', 'desc')
-                        ->groupBy('products.id')
-                        ->take(6)
-                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
-                        ->get()
-                        ->toArray();
-        return $products;
-    }
-
-    public function getMobileCoverProducts()
-    {
-        $products = DB::table('products')
-                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
-                        ->where('product_categories.category_id', 8)
-                        ->orderBy('products.created_at', 'desc')
-                        ->groupBy('products.id')
-                        ->groupBy('products.id')
-                        ->take(6)
-                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price')
-                        ->get()
-                        ->toArray();
-        return $products;
-    }
-
     public function getProductByCategory($category_id)
     {
         $products = DB::table('products')
-                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                        ->join('category_product', 'products.id', '=', 'category_product.product_id')
                         ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id')
-                        ->where('product_categories.category_id', $category_id)
+                        ->where('category_product.category_id', $category_id)
                         ->orderBy('products.created_at', 'desc')
                         ->groupBy('products.id')
                         ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price', 'products.previous_price', 'products.saving', 'product_photos.photo')
-                        ->paginate(24);
+                        ->paginate(20);
         return $products;
     }
 
     public function getRelatedProducts($categories, $product_id)
     {
         $products = DB::table('products')
-                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                        ->join('category_product', 'products.id', '=', 'category_product.product_id')
                         ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id')
                         ->where('products.id', '!=', $product_id)
-                        ->whereIn('product_categories.category_id', $categories)
+                        ->whereIn('category_product.category_id', $categories)
                         ->orderBy('products.created_at', 'desc')
                         ->groupBy('products.id')
                         ->take(12)
@@ -116,23 +45,13 @@ class Product extends Model
         return $products;
     }
 
-    public function getAllProduct()
-    {
-        $products = DB::table('products')
-                        ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id')
-                        ->orderBy('products.created_at', 'desc')
-                        ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price', 'products.previous_price','products.saving', 'product_photos.photo')
-                        ->paginate(24);
-        return $products;
-    }
-
     public function getFilteredProducts($categories = null, $priceStart, $priceEnd)
     {
         $query = DB::table('products')
-                        ->join('product_categories', 'products.id', '=', 'product_categories.product_id')
+                        ->join('category_product', 'products.id', '=', 'category_product.product_id')
                         ->leftJoin('product_photos', 'products.id', '=', 'product_photos.product_id');
 
-        if ($categories != null) $query->whereIn('product_categories.category_id', $categories);
+        if ($categories != null) $query->whereIn('category_product.category_id', $categories);
 
         $query->whereBetween('products.current_price', [$priceStart, $priceEnd])
                         ->orderBy('products.created_at', 'desc')
@@ -165,6 +84,7 @@ class Product extends Model
         $this->saving         = $request->saving;
         $this->quantity       = $request->quantity;
         $this->description    = $request->description;
+        $this->tags           = $request->tags;
         $storeProduct         = $this->save();
         $product_id           = $this->id;
 
@@ -233,7 +153,7 @@ class Product extends Model
             $upload_path     = 'public/images/products/';
             $image_url       = $upload_path . $image_full_name;
             $success         = $image->move($upload_path, $image_full_name);
-            $product->cover     = $image_url;
+            $product->cover  = $image_url;
         }
 
         $product->name           = $request->name;
@@ -243,6 +163,7 @@ class Product extends Model
         $product->saving         = $request->saving;
         $product->quantity       = $request->quantity;
         $product->description    = $request->description;
+        $product->tags           = $request->tags;
         $updateProduct           = $product->save();
         $product_id              = $id;
 

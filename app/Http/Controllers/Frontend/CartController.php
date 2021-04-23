@@ -25,15 +25,9 @@ class CartController extends Controller
 
         $product    = Product::findOrFail($product_id);
 
-        //Cart::destroy();
-
         Cart::add(['id' => $product_id, 'name' => $product->name, 'qty' => $qty, 'price' => $product->current_price, 'weight' => 1, 'options' => ['size' => $size, 'color' => $color, 'image' => $product->cover]]);
 
         echo Cart::count();
-
-        //echo json_encode($curt);
-
-        //$product_id = $request->product_id;
     }
 
     public function update(Request $request)
