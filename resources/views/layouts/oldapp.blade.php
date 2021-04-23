@@ -15,64 +15,82 @@
     </head>
     <body>
         <div class="container-fluid" style="border-top: 2px solid red;">
-
             <!-------Header Section------->
             <div class="container-fluid" style="width: 75%;">
                 <div class="header">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="col-md-2">
-                            <a class="navbar-brand" href="#"><img src="{{asset('public/frontend/img/logo.jpg')}}" style="width: 100px; height: 50px;" alt=""></a>
+                        <div class="col-md-2  nav-logo">
+                            <a class="navbar-brand" href="#"><img src="{{asset('public/frontend/img/logo.png')}}" alt=""></a>
                         </div>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <div class="col-md-6" style="text-align: center;margin: auto;">
-                                <ul class="navbar-nav mr-auto">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7">
+                                <ul class="navbar-nav">
                                     <li class="nav-item active">
                                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                                     </li>
-                                    @php
-                                    use App\Model\Category;
-                                    $categoryObject = new Category();
-
-                                    $categories   = $categoryObject->getAllCategoryWithParent();
-                                    $parents = Category::where('parent_id', 0)->orderBy('name', 'asc')->get();
-                                    @endphp
-                                    @foreach ($parents as  $parent)
-                                    @php
-                                    $childs = Category::where('parent_id', $parent->id)->orderBy('name', 'asc')->get();
-                                    @endphp
-                                    @if ($childs->isNotEmpty())
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        {{$parent->name}}
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            @foreach ($childs as $child)
-                                                
-                                            <a class="dropdown-item" href="{{route('front.products', [$child->id, strtolower(str_replace(' ', '-', $child->name))])}}">{{$child->name}}</a>
-
-                                            @endforeach
-                                        </div>
-                                    </li>
-                                    @else
                                     <li class="nav-item">
-                                        <a class="nav-link " href="{{route('front.products', [$parent->id, strtolower(str_replace(' ', '-', $parent->name))])}}">{{$parent->name}}</a>
+                                        <a href="#">
+                                            <div class="btn-group">
+                                                <button style="background-color: transparent;" type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Kids
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                        </div>
+                                        </a>
                                     </li>
-                                    @endif
-                                    @endforeach
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">
+                                            <div class="btn-group">
+                                                <button type="button" style="margin-top: -8px;background-color: transparent;"
+                                                    class="btn  dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Men
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="dropdown-item" type="button">Action</button>
+                                                    <button class="dropdown-item" type="button">Another action</button>
+                                                    <button class="dropdown-item" type="button">Something else here</button>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a style="color: black;" class="nav-link " href="#">Mobile Cover</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a style="color: black;" class="nav-link " href="#">Mugs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="#">
+                                            <div class="btn-group">
+                                                <button type="button" style="margin-top: -8px;background-color: transparent;"
+                                                    class="btn  dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Women
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="dropdown-item" type="button">Action</button>
+                                                    <button class="dropdown-item" type="button">Another action</button>
+                                                    <button class="dropdown-item" type="button">Something else here</button>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" style="text-align: right;margin-top: -8px;">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link " href="{{route('carts')}}">
+                                        <a class="nav-link " href="#">
                                         <i style="color: black;" class="fa fa-cart-arrow-down" aria-hidden="true">
-                                        <span style="font-weight: bold; color: red;padding-left: 5px;"id="cart-count">{{Cart::count()}}</span></i></a>
+                                        <span style="font-weight: bold; color: red;padding-left: 5px;">5</span></i></a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" style="text-decoration:none ; color: whitesmoke; ">
@@ -87,9 +105,9 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalLabel" style="width: 100%;">
-                                                                    <form action="{{route('search')}}" class="form-inline md-form mr-auto" method="GET">
-                                                                        @csrf
-                                                                        <input style="width: 85%;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
+                                                                    <form class="form-inline md-form mr-auto">
+                                                                        <input style="width: 85%;" class="form-control mr-sm-2" type="text"
+                                                                            placeholder="Search" aria-label="Search">
                                                                         <button class="btn btn-unique btn-rounded btn-sm my-0 waves-effect waves-light"
                                                                             style="padding-top: 8px;padding-bottom: 8px;" type="submit"><i
                                                                             class="fas fa-search"></i></button>
@@ -105,35 +123,16 @@
                                             </div>
                                         </a>
                                     </li>
-                                    @auth
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                My Accounts
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="{{route('user.dashboard')}}">Dashboard</a>
-                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="{{route('user.dashboard')}}">Orders</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="{{route('user.profile')}}">Profile</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="{{route('wishlists')}}">Wishlist</a>
-                                                 <div class="dropdown-divider"></div>
-
-                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">{{__('Sign out')}}</a>
-                                
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
-                                            </div>
-                                        </li>
-                                    @endauth
-                                    @guest
                                     <li class="nav-item">
-                                        <a class="nav-link" style="text-decoration: none; color: black;" href="{{route('login')}}">
+                                        <a class="nav-link" style="text-decoration: none; color: black;" href="#">
                                         Login
                                         </a>
                                     </li>
-                                    @endguest
+                                    <li class="nav-item">
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">{{__('Sign out')}}</a>
+                                
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -142,39 +141,63 @@
                 <div class="header-responsive" style="width: 360px;margin-left: -74px;">
                     <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-                        <a href="{{URL::to('/')}}">Home</a>
-
-                        
-                        @foreach ($parents as $key =>  $parent)
-                            @php
-                            $childs = Category::where('parent_id', $parent->id)->orderBy('name', 'asc')->get();
-                            @endphp
-                            @if ($childs->isNotEmpty())
-                                <a href="#">
-                                    <button class="btn btn dropdown-toggle " onclick="myFunction1({{$key}})">{{$parent->name}}</button>
-                                    <div id="{{$key}}" class="dfdf">
-                                        @foreach ($childs as $child)
-                                           <a href="{{route('front.products', [$child->id, strtolower(str_replace(' ', '-', $child->name))])}}">{{$child->name}}</a> 
-                                        @endforeach
-                                        
-                                    </div>
-                                    <script>
-                                        function myFunction1(param) {
-                                            var x = document.getElementById(param);
-                                            if (x.style.display == "block") {
-                                                x.style.display = "none";
-                                            } else {
-                                                x.style.display = "block";
-                                            }
-                                        }
-                                    </script>
-                                </a>
-                            @else 
-                            <a href="{{route('front.products', [$parent->id, strtolower(str_replace(' ', '-', $parent->name))])}}">{{$parent->name}}</a>
-                            @endif
-
-                        @endforeach
+                        <a href="#">Home</a>
+                        <a href="#">Mobile Cover</a>
+                        <a href="#">Mugs</a>
+                        <a href="#">
+                            <button class="btn btn dropdown-toggle " onclick="myFunction1()">kids</button>
+                            <div id="kids" class="dfdf">
+                        <a href="#">Shirt</a>
+                        <a href="#">Shirt</a>
+                        <a href="#">Shirt</a>
+                        </div>
+                        <script>
+                            function myFunction1() {
+                              var x = document.getElementById("kids");
+                              if (x.style.display == "block") {
+                                x.style.display = "none";
+                              } else {
+                                x.style.display = "block";
+                              }
+                            }
+                        </script>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn dropdown-toggle " onclick="myFunction()">Men</button>
+                            <div id="myDIV" class="dfdf">
+                        <a href="#">pant</a>
+                        <a href="#">pant</a>
+                        <a href="#">pant</a>
+                        </div>
+                        <script>
+                            function myFunction() {
+                              var x = document.getElementById("myDIV");
+                              if (x.style.display == "block") {
+                                x.style.display = "none";
+                              } else {
+                                x.style.display = "block";
+                              }
+                            }
+                        </script>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn dropdown-toggle " onclick="myFunction3()">Women</button>
+                            <div id="women" class="dfdf">
+                        <a href="#">Clock</a>
+                        <a href="#">Clock</a>
+                        <a href="#">Clock</a>
+                        </div>
+                        <script>
+                            function myFunction3() {
+                              var x = document.getElementById("women");
+                              if (x.style.display == "block") {
+                                x.style.display = "none";
+                              } else {
+                                x.style.display = "block";
+                              }
+                            }
+                        </script>
+                        </a>
                     </div>
                     <div id="main">
                         <div class="row">
@@ -183,7 +206,7 @@
                             </div>
                             <div class="col-6">
                                 <a href="#">
-                                <img src="{{asset('public/frontend/img/logo.jpg')}}" width="100px" height="50px" style="margin-left: 52px;" alt="">
+                                <img src="{{asset('public/frontend/img/logo.png')}}" width="100px" height="50px" style="margin-left: 52px;" alt="">
                                 </a>
                             </div>
                         </div>
@@ -206,109 +229,35 @@
             <!---Fixed Nav Footer For mobile ----->
             <div class="container-fluid fixedfooter " style="background-color: black;color: whitesmoke;left: 0;width: 360px;">
                 <div class="row" style="text-align: center;margin: auto;">
-                    <div class="" style="margin-right: 25px;">
-                        <a href="{{URL::to('/')}}" style="text-decoration:none ; color: whitesmoke; ">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fas fa-home"></i></div>
-                                <div class="m-footer">Home</div>
-                            </div>
-                        </a>
-                    </div>
-                    @auth
-                    <div class="" style="margin-right: 25px;">
-                        <a href="{{route('wishlists')}}" style="text-decoration:none ; color: whitesmoke; ">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fa fa-heart" aria-hidden="true"></i>
-                                </div>
-                                <div class="m-footer">Wishlist</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="" style="margin-right: 25px;">
-                        <a href="{{route('user.dashboard')}}" style="text-decoration:none ; color: whitesmoke; ">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fab fa-first-order-alt"></i>
-                                </div>
-                                <div class="m-footer">Orders</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="" style="margin-right: 25px;">
-                        <a href="{{route('user.profile')}}" style="text-decoration:none ; color: whitesmoke; ">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fas fa-users"></i></div>
-                                <div class="m-footer">Profile</div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                       <div class="" style="margin-right: 25px;">
-                        <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="text-decoration:none ; color: whitesmoke; ">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fas fa-sign-out-alt"></i>
-                                </div>
-                                <div class="m-footer">Sing Out</div>
-                            </div>
-                        </a> 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
-                    </div> 
-                    @endauth
-                    @guest
-                    
-                    <div class="" style="margin-right: 25px;">
-                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="alert('Please Login To See');">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fa fa-heart" aria-hidden="true"></i>
-                                </div>
-                                <div class="m-footer">Wishlist</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="" style="margin-right: 25px;">
-                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="alert('Please Login To See');">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fab fa-first-order-alt"></i>
-                                </div>
-                                <div class="m-footer">Orders</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="" style="margin-right: 25px;">
-                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="alert('Please Login To See');">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fas fa-users"></i></div>
-                                <div class="m-footer">Profile</div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="" style="margin-right: 25px;">
-                        <a href="{{route('login')}}" style="text-decoration:none ; color: whitesmoke; ">
-                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div><i class="fa fa-sign-in-alt" aria-hidden="true"></i>
-                                </div>
-                                <div class="m-footer">Login</div>
-                            </div>
-                        </a>
-                    </div>
-                    @endguest
-                    
-                    <div class="" style="">
+                    <div class="" style="margin-right: 55px;">
                         <a href="#" style="text-decoration:none ; color: whitesmoke; ">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
-                                <div class="m-footer" data-toggle="modal" data-target="#exampleModalCenter">
-                                    <div style="font-size: 16px;"><i class="fas fa-search"></i></div>
-                                    Search
+                                <div><i class="fas fa-home"></i></div>
+                                <div class="m-footer">Shop</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="" style="margin-right: 55px;">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; ">
+                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
+                                <div><i class="fa fa-user" aria-hidden="true"></i>
                                 </div>
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="m-footer">My Account</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="" style="margin-right: 55px;">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; ">
+                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
+                                <div data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-search"></i></div>
+                                <div class="m-footer" data-toggle="modal" data-target="#exampleModalCenter"> Search </div>
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content" style="bottom: -235px; left: -8px;">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLongTitle">
-                                                    <form action="{{route('search')}}" class="form-inline md-form mr-auto" method="GET">
-                                                        @csrf
-                                                        <input style="width: 85%;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
+                                                    <form class="form-inline md-form mr-auto">
+                                                        <input style="width: 85%;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                                                         <button class="btn btn-unique btn-rounded btn-sm my-0 waves-effect waves-light" style="padding-top: 8px;padding-bottom: 8px;" type="submit"><i class="fas fa-search"></i></button>
                                                     </form>
                                                 </h5>
@@ -319,6 +268,14 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; ">
+                            <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
+                                <div><i class="fas fa-heart"></i></div>
+                                <div class="m-footer">Wishlist</div>
                             </div>
                         </a>
                     </div>
@@ -338,7 +295,7 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="">
-                            <img src="{{asset('public/frontend/img/logo.jpg')}}" alt="" style="width: 100px; height:50px;">
+                            <img src="{{asset('public/frontend/img/logo.png')}}" alt="">
                         </div>
                         <br><br><br>
                         <div class="" style="color: white;">
@@ -382,8 +339,7 @@
                                         </a>
                                     </span>
                                 </div>
-                                {{-- 
-                                <div class="col-1">
+                                {{-- <div class="col-1">
                                     <span>
                                         <a href="#" style="text-decoration: none; color: white;" title="whatsapp">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -393,8 +349,7 @@
                                             </svg>
                                         </a>
                                     </span>
-                                </div>
-                                --}}
+                                </div> --}}
                             </div>
                         </div>
                         <br><br>
@@ -427,8 +382,12 @@
                             <hr>
                         </div>
                         <ul class="cloud" role="navigation" aria-label="Webdev word cloud">
-                            @foreach ($categories as $key => $item)
-                            <li><a href="{{route('front.products', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}" data-weight="{{++$key}}">{{$item->name}} @if ($item->parent_name != null) ({{$item->parent_name}}) @endif</a></li>
+							@php
+							use App\Model\Category;
+							$parents = Category::where('parent_id', 0)->orderBy('name', 'asc')->get();
+							@endphp
+                            @foreach ($parents as $key => $item)
+                            <li><a href="{{route('front.products', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}" data-weight="{{++$key}}">{{$item->name}}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -449,7 +408,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="">
-                        <img src="{{asset('public/frontend/img/logo.jpg')}}" width="100px" height="50px" alt="">
+                        <img src="{{asset('public/frontend/img/logo.png')}}" width="80%" alt="">
                     </div>
                     <br>
                     <div class="" style="color: white;">
@@ -492,8 +451,7 @@
                                     </a>
                                 </span>
                             </div>
-                            {{-- 
-                            <div class="col-1">
+                            {{-- <div class="col-1">
                                 <span>
                                     <a href="#" style="text-decoration: none; color: white;" title="whatsapp">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
@@ -503,8 +461,7 @@
                                         </svg>
                                     </a>
                                 </span>
-                            </div>
-                            --}}
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -516,25 +473,25 @@
                     <br>
                     <div class="footer-mdmd">
                         <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('about')}}"> <span class="mdmd2">About Us</span> </a>
-                        <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
-                        <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('front.contact')}}"> <span class="mdmd2">Contact Us</span> </a>
-                        <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
-                        <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'return-shipment')}}"> <span class="mdmd2">Return & Shipment</span> </a>
-                        <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
-                        <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'terms-conditions')}}"> <span class="mdmd2">Terms & Conditions</span> </a>
-                        <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
-                        <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'privacy-policy')}}"> <span class="mdmd2">Privacy Policy</span> </a>
-                        <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
-                        <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('faq')}}"> <span class="mdmd2">FAQ</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('front.contact')}}"> <span class="mdmd2">Contact Us</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'return-shipment')}}"> <span class="mdmd2">Return & Shipment</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'terms-conditions')}}"> <span class="mdmd2">Terms & Conditions</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('pages', 'privacy-policy')}}"> <span class="mdmd2">Privacy Policy</span> </a>
+                            <hr style="margin-top: 10px; margin-bottom: 10px;color: aliceblue;border-top: 1px solid whitesmoke; ">
+                            <span style="font-weight: 800; color: whitesmoke; ">></span> <a style="text-decoration: none;color: whitesmoke;" href="{{route('faq')}}"> <span class="mdmd2">FAQ</span> </a>
                     </div>
                 </div>
                 <div class="col-4">
                     <h2 style="color: white;font-size: 15px;margin-top: -7px;">Product categories</h2>
                     <hr>
                     <ul style="margin-top: -7px;" class="cloud" role="navigation" aria-label="Webdev word cloud">
-                    @foreach ($categories as $key => $item)
-                    <li><a href="{{route('front.products', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}" data-weight="{{++$key}}">{{$item->name}} @if ($item->parent_name != null) ({{$item->parent_name}}) @endif</a></li>
-                    @endforeach
+                        @foreach ($parents as $key => $item)
+						<li><a href="{{route('front.products', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}" data-weight="{{++$key}}">{{$item->name}}</a></li>
+						@endforeach
                 </div>
             </div>
             <div class="row" style="background-color: rgb(29, 28, 28);padding-top: 5px;padding-bottom: 20px;">

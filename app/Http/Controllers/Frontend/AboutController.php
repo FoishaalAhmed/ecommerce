@@ -24,12 +24,11 @@ class AboutController extends Controller
 
         $categoryObject = new Category();
         $categories     = $categoryObject->getAllCategoryWithParent();
-        $category       = '';
         $highestPrice   = Product::orderBy('current_price', 'desc')->first();
         $lowestPrice    = Product::orderBy('current_price', 'asc')->first();
         $products       = Product::orderby('name', 'asc')->where('name', 'like', '%' . $search . '%')->paginate(24);
 
-        return view('frontend.products', compact('products', 'category', 'categories', 'highestPrice', 'lowestPrice'));
+        return view('frontend.products', compact('products', 'categories', 'highestPrice', 'lowestPrice'));
     }
 
     public function pages($slug)
