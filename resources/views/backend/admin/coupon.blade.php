@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title', 'Category')
+@section('title', 'Coupon')
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
@@ -8,7 +8,7 @@
             <small>Version 2.0</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('categories.index')}}"><i class="fa fa-group"></i> Category</a></li>
+            <li><a href="{{route('coupons.index')}}"><i class="fa fa-group"></i> Coupon</a></li>
         </ol>
     </section>
     <div class="content">
@@ -17,7 +17,7 @@
                 <!-- Content Header (user header) -->
                 <div class="box box-teal box-solid">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Category</h3>
+                        <h3 class="box-title">Coupon</h3>
                         <div class="box-tools pull-right">
                         	
                         </div>		
@@ -25,42 +25,37 @@
                     <!-- /.box-header -->
                     <div class="box-body" id="box-body">
                     	@include('includes.error')
-                        @if (isset($category))
+                        @if (isset($coupon))
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="{{route('categories.update', $category->id)}}" method="post" class="form-horizontal">
+                                    <form action="{{route('coupons.update', $coupon->id)}}" method="post" class="form-horizontal">
                                         @csrf
-                                        @method('put')
+                                        @method('PUT')
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="col-md-12">
-                                                    <label for="">{{__('Name')}}</label>
-                                                    <input type="text" name="name"  placeholder="{{__('Name')}}" value="{{$category->name}}" required="" autocomplete="off" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <label for="">{{__('Parent')}}</label>
-                                                    <select name="parent_id" id="parent_id" class="form-control select2" style="width: 100%">
-                                                        <option value="0" @if ($category->parent_id == 0) {{'selected'}} @endif >{{__('None')}}</option>
-                                                        @foreach ($categories as $item)
-                                                            <option value="{{$item->id}}" @if ($category->parent_id == $item->id) {{'selected'}} @endif>{{$item->name}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    <label for="">{{__('Coupon')}}</label>
+                                                    <input type="text" class="form-control" name="number"  placeholder="{{__('Coupon')}}" value="{{$coupon->number}}" required="" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <div class="col-md-12">
-                                                    <label for="">{{__('Position')}}</label>
-                                                    <input type="text" name="position"  placeholder="{{__('Position')}}" value="{{$category->position}}" required="" autocomplete="off" class="form-control">
+                                                    <label for="">{{__('Expire')}}</label>
+                                                    <input type="text" class="form-control" name="expire"  placeholder="{{__('Expire')}}" value="{{$coupon->expire}}" required="" autocomplete="off" id="expire">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-1">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label for="">{{__('Amount')}}</label>
+                                                    <input type="text" class="form-control" name="amount"  placeholder="{{__('Amount')}}" value="{{$coupon->amount}}" required="" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
                                             <label for=""><br/></label>
                                             <button type="submit" class="btn btn-sm bg-teal form-control">{{__('Update')}}</button>
                                         </div>
@@ -70,38 +65,33 @@
                         @else
                            <div class="row">
                                 <div class="col-md-12">
-                                    <form action="{{route('categories.store')}}" method="post" class="form-horizontal">
+                                    <form action="{{route('coupons.store')}}" method="post" class="form-horizontal">
                                         @csrf
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="col-md-12">
-                                                    <label for="">{{__('Name')}}</label>
-                                                    <input type="text" class="form-control" name="name"  placeholder="{{__('Name')}}" value="{{old('name')}}" required="" autocomplete="off">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <label for="">{{__('Parent')}}</label>
-                                                    <select name="parent_id" id="parent_id" class="form-control select2" style="width: 100%">
-                                                        <option value="0" @if (old('parent_id') == 0) {{'selected'}} @endif >{{__('None')}}</option>
-                                                        @foreach ($categories as $item)
-                                                            <option value="{{$item->id}}" @if (old('parent_id') == $item->id) {{'selected'}} @endif>{{$item->name}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    <label for="">{{__('Coupon')}}</label>
+                                                    <input type="text" class="form-control" name="number"  placeholder="{{__('Coupon')}}" value="{{old('number')}}" required="" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <div class="col-md-12">
-                                                    <label for="">{{__('Position')}}</label>
-                                                    <input type="text" name="position"  placeholder="{{__('Position')}}" value="{{old('position')}}" required="" autocomplete="off" class="form-control">
+                                                    <label for="">{{__('Expire')}}</label>
+                                                    <input type="text" class="form-control" name="expire"  placeholder="{{__('Expire')}}" value="{{old('expire')}}" required="" autocomplete="off" id="expire">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-1">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label for="">{{__('Amount')}}</label>
+                                                    <input type="text" class="form-control" name="amount"  placeholder="{{__('Amount')}}" value="{{old('amount')}}" required="" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
                                             <label for=""><br/></label>
                                             <button type="submit" class="btn btn-sm bg-teal form-control">{{__('Save')}}</button>
                                         </div>
@@ -115,37 +105,31 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10%">Sl.</th>
-                                            <th style="width: 35%">Categories</th>
-                                            <th style="width: 35%">Parent</th>
-                                            <th style="width: 10%">Position</th>
+                                            <th style="width: 5%">Sl.</th>
+                                            <th style="width: 40%">Coupon</th>
+                                            <th style="width: 30%">Expire</th>
+                                            <th style="width: 15%">Amount</th>
                                             <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($categories as $key => $category)
+                                        @foreach ($coupons as $key => $coupon)
                                         <tr>
                                             <td>{{$loop->index + 1}}</td>
-                                            <td>{{$category->name}} </td>
-                                            <td>
-                                                @if ($category->parent_name == null)
-                                                    {{'None'}}
-                                                @else
-                                                    {{$category->parent_name}}
-                                                @endif 
-                                            </td>
-                                            <td>{{$category->position}} </td>
+                                            <td>{{$coupon->number}} </td>
+                                            <td>{{date('d M, Y', strtotime($coupon->expire))}}</td>
+                                            <td>{{$coupon->amount}}</td>
                                             <td>   
                                                 
-                                                <a class="btn btn-sm bg-teal" href="{{route('categories.edit', $category->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
+                                                <a class="btn btn-sm bg-teal" href="{{route('coupons.edit', $coupon->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
 
-                                                <form action="{{route('categories.destroy',$category->id)}}" method="post" style="display: none;" id="delete-form-{{ $category->id}}">
+                                                <form action="{{route('coupons.destroy',$coupon->id)}}" method="post" style="display: none;" id="delete-form-{{ $coupon->id}}">
                                                     @csrf
                                                     {{method_field('DELETE')}}
                                                 </form>
                                                 <a class="btn btn-sm bg-red" href="" onclick="if(confirm('Are You Sure To Delete?')){
                                                     event.preventDefault();
-                                                    getElementById('delete-form-{{ $category->id}}').submit();
+                                                    getElementById('delete-form-{{ $coupon->id}}').submit();
                                                     }else{
                                                     event.preventDefault();
                                                     }"><span class="glyphicon glyphicon-trash"></span></a>
@@ -165,4 +149,19 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+    <script>
+
+    $(function () {
+        $('#expire').datepicker({
+            autoclose:   true,
+            changeYear:  true,
+            changeMonth: true,
+            dateFormat:  "dd-mm-yy",
+            yearRange:   "-0:+10"
+        });
+    });
+    </script>
 @endsection

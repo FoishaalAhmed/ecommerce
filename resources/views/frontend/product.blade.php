@@ -129,8 +129,8 @@
                                         </div>
                                     </div>
                                     <!-- cartview-product-btn-->
-                                    <div class="row cartview-product-Quantity my4">
-                                        <div class="col-md-12" id="exampleFormControlSelect3">
+                                    <div class="row cartview-product-Quantity my4" style="text-align: center; margin: 0 auto;">
+                                        <div class="col-md-12" id="exampleFormControlSelect3" style="margin-top: 50px;">
                                             <a onclick="addToWishlist()" type="button" class="btn btn" style="text-decoration: none;border-bottom: 1px solid red;border-right: 1px solid red;border-top: 1px solid green;border-left: 1px solid green;"><span style="color: green;">Add</span>
                                             <span style="color: red;">to</span>
                                             <span style="color: green;">Wishlist</span>
@@ -386,7 +386,7 @@
       
         });
       
-        var product_id = "{{$product->id}}";
+        var id = "{{$product->id}}";
         var size 	   = $("#size").val();
         var color 	   = $("#color").val();
         var qty 	   = $("#qty").val();
@@ -397,7 +397,7 @@
     
             url: url,
             method: 'POST',
-            data: { 'product_id' : product_id, 'size' : size,'color' : color, 'qty' : qty,},
+            data: { 'product_id' : id, 'size' : size,'color' : color, 'qty' : qty,},
     
             success: function(data){
     

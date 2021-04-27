@@ -182,6 +182,14 @@
 
             </li>
 
+            <li class="@if(request()->is('admin/generals')) {{'active'}} @endif">
+
+                <a href="{{route('generals.index')}}">
+                <i class="fa fa-info-circle"></i> <span>{{__('Generals')}}</span>
+                </a>
+
+            </li>
+
             <li class="@if(request()->is('admin/sizes')) {{'active'}} @endif">
 
                 <a href="{{route('sizes.index')}}">
@@ -197,150 +205,6 @@
                 </a>
 
             </li>
-
-            {{-- <li class="treeview @if(request()->is('admin/sliders') || request()->is('admin/sliders/create') || request()->is('admin/sliders/*') ) {{'active'}} @endif">
-                <a href="#">
-                <i class="fa fa-image"></i>
-                <span>{{__('Sliders')}}</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                </a>
-                <ul class="treeview-menu">
-
-                    <li class="@if(request()->is('admin/sliders/create')) {{'active'}} @endif">
-                        <a href="{{route('sliders.create')}}"><i class="fa fa-plus"></i> {{__('New Slider')}}</a>
-                    </li>
-
-                    <li class="@if(request()->is('admin/sliders')) {{'active'}} @endif">
-                        <a href="{{route('sliders.index')}}"><i class="fa fa-list"></i> {{__('Sliders')}}</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="treeview @if(request()->is('admin/clients') || request()->is('admin/clients/create') || request()->is('admin/clients/*') ) {{'active'}} @endif">
-                <a href="#">
-                <i class="fa fa-user-secret"></i>
-                <span>{{__('Clients')}}</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                </a>
-                <ul class="treeview-menu">
-
-                    <li class="@if(request()->is('admin/clients/create')) {{'active'}} @endif">
-                        <a href="{{route('clients.create')}}"><i class="fa fa-plus"></i> {{__('New Client')}}</a>
-                    </li>
-
-                    <li class="@if(request()->is('admin/clients')) {{'active'}} @endif">
-                        <a href="{{route('clients.index')}}"><i class="fa fa-list"></i> {{__('Clients')}}</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="treeview @if(request()->is('admin/services') || request()->is('admin/services/create') || request()->is('admin/services/*') ) {{'active'}} @endif">
-                <a href="#">
-                <i class="fa fa-cogs"></i>
-                <span>{{__('Services')}}</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                </a>
-                <ul class="treeview-menu">
-
-                    <li class="@if(request()->is('admin/services/create')) {{'active'}} @endif">
-                        <a href="{{route('services.create')}}"><i class="fa fa-plus"></i> {{__('New Service')}}</a>
-                    </li>
-
-                    <li class="@if(request()->is('admin/services')) {{'active'}} @endif">
-                        <a href="{{route('services.index')}}"><i class="fa fa-list"></i> {{__('Services')}}</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="treeview @if(request()->is('admin/projects') || request()->is('admin/projects/create') || request()->is('admin/projects/*') ) {{'active'}} @endif">
-                <a href="#">
-                <i class="fa fa-tasks"></i>
-                <span>{{__('Projects')}}</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                </a>
-                <ul class="treeview-menu">
-
-                    <li class="@if(request()->is('admin/projects/create')) {{'active'}} @endif">
-                        <a href="{{route('projects.create')}}"><i class="fa fa-plus"></i> {{__('New Project')}}</a>
-                    </li>
-
-                    <li class="@if(request()->is('admin/projects')) {{'active'}} @endif">
-                        <a href="{{route('projects.index')}}"><i class="fa fa-list"></i> {{__('Projects')}}</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="treeview @if(request()->is('admin/blogs') || request()->is('admin/blogs/create') || request()->is('admin/blogs/*') ) {{'active'}} @endif">
-                <a href="#">
-                <i class="fa fa-newspaper-o"></i>
-                <span>{{__('Blogs')}}</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                </a>
-                <ul class="treeview-menu">
-
-                    <li class="@if(request()->is('admin/blogs/create')) {{'active'}} @endif">
-                        <a href="{{route('blogs.create')}}"><i class="fa fa-plus"></i> {{__('New Blog')}}</a>
-                    </li>
-
-                    <li class="@if(request()->is('admin/blogs')) {{'active'}} @endif">
-                        <a href="{{route('blogs.index')}}"><i class="fa fa-list"></i> {{__('Blogs')}}</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            
-
-            <li class="treeview @if(request()->is('admin/testimonials') || request()->is('admin/testimonials/create') || request()->is('admin/testimonials/*') ) {{'active'}} @endif">
-                <a href="#">
-                <i class="fa fa-star"></i>
-                <span>{{__('Testimonials')}}</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                </a>
-                <ul class="treeview-menu">
-
-                    <li class="@if(request()->is('admin/testimonials/create')) {{'active'}} @endif">
-                        <a href="{{route('testimonials.create')}}"><i class="fa fa-plus"></i> {{__('New Testimonial')}}</a>
-                    </li>
-
-                    <li class="@if(request()->is('admin/testimonials')) {{'active'}} @endif">
-                        <a href="{{route('testimonials.index')}}"><i class="fa fa-list"></i> {{__('Testimonials')}}</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="@if(request()->is('admin/generals')) {{'active'}} @endif">
-
-                <a href="{{route('generals.index')}}">
-                <i class="fa fa-info-circle"></i> <span>{{__('Generals')}}</span>
-                </a>
-
-            </li>
-
-            <li class="@if(request()->is('admin/contacts')) {{'active'}} @endif">
-
-                <a href="{{route('contact')}}">
-                <i class="fa fa-envelope"></i> <span>{{__('Contact')}}</span>
-                </a>
-
-            </li> --}}
         </ul>
     </section>
     <!-- /.sidebar -->

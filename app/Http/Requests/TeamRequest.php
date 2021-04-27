@@ -38,14 +38,14 @@ class TeamRequest extends FormRequest
 
             return $rules + [
 
-                'photo'  => 'mimes:jpeg,jpg,png,gif,webp,svg|max:1000|required',
+                'photo'  => 'mimes:jpeg,jpg,png,gif,webp,svg|max:100|required',
 
             ];
         } else {
 
             return $rules + [
 
-                'photo'  => 'mimes:jpeg,jpg,png,gif,webp,svg|max:1000|nullable',
+                'photo'  => 'mimes:jpeg,jpg,png,gif,webp,svg|max:100|nullable',
 
             ];
         }

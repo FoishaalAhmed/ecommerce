@@ -8,7 +8,7 @@ use Session;
 class Slider extends Model
 {
     protected $fillable = [
-        'text', 'photo', 'link', 
+        'intro', 'product_name', 'short_description', 'coupon', 'photo', 'background', 'link',  
     ];
 
     public function storeSlider(Object $request)
@@ -33,9 +33,12 @@ class Slider extends Model
         $success         = $background->move($upload_path, $image_full_name);
         $this->background= $image_url;
 
-        $this->text  = $request->text;
-        $this->link  = $request->link;
-        $storeSlider = $this->save();
+        $this->intro             = $request->intro;
+        $this->product_name      = $request->product_name;
+        $this->short_description = $request->short_description;
+        $this->coupon            = $request->coupon;
+        $this->link              = $request->link;
+        $storeSlider             = $this->save();
 
         $storeSlider ?
             Session::flash('message', 'Slider Save Successfully!') :
@@ -76,8 +79,12 @@ class Slider extends Model
             $slider->background = $image_url;
         }
 
-        $slider->text  = $request->text;
-        $slider->link  = $request->link;
+        $slider->intro             = $request->intro;
+        $slider->product_name      = $request->product_name;
+        $slider->short_description = $request->short_description;
+        $slider->coupon            = $request->coupon;
+        $slider->link              = $request->link;
+        $storeSlider               = $slider->save();
         $updateSlider  = $slider->save();
 
         $updateSlider ?

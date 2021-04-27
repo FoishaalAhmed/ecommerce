@@ -32,6 +32,16 @@ class HomeController extends Controller
 
         } else {
 
+            $checkout = Session::get('checkout');
+
+            if ($checkout) {
+
+                Session::forget('checkout');
+                Session::save();
+
+                return redirect()->route('checkout');
+            }
+
             $product_id = Session::get('product_id');
 
             if ($product_id) {
@@ -41,18 +51,9 @@ class HomeController extends Controller
                 $wishlist->user_id    = auth()->user()->id;
                 $wishlist->save();
 
-                Session::forget('product_id');
+                session()->forget('product_id');
+                Session::save();
                 return redirect(route('wishlists'));
-            }
-
-            $checkout = Session::get('checkout');
-
-            if ($checkout) {
-
-                Session::forget('checkout');
-
-                return redirect()->route('checkout');
-
             } 
 
             return redirect(route('user.dashboard'));

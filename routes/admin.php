@@ -12,6 +12,7 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['ad
     Route::resources([
 
         'users'          => 'UserController',
+        'coupons'        => 'CouponController',
         'colors'         => 'ColorController',
         'sizes'          => 'SizeController',
         'categories'     => 'CategoryController',

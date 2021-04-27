@@ -6,45 +6,50 @@
 @extends('layouts.app')
 @section('title', 'Home')
 @section('content')
-<!-----Slider----->
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        @foreach ($sliders as $key => $slider)
-            
-        
-        <div class="carousel-item @if($key == 0) {{'active'}} @endif">
-          <img class="d-block w-100" src="{{asset($slider->background)}}" alt="First slide">
-          <div class="row in-slider">
-            <div class="col-md-6">
-              <div class="hero-image">
-                <div class="hero-text hero-text1 hero-animation<?php if($key > 0) echo ++$key; ?> ">
-                  <img src="{{asset($slider->photo)}}" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="hero-image">
-                <div class="hero-text hero-text2 banner ">
-                  <h1>{{$slider->text}}</h1>
-                  <button class="btn" style="border-radius: 20px; border: 1px solid black; "><a href="{{$slider->link}}">Buy Now</a></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        @endforeach
+<!-----  SLIDER  3  ----->
+
+<div id="my-carousel" style="margin-bottom: 148px;" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
+  
+  <div class="carousel-inner">
+    @foreach ($sliders as $key => $slider)
+      <div class="carousel-item  @if($key == 0) {{'active'}} @endif">
+           <img class="slider-background" src="{{asset($slider->background)}}" alt="First slide">
+
+           <div class="row slider-iner">
+             <div class="col-md-6">
+               <img src="{{asset($slider->photo)}}" alt="">
+             </div>
+
+             <div class="col-md-6 slider-iner-dtl">
+               <p style="margin: 0px;" >  {{$slider->intro}} </p>
+               <h2> {{$slider->product_name}} </h2>
+               <p class="ctg" >{{$slider->short_description}}</p>
+               <h4> <span style="background: black; color: white; padding: 5px;">@if ($slider->coupon != null) Use Coupon: {{$slider->coupon}} @endif </span></h4>
+               <br>
+               <a href="{{$slider->link}}"><button class="btn btn slider-buy-now" id="slider-buy-now" >Buy Now</button></a>
+             </div>
+           </div>
 
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
+       @endforeach   
+  </div>
+  <a class="carousel-control-prev" href="#my-carousel" role="button"  data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#my-carousel"  role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+
+<!-----  SLIDER  3  ----->
+
     <!-----catagory------>
     <div class="row" style="margin-top: -140px;">
       <div class="col-md-8">
@@ -59,10 +64,10 @@
             <div class="@if($key == 0 || $key == 1) {{'col-md-6'}} @else {{'col-md-12'}} @endif" style="margin-top: 10px;padding-right: 0px;">
               <div class="card" style="border: none;">
                 <img class="crd1" src="{{asset($three->photo)}}" alt="">
-                <a href="#">
+                <a href="#" >
                   <div class="text-block">
                     {{-- <p style="margin: 0px;">Creative </p> --}}
-                    <p class="txblck" style="margin: 0px;font-size: 20px;padding-left: 7px;padding-right: 7px;"><a href="{{route('front.products', [$three->category_id, strtolower(str_replace(' ', '-', $three->name))])}}">{{$three->title}}</a>
+                    <p class="txblck" style="margin: 0px;font-size: 20px;padding-left: 7px;padding-right: 7px;"><a style="text-decoration: none;" href="{{route('front.products', [$three->category_id, strtolower(str_replace(' ', '-', $three->name))])}}">{{$three->title}}</a>
                     </p>
                   </div>
                 </a>
@@ -77,13 +82,18 @@
             src="{{asset($lastOne[0]->photo)}}" alt="">
           <a href="#">
             <div class="text-block">
-              <p class="txblck" style="margin: 0px;font-size: 20px;padding-left: 7px;padding-right: 7px;"><a href="{{route('front.products', [$lastOne[0]->category_id, strtolower(str_replace(' ', '-', $lastOne[0]->name))])}}">{{$lastOne[0]->title}}</a> </p>
+              <p class="txblck" style="margin: 0px;font-size: 20px;padding-left: 7px;padding-right: 7px;"><a style="text-decoration: none;" href="{{route('front.products', [$lastOne[0]->category_id, strtolower(str_replace(' ', '-', $lastOne[0]->name))])}}">{{$lastOne[0]->title}}</a> </p>
             </div>
           </a>
         </div>
       </div>
     </div>
     <br><br><br>
+    
+    
+    
+    
+    
     <!------Tab Menu---->
     <div class="row">
       <div class="col-md-12" style="text-align: center;margin: auto;">
@@ -148,10 +158,8 @@
                     </small></p>
                     <p style="margin-bottom: 5px;">{{$product->name}}</p>
                     <p><span style="font-size: 20px;font-weight: bold;">{{$product->current_price}}</span><span
-                        style="font-size: 20px;font-weight: bold;">/=</span> &nbsp; &nbsp; <span
-                        style="color: red;"><del>@if ($product->previous_price != null)
-                            
-                         {{$product->previous_price}}/=@endif</del></span> </p>
+                        style="font-size: 20px;font-weight: bold;"> ৳ </span> 
+                         </p>
                   </div>
                 </div>
               </div>
@@ -237,7 +245,7 @@
             <div class="hero-image">
               <div id="b2b" class="hero-text hero-text2 banner ">
                 <h1>{{$item->title}}</h1>
-                <a href="{{route('front.products', [$item->category_id, strtolower(str_replace(' ', '-', $item->name))])}}" class="btn" style="border-radius: 20px; border: 1px solid black; ">Hire me</a>
+                <a href="{{route('front.products', [$item->category_id, strtolower(str_replace(' ', '-', $item->name))])}}" class="btn" style="border-radius: 20px; border: 1px solid black; ">Buy Now</a>
               </div>
             </div>
           </div>

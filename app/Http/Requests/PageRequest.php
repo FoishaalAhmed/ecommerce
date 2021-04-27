@@ -25,7 +25,7 @@ class PageRequest extends FormRequest
     {
         $rules = [
 
-            'photo'  => 'mimes:jpeg,jpg,png,gif,webp|max:1000|nullable',
+            'photo'  => 'mimes:jpeg,jpg,png,gif,webp|max:100|nullable',
             'text'   => 'nullable|string',
         ];
 

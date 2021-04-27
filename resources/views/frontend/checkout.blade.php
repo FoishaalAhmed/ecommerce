@@ -10,8 +10,8 @@
           <div class="container">
             <div class="row" style="text-align: center; padding-top: 10px; padding-bottom: 10px;margin: auto; ">
               <div class="col-md-12 col-12">
-                <a href="#" style="text-decoration: none;color: black;">Home</a> /
-                <a href="#" style="text-decoration: none;color: black;">Chackout</a>
+                <a href="{{URL::to('/')}}" style="text-decoration: none;color: black;">Home</a> /
+                <a  style="text-decoration: none;color: black;">Chackout</a>
               </div>
             </div>
           </div>
@@ -23,24 +23,25 @@
         <div class="col-md-2 col-8"
           style="border-right: 1px solid black; padding: 10px; text-align: left; width: 20%; ">
           <span> <i style="font-size: 14px;" class="fa fa-home"></i></span> &nbsp;Hello <span
-            style="font-size: 14px; font-weight: bold; ">jmahmud385</span>
+            style="font-size: 14px; font-weight: bold; ">{{auth()->user()->name}}</span>
           <div class="" style="font-size: 12px;">
-            (not jmahmud385? <a href="#">Sign Out</a> )
+            (not {{auth()->user()->name}}? <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a> )
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
           </div>
         </div>
         <div class="col-md-4 col-12 d-none d-md-block"
           style="border-right: 1px solid black; padding: 10px; width: 33%; font-size: 14px; ">
           <span>
-            <p style="padding-bottom: 0px; padding-top: 15px;margin-bottom: 0px; ">Need help? Call us: +91 98300-09940
+            <p style="padding-bottom: 0px; padding-top: 15px;margin-bottom: 0px; ">Need help? Call us: {{$contact->phone}}
             </p>
           </span>
         </div>
         <div class="col-md-3 col-12 d-none d-md-block"
           style="padding: 10px;width: 33%; font-size: 14px;text-align: left;">
-          <p style="padding-bottom: 0px; padding-top: 15px;margin-bottom: 0px; "> E-mail us at help@hjbrl.com </p>
+          <p style="padding-bottom: 0px; padding-top: 15px;margin-bottom: 0px; "> E-mail us at {{$contact->email}} </p>
         </div>
         <div class="col-md-3 col-4" style="border-left: 1px solid black; padding: 10px; width: 12%; font-size: 15px; ">
-          <a style="text-decoration: none;" href="#">
+          <a style="text-decoration: none;" href="{{route('carts')}}">
             <p style="margin-bottom: 0px; margin-top: 10px; "><i class="fa fa-home"></i> View Cart</p>
           </a>
         </div>
@@ -62,7 +63,9 @@
             </div>
           </form>
         </div>
+       
       </div>
+       @include('includes.error')
       <br><br>
       <div class="row check-out">
         <div class="col-md-12">
@@ -171,17 +174,17 @@
                 <h3 class="payment" style="padding-top: 5px;padding-bottom: 13px;">Billing Address</h3>
                 <br>
                 <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                <input class="form-control" type="text" id="fname" name="name" placeholder="John M. Doe" value="{{auth()->user()->name}}"> <br>
+                <input class="form-control" type="text" id="fname" name="name" placeholder="John M. Doe" value="{{auth()->user()->name}}" required=""> <br>
 
                 <label for="phone"><i class="fas fa-phone-volume"></i> Phone</label>
-                <input class="form-control" type="text" id="phone" name="phone" placeholder="+88 01919 61 31 52" value="{{auth()->user()->phone}}"> <br>
+                <input class="form-control" type="text" id="phone" name="phone" placeholder="+88 01919 61 31 52" value="{{auth()->user()->phone}}" required=""> <br>
 
                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                <input class="form-control" type="text" id="email" name="email" placeholder="ictbanglabd@gmail.com" value="{{auth()->user()->email}}">
+                <input class="form-control" type="text" id="email" name="email" placeholder="ictbanglabd@gmail.com" value="{{auth()->user()->email}}" required="">
 
                 <br>
                 <label for="adr"><i class="fas fa-id-badge"></i> Address</label>
-                <input class="form-control" type="text" id="adr" name="address" placeholder="542 W. 15th Street" value="{{auth()->user()->address}}"> <br>
+                <input class="form-control" type="text" id="adr" name="address" placeholder="542 W. 15th Street" value="{{auth()->user()->address}}" required=""> <br>
 
                 {{-- <label for="city"><i class="fas fa-university"></i> City</label>
                 <input class="form-control" type="text" id="city" name="city" placeholder="New York"> <br>

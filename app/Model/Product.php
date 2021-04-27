@@ -17,7 +17,7 @@ class Product extends Model
         return $this->belongsToMany('App\Model\Category');
     }
 
-    public function getProductByCategory($category_id)
+    public function getProductByCategory($category_id, $limit)
     {
         $products = DB::table('products')
                         ->join('category_product', 'products.id', '=', 'category_product.product_id')
@@ -26,7 +26,7 @@ class Product extends Model
                         ->orderBy('products.created_at', 'desc')
                         ->groupBy('products.id')
                         ->select('products.slug', 'products.id', 'products.cover', 'products.name', 'products.current_price', 'products.previous_price', 'products.saving', 'product_photos.photo')
-                        ->paginate(20);
+                        ->paginate($limit);
         return $products;
     }
 

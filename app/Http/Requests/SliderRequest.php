@@ -25,15 +25,19 @@ class SliderRequest extends FormRequest
     {
         $rules = [
 
-            'text'  => 'required|string|max:255',
-            'link'  => 'required|string|max:350',
+            'intro'             => 'nullable|string|max: 20',
+            'product_name'      => 'nullable|string|max: 20',
+            'short_description' => 'nullable|string|max: 50',
+            'coupon'            => 'nullable|string|max: 10',
+            'link'              => 'required|string|max: 350',
         ];
 
         if ($this->getMethod() == 'POST') {
 
             return $rules + [
 
-                'photo' => 'mimes:jpeg,jpg,png,gif,webp|max:200|required',
+                'photo'      => 'mimes:jpeg,jpg,png,gif,webp|max:200|required',
+                'background' => 'mimes:jpeg,jpg,png,gif,webp|max:200|required',
 
             ];
 
@@ -41,7 +45,8 @@ class SliderRequest extends FormRequest
 
             return $rules + [
 
-                'photo' => 'mimes:jpeg,jpg,png,gif,webp|max:200|nullable',
+                'photo'      => 'mimes:jpeg,jpg,png,gif,webp|max:200|nullable',
+                'background' => 'mimes:jpeg,jpg,png,gif,webp|max:200|nullable',
 
             ];
         }

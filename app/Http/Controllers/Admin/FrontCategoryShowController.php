@@ -54,7 +54,7 @@ class FrontCategoryShowController extends Controller
         $categoryShow  = FrontCategoryShow::findOrFail($id);
         $categoryShows = $this->categoryShowObject->getFrontCategoryShow();
         $categories = $this->categoryObject->getAllCategoryWithParent();
-        return view('backend.admin.CategoryShow', compact('categoryShows', 'categoryShow', 'categories'));
+        return view('backend.admin.categoryShow', compact('categoryShows', 'categoryShow', 'categories'));
     }
 
     /**

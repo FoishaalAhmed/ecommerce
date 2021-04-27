@@ -23,6 +23,9 @@ class Order extends Model
 
     public function storeOrder($request)
     {
+
+        //exit('asche');
+
         $shippingCharge  = General::where('name', 'shipping-charge')->first();
 
         $shipping_charge = $shippingCharge != null ? $shippingCharge->value : 0 ;

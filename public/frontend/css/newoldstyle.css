@@ -1,7 +1,7 @@
 *{
   margin: 0px;
   padding: 0px;
-  font-family: 'Poppins', sans-serif;
+  font-family: cursive;
 }
 
 
@@ -83,23 +83,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .hero-animation {
   position: relative;
-  
-  
   animation: mymove  2s ;
   -webkit-animation: mymove  2s ;
 }
@@ -112,8 +97,6 @@
 
 .hero-animation2 {
   position: relative;
-  
-  
   animation: mymove2  2s ;
   -webkit-animation: mymove2  2s ;
 }
@@ -128,8 +111,6 @@
 
 .hero-animation3 {
   position: relative;
-  
-  
   animation: mymove3  5s ;
   -webkit-animation: mymove3  5s ;
 }
@@ -139,116 +120,6 @@
   from {left: -100px;}
   to {right: 100px;}
 }
-
-
-
-
-
-
-
-
-
-
-
-/********* SLIDER 3 *****/
-
-
-.slider-background {
-  width: 100%;
-  height: 600px;
-}
-
-.slider-iner {
-  margin-top: -600px;
-  padding-left: 220px;
-  padding-right: 220px;
-}
-
-
-.slider-iner img {
-  height: 500px; width: auto;
-}
-
-
-#slider-buy-now {
-  background-color: transparent;
-  border: 1px solid black;
-  border-radius: 15px;
-}
-
-
-#slider-buy-now:hover {
-  background-color: black;
-  color: white;
-}
-
-
-
-.slider-iner-dtl {
-  text-align: right;
-  margin-top: 10%;
-  padding-right: 20px;
- font-family: 'Poppins', sans-serif;
-  font-weight: bolder;
-}
-.slider-iner-dtl h2 {
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
-  font-size: 60px;
-}
-.slider-iner-dtl p {
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-weight: bolder;
-  font-size: 25px;
-}
-.slider-iner-dtl .ctg {
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-}
-
-
-.slider-background {
-  position: relative;
-  animation: slider-bac  2s ;
-  -webkit-animation: slider-bac  2s ;
-}
-
-
-@keyframes slider-bac {
-  from {opacity: 0;}
-  to {opacity: 1;}
-  from {left: 00px;}
-  to {right: 00px;}
-}
-
-
-
-
-/********* SLIDER 3 *****/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -291,22 +162,18 @@
   text-align: center;
  
 }
-.txblck a {
-  color: black;
-  text-decoration: none;
-}
 
 
-.txblck a:hover {
+.txblck:hover {
   background: black;
   color: white;
   padding-left: 2px;
   padding-right: 2px;
-  transition: 1s;
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
+  transition: 2s;
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -ms-transition: 2s;
+  -o-transition: 2s;
 }
 
 
@@ -373,7 +240,7 @@
 }
 
 #exTab1 .nav-pills {
-  margin-left: 245px;
+  margin-left: 320px;
 }
 
 
@@ -437,13 +304,17 @@
 
 .tab-pane{
   position: relative;
-  animation:tab .5s;
-  -webkit-animation:tab .5s;
+  animation:tab 2s;
+  -webkit-animation:tab 2s;
 }
 
 @keyframes tab {
   from {opacity: 0;}
   to {opacity: 1;}
+  from {bottom: -50px;}
+  to {bottom: 0px;}
+  from {right: -50px;}
+  to {right: 0px;}
 }
 .tbs{
   position: relative;
@@ -498,11 +369,11 @@ ul.cloud a[data-weight="1"] { --size: 1; }
 ul.cloud a[data-weight="2"] { --size: 2; }
 ul.cloud a[data-weight="3"] { --size: 3; }
 ul.cloud a[data-weight="4"] { --size: 4; }
-ul.cloud a[data-weight="5"] { --size: 4; }
-ul.cloud a[data-weight="6"] { --size: 3; }
-ul.cloud a[data-weight="7"] { --size: 2; }
-ul.cloud a[data-weight="8"] { --size: 1; }
-ul.cloud a[data-weight="9"] { --size: 2; }
+ul.cloud a[data-weight="5"] { --size: 6; }
+ul.cloud a[data-weight="6"] { --size: 8; }
+ul.cloud a[data-weight="7"] { --size: 10; }
+ul.cloud a[data-weight="8"] { --size: 13; }
+ul.cloud a[data-weight="9"] { --size: 16; }
 
 ul[data-show-value] a::after {
   content: " (" attr(data-weight) ")";
@@ -677,19 +548,19 @@ a.show {
 
 
 
-#color {
+#exampleFormControlSelect1 {
   margin-left: 30px;
   width: 80%;
   text-align: center;
   padding: 5px;
 }
-#size {
+#exampleFormControlSelect2 {
   margin-left: 35px;
   width: 80%;
   text-align: center;
   padding: 5px;
 }
-#qty {
+#exampleFormControlSelect3 {
   width: 80%;
   text-align: center;
   padding: 5px;
@@ -921,6 +792,11 @@ a.show {
   display: none;
 }
 
+
+/*******Silider*******/
+/*******Silider*******/
+/*******Silider*******/
+
 .carousel-fade .carousel-item {
 	opacity: 0;
 	transition-duration: .6s;
@@ -946,3 +822,11 @@ a.show {
 	transform: translateX(0);
 	transform: translate3d(0, 0, 0);
 }
+
+
+/*******Silider*******/
+/*******Silider*******/
+/*******Silider*******/
+
+
+

@@ -26,7 +26,7 @@ class CategoryShowRequest extends FormRequest
         $rules = [
 
             'category_id' => 'required|string|max: 255',
-            'background'  => 'mimes:jpeg,jpg,png,gif,webp|max:1000|required_if:type, 2',
+            'background'  => 'mimes:jpeg,jpg,png,gif,webp|max:100|required_if:type, 2',
             'title'       => 'required|string|max:255',
             'type'        => 'required|string|max:2|min:1',
         ];

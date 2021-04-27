@@ -16,48 +16,6 @@
         </a>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                                
-                <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu" style="visibility: hidden;">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-language"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <!-- inner menu: contains the actual data -->
-                            {{-- <ul class="menu">
-                                @php
-                                $en_switch = str_replace('bn', 'en', url()->current());
-                                $bn_switch = str_replace('en', 'bn', url()->current());
-                                @endphp
-                                <li>
-                                    <a href="{{URL::to($en_switch)}}">
-                                        <h4> EN </h4>
-                                    </a>
-                                </li>
-                                <!-- end message -->
-                                <li>
-                                    <a href="{{URL::to($bn_switch)}}">
-                                        <h4> BN </h4>
-                                    </a>
-                                </li>
-                            </ul> --}}
-                            {{-- <ul class="menu">
-                                <li>
-                                    <a href="{{route('set-locale', 'en')}}">
-                                        <h4> EN </h4>
-                                    </a>
-                                </li>
-                                <!-- end message -->
-                                <li>
-                                    <a href="{{route('set-locale', 'bn')}}">
-                                        <h4> BN </h4>
-                                    </a>
-                                </li>
-                            </ul> --}}
-                        </li>
-                    </ul>
-                </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

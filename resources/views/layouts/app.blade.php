@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="{{asset('public/frontend/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
             integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+            
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,800;1,800&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <div class="container-fluid" style="border-top: 2px solid red;">
@@ -19,30 +22,37 @@
             <!-------Header Section------->
             <div class="container-fluid" style="width: 75%;">
                 <div class="header">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="col-md-2">
-                            <a class="navbar-brand" href="#"><img src="{{asset('public/frontend/img/logo.jpg')}}" style="width: 100px; height: 50px;" alt=""></a>
+                    <nav class="navbar navbar-expand-lg navbar-light ">
+                        
+                        
+                            <div class="col-md-2">
+                            <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{asset('public/frontend/img/logo.jpg')}}" style="width: 100px; height: 50px;" alt=""></a>
                         </div>
+                        
+                        <div class="col-md-1"></div>
+                        
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <div class="col-md-6" style="text-align: center;margin: auto;">
+                            
+                            
+                            <div class="col-md-11" style="text-align: center;margin: auto;">
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" href="{{URL::to('/')}}">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     @php
                                     use App\Model\Category;
                                     $categoryObject = new Category();
 
                                     $categories   = $categoryObject->getAllCategoryWithParent();
-                                    $parents = Category::where('parent_id', 0)->orderBy('name', 'asc')->get();
+                                    $parents = Category::where('parent_id', 0)->orderBy('position', 'asc')->get();
                                     @endphp
                                     @foreach ($parents as  $parent)
                                     @php
-                                    $childs = Category::where('parent_id', $parent->id)->orderBy('name', 'asc')->get();
+                                    $childs = Category::where('parent_id', $parent->id)->orderBy('position', 'asc')->get();
                                     @endphp
                                     @if ($childs->isNotEmpty())
                                     <li class="nav-item dropdown">
@@ -66,7 +76,9 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="col-md-1"></div>
+                            
+                            
+                            
                             <div class="col-md-3">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
@@ -137,8 +149,16 @@
                                 </ul>
                             </div>
                         </div>
+                            
+                            
+                            
                     </nav>
                 </div>
+                
+                
+                
+                
+                
                 <div class="header-responsive" style="width: 360px;margin-left: -74px;">
                     <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -182,7 +202,7 @@
                                 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
                             </div>
                             <div class="col-6">
-                                <a href="#">
+                                <a href="{{URL::to('/')}}">
                                 <img src="{{asset('public/frontend/img/logo.jpg')}}" width="100px" height="50px" style="margin-left: 52px;" alt="">
                                 </a>
                             </div>
@@ -204,9 +224,9 @@
                 </div>
             </div>
             <!---Fixed Nav Footer For mobile ----->
-            <div class="container-fluid fixedfooter " style="background-color: black;color: whitesmoke;left: 0;width: 360px;">
+            <div class="container-fluid fixedfooter " style="background-color: black;color: whitesmoke;left: 0;width: 100%;">
                 <div class="row" style="text-align: center;margin: auto;">
-                    <div class="" style="margin-right: 25px;">
+                    <div class="" style="margin-right: auto;text-align: center;">
                         <a href="{{URL::to('/')}}" style="text-decoration:none ; color: whitesmoke; ">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fas fa-home"></i></div>
@@ -215,7 +235,7 @@
                         </a>
                     </div>
                     @auth
-                    <div class="" style="margin-right: 25px;">
+                    <div class="" style="margin-right: auto;text-align: center;">
                         <a href="{{route('wishlists')}}" style="text-decoration:none ; color: whitesmoke; ">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fa fa-heart" aria-hidden="true"></i>
@@ -224,7 +244,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="" style="margin-right: 25px;">
+                    <div class="" style="margin-right: auto;text-align: center;">
                         <a href="{{route('user.dashboard')}}" style="text-decoration:none ; color: whitesmoke; ">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fab fa-first-order-alt"></i>
@@ -233,7 +253,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="" style="margin-right: 25px;">
+                    <div class="" style="margin-right: auto;text-align: center;">
                         <a href="{{route('user.profile')}}" style="text-decoration:none ; color: whitesmoke; ">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fas fa-users"></i></div>
@@ -242,7 +262,7 @@
                         </a>
                     </div>
                     
-                       <div class="" style="margin-right: 25px;">
+                       <div class="" style="margin-right: auto;text-align: center;">
                         <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="text-decoration:none ; color: whitesmoke; ">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fas fa-sign-out-alt"></i>
@@ -255,8 +275,8 @@
                     @endauth
                     @guest
                     
-                    <div class="" style="margin-right: 25px;">
-                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="alert('Please Login To See');">
+                    <div class="" style="margin-right: auto;text-align: center;">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="showLoginAllert();">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fa fa-heart" aria-hidden="true"></i>
                                 </div>
@@ -264,8 +284,8 @@
                             </div>
                         </a>
                     </div>
-                    <div class="" style="margin-right: 25px;">
-                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="alert('Please Login To See');">
+                    <div class="" style="margin-right: auto;text-align: center;">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="showLoginAllert();">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fab fa-first-order-alt"></i>
                                 </div>
@@ -273,8 +293,8 @@
                             </div>
                         </a>
                     </div>
-                    <div class="" style="margin-right: 25px;">
-                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="alert('Please Login To See');">
+                    <div class="" style="margin-right: auto;text-align: center;">
+                        <a href="#" style="text-decoration:none ; color: whitesmoke; " onclick="showLoginAllert();">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fas fa-users"></i></div>
                                 <div class="m-footer">Profile</div>
@@ -282,7 +302,7 @@
                         </a>
                     </div>
                     
-                    <div class="" style="margin-right: 25px;">
+                    <div class="" style="margin-right: auto;text-align: center;">
                         <a href="{{route('login')}}" style="text-decoration:none ; color: whitesmoke; ">
                             <div class="" style="text-align: center; margin: auto;padding-top: 10px;padding-bottom: 10px;">
                                 <div><i class="fa fa-sign-in-alt" aria-hidden="true"></i>
@@ -338,7 +358,9 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="">
+                            <a href="{{URL::to('/')}}">
                             <img src="{{asset('public/frontend/img/logo.jpg')}}" alt="" style="width: 100px; height:50px;">
+                            </a>
                         </div>
                         <br><br><br>
                         <div class="" style="color: white;">
@@ -435,7 +457,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6" style="color: whitesmoke;">© Copyright 2021 HJBRL.COM | All Rights Reserved</div>
+                <div class="col-6" style="color: whitesmoke;">© Copyright Banglabesh.com | All Rights Reserved</div>
                 <div class="col-6" style="text-align: right;color: whitesmoke;">Developed by <a href="#"
                     style="text-decoration: none; color: wheat;">ICT Bangla BD</a></div>
             </div>
@@ -449,7 +471,9 @@
             <div class="row">
                 <div class="col-4">
                     <div class="">
+                        <a href="{{URL::to('/')}}">
                         <img src="{{asset('public/frontend/img/logo.jpg')}}" width="100px" height="50px" alt="">
+                        </a>
                     </div>
                     <br>
                     <div class="" style="color: white;">
@@ -552,6 +576,21 @@
         <script src="{{asset('public/frontend/js/zoomscript.js')}}"></script>
         <script src="{{asset('public/frontend/js/zoomsl.js')}}"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <script>
+            function showLoginAllert() {
+                Swal.fire({
+                    title: 'Please Login!',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '<a href="{{route('login')}}" style="color:white; text-decoration: none">Go to login</a>',
+                    cancelButtonText: 'Not Now'
+                })
+            }
+        </script>
+        
         @section('footer')
         @show
     </body>

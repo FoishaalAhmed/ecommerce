@@ -9,13 +9,14 @@ use DB;
 class Category extends Model
 {
     protected $fillable = [
-        'name', 'parent_id',
+        'name', 'parent_id', 'position'
     ];
 
     public static $validateRule = [
 
         'name'      => 'required|string|max: 255',
-        'parent_id' => 'required|numeric',
+        'parent_id' => 'nullable|numeric',
+        'position' => 'required|numeric',
     ];
 
     public function products()
@@ -28,7 +29,7 @@ class Category extends Model
         $categories = DB::table('categories')
                         ->leftJoin('categories as parent', 'categories.parent_id', '=', 'parent.id')
                           ->select('categories.*', 'parent.name as parent_name')
-                          ->orderBy('categories.name', 'asc')
+                          ->orderBy('categories.position', 'asc')
                           ->get();
         return $categories;
                              
@@ -38,6 +39,7 @@ class Category extends Model
     {
         $this->name      = $request->name;
         $this->parent_id = $request->parent_id;
+        $this->position = $request->position;
         $storeCategory   = $this->save();
 
         $storeCategory ?
@@ -50,6 +52,7 @@ class Category extends Model
         $category = $this::findOrFail($id);
         $category->name      = $request->name;
         $category->parent_id = $request->parent_id;
+        $category->position = $request->position;
         $updateCategory      = $category->save();
 
         $updateCategory ?

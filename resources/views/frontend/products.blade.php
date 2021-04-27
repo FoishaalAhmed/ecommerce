@@ -14,8 +14,8 @@ $productCategoryObject = new CategoryProduct();
             <div class="container">
                 <div class="row" style="text-align: center; padding-top: 10px; padding-bottom: 10px; ">
                     <div class="col-12">
-                        <a href="#" style="text-decoration: none;color: black;">Home</a> /
-                        <a href="#" style="text-decoration: none;color: red;">Shop</a>
+                        <a href="{{URL::to('/')}}" style="text-decoration: none;color: black;">Home</a> /
+                        <a href="#" style="text-decoration: none;color: red;">Products</a>
                     </div>
                 </div>
             </div>
@@ -175,7 +175,7 @@ $productCategoryObject = new CategoryProduct();
                                     </p>
                                     <p style="margin-bottom: 5px;">{{$product->name}}</p>
                                     <p><span style="font-size: 20px;font-weight: bold;">{{$product->current_price}}</span><span
-                                        style="font-size: 20px;font-weight: bold;">/=</span> &nbsp; &nbsp; <span
+                                        style="font-size: 20px;font-weight: bold;">৳</span> &nbsp; &nbsp; <span
                                         style="color: red;"><del> @if ($product->previous_price != null)
                                         {{$product->previous_price}}/=@endif</del></span> 
                                     </p>

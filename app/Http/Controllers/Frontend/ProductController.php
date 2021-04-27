@@ -30,7 +30,7 @@ class ProductController extends Controller
         $highestPrice = Product ::orderBy('current_price', 'desc')->first();
         $lowestPrice  = Product ::orderBy('current_price', 'asc')->first();
         $category     = Category::where('id', $category_id)->firstOrFail()->name;
-        $products     = $this->productObject->getProductByCategory($category_id);
+        $products     = $this->productObject->getProductByCategory($category_id, $limit = 20);
         
         return view('frontend.products', compact('products', 'category', 'categories', 'highestPrice', 'lowestPrice'));
     }

@@ -33,7 +33,6 @@ class CheckoutController extends Controller
 
         $request->validate(Order::$validateRule);
         $orderObject->storeOrder($request);
-
         return redirect()->route('user.dashboard');
 
     }

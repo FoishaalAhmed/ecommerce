@@ -9,8 +9,8 @@
 						<div class="row"
 							style="text-align: center; padding-top: 10px; padding-bottom: 10px;margin: auto; ">
 							<div class="col-12">
-								<a href="#" style="text-decoration: none;color: black;">Home</a> /
-								<a href="#" style="text-decoration: none;color: black;">Edite Profile</a>
+								<a href="{{URL::to('/')}}" style="text-decoration: none;color: black;">Home</a> /
+								<a style="text-decoration: none;color: black;">Edite Profile</a>
 							</div>
 						</div>
 					</div>
