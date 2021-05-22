@@ -1,7 +1,7 @@
 
 
 @extends('layouts.app')
-@section('title', 'Carts')
+@section('title', 'Orders')
 @section('content')
 
 <div class="container-fluid" style="margin-bottom: 20px ;">
@@ -36,46 +36,33 @@
                       <table class="table table-bordered">
                         <thead>
                           <tr>
-                                <th style=" width:30%"> Product</th>
-                                <th style="text-align: center; width:10%" > Quantity </th>
-                                <th style="text-align: center; width:10%" > Price </th>
-                                <th style="text-align: center; width:10%" > Total </th>
+                                <th style=" width:15%"> Order Date</th>
+                                <th style="text-align: center; width:15%" > Shipping Charge </th>
+                                <th style="text-align: center; width:15%" > Coupon Discount </th>
+                                <th style="text-align: center; width:15%" > Total </th>
 
                                 <th style="text-align: center; width:20%" > Delivered </th>
                                 <th style="text-align: center; width:10%" > Status </th>
+                                <th style="text-align: center; width:10%" > Detail </th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $i = 1;
-                                // echo "<pre>";
-                                //     print_r(Cart::content());
-                                // echo "</pre>";
                             @endphp
                             @foreach ($orders as $key => $item)
                           <tr>
                             <td scope="row">
-                                <img src="{{asset($item->cover)}}" style="height: 120px; float: left;padding-right: 20px; " alt="">
-                            {{$item->name}} 
-
-                                @if ($item->size != null)
-                                    <br>
-                                    Size: {{$item->size}} 
-                                @endif
-
-                                @if ($item->color != null)
-                                    <br>
-                                    Color: {{$item->color}} 
-                                @endif
+                                {{date('d M, Y h:i A', strtotime($item->order_date_time))}}
                             </td>
                             <td class="font-18">
-                              <h6 class="font-14 mb-0"> {{$item->quantity}}</h6>
+                              <h6 class="font-14 mb-0">TK. {{$item->shipping_charge}}</h6>
                               
                             </td>
-                            <td class="font-18">TK. {{$item->price}}
+                            <td class="font-18">TK. {{$item->coupon_amount}}
                             </td>
                             
-                            <td class="font-18">Tk.{{$item->total}}</td>
+                            <td class="font-18">Tk.{{$item->amount}}</td>
                             <td class="font-18"> @if($item->delivered_date_time != null) {{date('d M, Y h:i A', strtotime($item->delivered_date_time))}} @endif</td>
                             <td class="font-18">@if ($item->status == 0) {{'Pending'}}
                                                 
@@ -84,6 +71,7 @@
                                 @else
                                     {{'Canceled'}}
                                 @endif</td>
+                              <td class="font-18"><a href="{{route('order.detail', $item->id)}}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td>
                           </tr>
                           @endforeach
                         </tbody>

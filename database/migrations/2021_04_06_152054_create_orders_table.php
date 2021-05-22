@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id');
             $table->dateTime('order_date_time');
             $table->float('shipping_charge')->nullable();
+            $table->string('delivery_option', 10)->nullable();
             $table->float('amount');
             $table->dateTime('delivered_date_time')->nullable();
             $table->tinyInteger('status')->comment('0 = pending, 1= delivered, 2 = canceled');

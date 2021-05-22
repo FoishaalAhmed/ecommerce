@@ -84,6 +84,8 @@ class Product extends Model
         $this->saving         = $request->saving;
         $this->quantity       = $request->quantity;
         $this->description    = $request->description;
+        $this->short          = $request->short;
+        $this->size_guide     = $request->size_guide;
         $this->tags           = $request->tags;
         $storeProduct         = $this->save();
         $product_id           = $this->id;
@@ -163,6 +165,8 @@ class Product extends Model
         $product->saving         = $request->saving;
         $product->quantity       = $request->quantity;
         $product->description    = $request->description;
+        $product->short          = $request->short;
+        $product->size_guide     = $request->size_guide;
         $product->tags           = $request->tags;
         $updateProduct           = $product->save();
         $product_id              = $id;
@@ -243,7 +247,7 @@ class Product extends Model
 
         if ($product_photos) {
 
-            foreach ($$product_photos as $key => $value) {
+            foreach ($product_photos as $key => $value) {
 
                 if (file_exists($value->photo)) unlink($value->photo);
             }

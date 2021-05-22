@@ -14,7 +14,7 @@ class General extends Model
 
     public static $validateRule = [
         'name'  => 'required|string|max:255',
-        'value' => 'required|string|max:255'
+        'value' => 'required|string'
     ];
 
     public function storeGeneral(Object $request)

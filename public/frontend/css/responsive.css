@@ -303,8 +303,8 @@ width: 100%;
 
 
 #pdtls {
-  width: 431px;
-margin-left: -50px;
+  width: 450px;
+margin-left: -115px;
 }
 
 
@@ -431,7 +431,14 @@ margin-left: -50px;
   font-family: serif;
   font-size: 18px;
 }
-/******SLIDER 3 *******/
+
+
+.maincontactform {
+    width: 100%;
+    text-align: center;
+    margin: auto
+}
+
 
 
 }

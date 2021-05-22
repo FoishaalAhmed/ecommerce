@@ -26,6 +26,7 @@ class ProductRequest extends FormRequest
         $rules = [
 
             'name'           => 'required|string|max:255',
+            'tags'           => 'required|string|max:255',
             'quantity'       => 'required|numeric|min:1',
             'current_price'  => 'required|numeric|min:1',
             'previous_price' => 'nullable|numeric|min:1',

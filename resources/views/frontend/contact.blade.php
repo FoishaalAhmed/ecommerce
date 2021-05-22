@@ -18,7 +18,7 @@
       </div>
     </div>
     <!---MAIN CONTENT-->
-    <div class="" style="width: 70%; text-align: center; margin: auto;">
+    <div class="maincontactform" style=";">
       <div class="row">
         <div class="col-md-6" style="text-align: center; margin: auto;">
             <span id="form_output"></span>
@@ -42,9 +42,9 @@
             <button type="submit" class="btn btn-sm btn-default"> Submit </button>
           </form>
         </div>
-        <div class="col-md-6" style="text-align: center; margin: auto;">
+        <div class="col-md-6 col-12 " style="text-align: center; margin: auto;">
           <div class="footerlogoicon">
-            <img src="{{asset('public/frontend/img/logo.png')}}" alt="">
+            <img src="{{asset('public/frontend/img/01.png')}}" style="width: 250px;"  alt="">
           </div>
           <br><br><br>
           <div class="footerlogoicon">

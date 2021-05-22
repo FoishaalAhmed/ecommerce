@@ -112,12 +112,14 @@
                                                     @csrf
                                                     {{method_field('DELETE')}}
                                                 </form>
+                                                @if($faq->id != 3)
                                                 <a class="btn btn-sm bg-red" href="" onclick="if(confirm('Are You Sure To Delete?')){
                                                     event.preventDefault();
                                                     getElementById('delete-form-{{ $faq->id}}').submit();
                                                     }else{
                                                     event.preventDefault();
                                                     }"><span class="glyphicon glyphicon-trash"></span></a>
+                                                @endif
                                                 
                                             </td>
                                         </tr>

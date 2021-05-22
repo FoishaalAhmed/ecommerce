@@ -9,7 +9,7 @@
 
 <!-----  SLIDER  3  ----->
 
-<div id="my-carousel" style="margin-bottom: 148px;" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
+<div id="my-carousel" style="margin-bottom: 148px;margin-left:-15px;margin-right:-15px;" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
   
   <div class="carousel-inner">
     @foreach ($sliders as $key => $slider)

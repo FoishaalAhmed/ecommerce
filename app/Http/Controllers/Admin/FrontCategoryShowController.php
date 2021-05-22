@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryShowRequest;
 use App\Model\Category;
 use App\Model\FrontCategoryShow;
-use Illuminate\Http\Request;
 
 class FrontCategoryShowController extends Controller
 {

@@ -63,7 +63,11 @@
         <label for="account" class="button">login</label>
       </fieldset>
     </div>
-    <div id="moblog" class="container bg-dark" style="color: black;">
+    
+    
+    
+    
+    <div id="moblog" class="container bg-dark" style="color: black;padding-top:20px;padding-bottom:30px;">
       <h2>Login</h2>
       <form action="{{route('login')}}" method="POST">
         @csrf
@@ -83,7 +87,11 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <hr>
-      OR
+      <div class="row" style="margin: auto; text-align: center; " >
+          <div class="col-12" style="margin: auto; text-align: center;color: #f9f9f9;font-size: 25px;" >
+                Or
+          </div>
+      </div>
       <hr>
       <h2>SignUp</h2>
       <form action="{{route('register')}}" method="POST">

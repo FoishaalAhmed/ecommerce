@@ -1,325 +1,469 @@
 @php
-    use App\Model\CategoryProduct;                   
-    $productCategoryObject = new CategoryProduct();
+use App\Model\CategoryProduct;
+$productCategoryObject = new CategoryProduct();
 @endphp
 
 @extends('layouts.app')
 @section('title', "{$product->name}")
 @section('content')
-<!---MAIN CONTENT-->
-<div class="container-fluid" style="margin-bottom: 20px ;">
-    <div class="dtl-2nd-nav">
-        <div class="row" style="background-image: linear-gradient( rgb(152, 158, 152),rgb(209, 209, 209));">
-            <div class="container">
-                <div class="row" style="text-align: center; padding-top: 10px; padding-bottom: 10px; ">
-                    <div class="col-md-12" style="text-align: center;">
-                        <a href="{{URL::to('/')}}" style="text-decoration: none;">Home</a> /
-                        <a  style="text-decoration: none;">Products</a> /
-                        <a style="text-decoration: none;"> {{$product->name}} </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- cartView-wrapper -->
-<div id="pdtls" class="cartView-wrapper my-2">
-    <div class="nav-container-fluid container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="mb-5" style="margin-bottom: 5px">
-                        <!-- cartVied-title -->
-                        <h2 style="margin: 0px; padding-top: 20px; font-weight: bold;padding-bottom: 20px;
-                            padding-left: 10px; ">{{$product->name}}</h2>
-                        <hr style="margin: 2px;">
-                    </div>
-                    <!-- cartview-main-content -->
+    <div class="container-fluid" style="width: 75%;">
+        <div id="pdtls" class="cartView-wrapper my-2">
+            <div class="nav-container-fluid container-fluid">
+                <div class="row">
                     <div class="col-md-12">
-                        <div class="row mt-3">
-                            <!-- zoom-img-area -->
-                            <div class="col-md-6 col-xl-3">
-                                <div class="banner-img my-4">
-                                    <img style="width: 100%;height: 295px;" src="{{asset($product->cover)}}" alt="product1" width="100%"
-                                        height="auto;" class="block__pic">
-                                    <div class="row">
-                                        <div class="col py-2">
-                                            <img src="{{asset($product->cover)}}" onerror="this.src= '{{asset($product->cover)}}'" width="100%"
-                                                height="50px;" class="thumb">
+                        <div class="mb-5" style="margin-bottom: 5px">
+                            <!-- cartVied-title -->
+                            <div class="row" id="headctg">
+                                <p style="text-align: center;margin: auto;"><span><a
+                                            href="{{ URL::to('/') }}">Home</a></span> /
+                                    <span><a href="#">Products</a></span> / <span> {{ $product->name }} </span>
+                                </p>
+                            </div>
+
+
+                            <h2
+                                style="margin: 0px; padding-top: 5px; font-weight: bold;padding-bottom: 20px; padding-left: 10px;margin: auto; text-align: center; ">
+                                {{ $product->name }} </h2>
+                        </div>
+
+                        <!-- cartview-main-content -->
+                        <div class="col-md-12">
+                            <div class="row mt-3">
+                                <!-- zoom-img-area -->
+                                <div class="col-md-6 col-xl-6">
+                                    <div class="banner-img my-4" style="margin: auto; text-align: center; ">
+
+                                        <img style="width: 100%;height: auto;text-align: center;margin: auto;position: relative; overflow: hidden;"
+                                            src="{{ asset($product->cover) }}" alt="product1" class="block__pic">
+
+                                        <div class="row" style="margin-left: 5px;margin-right: 10px;">
+                                            <div class="col py-2">
+                                                <img src="{{ asset($product->cover) }}"
+                                                    onerror="this.src= '{{ asset($product->cover) }}" width="90px"
+                                                    height="117px;" class="thumb">
+                                            </div>
+                                            @foreach ($productPhotos as $key => $item)
+                                                <div class="col py-2">
+                                                    <img src="{{ asset($item->photo) }}"
+                                                        onerror="this.src= '{{ asset($item->photo) }}'" width="90px"
+                                                        height="117px;" class="thumb">
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        @foreach ($productPhotos as $key => $item)
-                                        <div class="col py-2">
-                                            <img src="{{asset($item->photo)}}" onerror="this.src= '{{asset($item->photo)}}'" width="100%"
-                                                height="50px;" class="thumb">
-                                        </div>
-                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
-                            <!-- cartView-content-area -->
-                            <div class="col-md-12 col-xl-6">
-                                <div class="cartview-content">
-                                    <hr>
-                                    <!-- cartview-product-price -->
-                                    <div class="row cartview-product-price">
-                                        <div class="col-md-12">
-                                            <div class="cv-product-price">
-                                                <span>৳ {{$product->current_price}}</span>
-                                            </div>
-                                            <div class="cv-origin-block">
-                                                <span class="font-14">
-                                                <del style="color: #22222273;">@if ($product->previous_price != null) Tk. {{$product->previous_price}} @endif</del>&nbsp;
-                                                <ins style="text-decoration: none;"> @if ($product->saving != null) - {{$product->saving}}/= %@endif</ins>
-                                                </span>
-                                            </div>
-                                            <div class="cv-origin-block mt-3">
-                                                <span class="font-14">Categories: <span>@foreach ($productCategories as $key => $category) @if ($key != 0) {{', '}} @endif {{$category->name}}  @endforeach</span></span>
+
+                                <!-- cartView-content-area -->
+                                <div class="col-md-12 col-xl-5">
+                                    <div class="cartview-content">
+                                        <!-- cartview-product-price -->
+                                        <div class="row cartview-product-price">
+                                            <div class="col-md-12">
+                                                <div class="cv-product-price">
+                                                    <span>
+                                                        <h2>৳ {{ $product->current_price }}</h2>
+                                                    </span>
+                                                </div>
+                                                <div class="cv-origin-block">
+                                                    <span class="font-14">
+                                                        <del style="color: #22222273;">
+                                                            @if ($product->previous_price != null) ৳
+                                                                {{ $product->previous_price }} @endif
+                                                        </del>
+                                                    </span>
+                                                </div>
+
+                                                <div class="cv-origin-block mt-3">
+                                                    <span class="font-14">
+                                                        <span>Categories: <span>
+                                                                @foreach ($productCategories as $key => $category)
+                                                                    @if ($key != 0)
+                                                                        {{ ', ' }} @endif
+                                                                    {{ $category->name }}
+                                                                @endforeach
+                                                            </span></span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    @if ($productColors->isNotEmpty())
-                                    <!-- cartview-product-Color-->
-                                    <div class="row cartview-product-Quantity ">
-                                        <div class="col-md-12">
-                                            <div class="cartview-product-Quantity">
-                                                <span class="font-16">
-                                                    <span style="color: #222222b8;">Color:</span>
-                                                    <span class="price-input">
-                                                        <select class="form1" name="color" id="color">
+
+                                        <br>
+                                        <div class="">
+                                            {!! $product->short !!}
+                                        </div>
+
+                                        <!-- cartview-product-stock-->
+                                        {{-- <div class="row cartview-product-color ">
+                                            <div class="col-md-12">
+                                                <p
+                                                    style="background-color: #b43f68;display: inline-block;padding: 5px;padding-top: 2px;padding-bottom: 2px;">
+                                                    1 IN STOCK</p>
+                                            </div>
+                                        </div> --}}
+                                        <!-- cartview-product-Color-->
+                                        @if ($productColors->isNotEmpty())
+                                            <div class="row cartview-product-color ">
+                                                <div class="col-md-12">
+                                                    <div class="cartview-product-Quantity">
+                                                        <p>
+                                                            color <i title="This option is required "
+                                                                class="fas fa-info-circle"></i> <span
+                                                                class="btn btn-outline-secondary"
+                                                                style="background-color: cornflowerblue; color: rgb(252, 249, 249); display: none;"
+                                                                id="selectedColor"></span>
+
+                                                            <input type="hidden" id="color">
+                                                        </p>
+                                                        <div id="clrbtn" class="">
                                                             @foreach ($productColors as $color)
-                                                            <option value="{{$color->name}}">{{$color->name}}</option>
+
+
+                                                                <button type="button" id="colorbtn"
+                                                                    class="btn btn-outline-secondary"
+                                                                    onclick="selectColor('{{ $color->name }}')">{{ $color->name }}</button>
+
                                                             @endforeach
-                                                        </select>
-                                                    </span>
-                                                </span>
+
+                                                            <!-- <div class="btn btn-outline-secondary" style="background-color: cornflowerblue; color: red;" id="selected"></div> -->
+
+                                                            <!-- <input type="text" id="color"> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    @if ($productSizes->isNotEmpty())
-                                    <!-- cartview-product-Size-->
-                                    <div class="row cartview-product-Quantity ">
-                                        <div class="col-md-12">
-                                            <div class="cartview-product-Quantity">
-                                                <span class="font-16">
-                                                    <span style="color: #222222b8;">Size:</span>
-                                                    <span class="price-input">
-                                                        <select class="form2" name="size" id="size">
-                                                            @foreach ($productSizes as $size)
-                                                            <option value="{{$size->name}}">{{$size->name}}</option>
+
+                                            <script>
+                                                function selectColor(color) {
+                                                    $('#color').val(color);
+                                                    $("#selectedColor").show();
+                                                    $("#selectedColor").text(color);
+                                                }
+
+                                            </script>
+
+                                        @endif
+                                        @if ($productSize != null)
+
+                                            <br>
+                                            <!-- cartview-product-Size-->
+                                            <div class="row cartview-product-size ">
+                                                <div class="col-md-12">
+                                                    <div class="cartview-product-Quantity">
+                                                        <p>
+                                                            Size <i title="This option is required "
+                                                                class="fas fa-info-circle"></i>
+                                                            <span class="btn btn-outline-secondary"
+                                                                style="background-color: cornflowerblue; color: rgb(255, 255, 255); display: none;"
+                                                                id="selectedSize"></span>
+
+                                                            <input type="hidden" id="size">
+                                                        </p>
+                                                        <div class="">
+                                                            @foreach ($sizes as $size)
+
+                                                                @if (in_array($size->name, $productSize))
+                                                                    <button type="button" id="sizebtn"
+                                                                        class="btn btn-outline-secondary"
+                                                                        onclick="selectSize('{{ $size->name }}')">{{ $size->name }}</button>
+                                                                @else
+                                                                    <button type="button" id="sizebtn"
+                                                                        class="btn btn-outline-secondary"
+                                                                        disabled><del>{{ $size->name }}</del></button>
+                                                                @endif
                                                             @endforeach
-                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <script>
+                                                function selectSize(size) {
+                                                    $('#size').val(size);
+                                                    $("#selectedSize").show();
+                                                    $("#selectedSize").text(size);
+                                                }
+
+                                            </script>
+
+                                            <br>
+                                        @endif
+                                        <!-- cartview-product-Quantity-->
+                                        <div class="row cartview-product-Quantity ">
+                                            <div class="col-md-12">
+                                                <div class="cartview-product-Quantity">
+                                                    <span class="font-16">
+                                                        <p>
+                                                            Quantity <i title="This option is required "
+                                                                class="fas fa-info-circle"></i>
+                                                        </p>
+                                                        <span class="price-input">
+                                                            <input type="number" class="text-center" id="qty" name="qty"
+                                                                min="1" max="1000" value="1" style="width: 50%" />
+                                                        </span>
+
+                                                        <span>
+                                                            <button style="margin-top: -5px;" type="button" id="addbtn"
+                                                                class="btn btn-outline-secondary" onclick="addToCart()">Add
+                                                                To
+                                                                Cart</button>
+                                                        </span>
+
                                                     </span>
-                                                </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12" id="buybtn">
+                                                <a id="buysign-write" style="text-decoration: none;" href="javascript:;"
+                                                    onclick="addToWishlist()">
+                                                    <span><i id="buysign-icon" class="fa fa-heart"></i></span> <span
+                                                        id="buysign-write">Add to Wishlist</span> </a>
+                                            </div>
+
+                                            <div class="col-md-12" id="">
+
+                                                <a id="buysign-write" style="text-decoration: none;" href="#">
+                                                    <span><i id="buysign-icon" class="fa fa-heart"></i></span> <span
+                                                        id="buysign-write">Share this product</span> </a>
                                             </div>
                                         </div>
                                     </div>
-                                    @endif
-                                    <!-- cartview-product-Quantity-->
-                                    <div class="row cartview-product-Quantity ">
-                                        <div class="col-md-12">
-                                            <div class="cartview-product-Quantity">
-                                                <span class="font-16">
-                                                <span style="color: #222222b8;">Quantity:</span>
-                                                <span class="price-input">
-                                                <input type="number" class="text-center" id="qty" name="qty" min="1" max="1000" value="1" />
-                                                </spanv>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- cartview-product-btn-->
-                                    <div class="row cartview-product-Quantity my4" style="text-align: center; margin: 0 auto;">
-                                        <div class="col-md-12" id="exampleFormControlSelect3" style="margin-top: 50px;">
-                                            <a onclick="addToWishlist()" type="button" class="btn btn" style="text-decoration: none;border-bottom: 1px solid red;border-right: 1px solid red;border-top: 1px solid green;border-left: 1px solid green;"><span style="color: green;">Add</span>
-                                            <span style="color: red;">to</span>
-                                            <span style="color: green;">Wishlist</span>
-                                            </a>
-                                            <a onclick="addToCart()" type="button" class="btn btn" style="text-decoration: none;border-bottom: 1px solid red;border-right: 1px solid red;border-top: 1px solid green;border-left: 1px solid green;">
-                                            <span style="color: green;">Add</span>
-                                            <span style="color: red;">to</span>
-                                            <span style="color: green;">Cart</span></a>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
-                            <!-- cartView-content-Delivery-area -->
-                            <div class="col-md-12 col-xl-3">
-                                @if ($deliveryTime != null)
-                                <!-- cartView-content-Delivery -->
-                                <div class="cartView-content-Delivery">
-                                    <!-- DeliveryOptions-heading -->
-                                    <div class="DeliveryOptions-heading">
-                                        <span>Delivery Options</span>
-                                    </div>
-                                    <!-- DeliveryOptions-content -->
-                                    <div class="DeliveryOptions-content my-2 pb-2">
-                                        <span class="icon"><i class="fas fa-money-bill"></i></span>
-                                        <span> {{$deliveryTime->value}} </span>
-                                    </div>
-                                </div>
-                                @endif
-                                @if ($returnPolicy != null)
-                                <!-- cartView-content-Delivery -->
-                                <div class="cartView-content-Delivery">
-                                    <!-- DeliveryOptions-heading -->
-                                    <div class="DeliveryOptions-heading mt-3">
-                                        <span>Return & Warranty</span>
-                                    </div>
-                                    <!-- DeliveryOptions-content -->
-                                    <div class="DeliveryOptions-content my-2 pb-2">
-                                        <span class="icon"><i class="fas fa-truck"></i></span>
-                                        <span>  {{$returnPolicy->value}} </span>
-                                    </div>
-                                </div>
-                                @endif
-                                <!-- cartView-content-Delivery -->
-                                <div class="cartView-content-Delivery">
-                                    <!-- cartView-content-Secure -->
-                                    <div class="cartView-content-Secure">
-                                        <!-- DeliveryOptions-heading -->
-                                        <div class="DeliveryOptions-heading mt-3">
-                                            <span><i class="fas fa-lock"></i> Secure Payment</span>
-                                        </div>
-                                        <!-- DeliveryOptions-content -->
-                                        <div class="Secure-content my-2 pb-2">
-                                            <p class="m-0">fulfilled by <a href="#"><span style="color: green;">Bangla</span><span
-                                                style="color: red;">Besh</span></a></p>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
+                                <!-- cartView-content-Delivery-area -->
+                                {{-- <div class="col-md-12 col-xl-1">
+                                    <p>
+                                        Recently Viewed Products
+                                    </p>
+
+                                    <a href="#">
+                                        <img src="img/new product01.jpg" width="100%" alt="">
+                                    </a>
+
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container reviws">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'Description')" id="defaultOpen">Description</button>
-                <button class="tablinks" onclick="openCity(event, 'Review')">Review</button>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div id="Description" class="tabcontent">
-                <div class="row">
-                    <h3>Description</h3>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <p>
-                            {!! $product->description !!}
-                        </p>
+                <!-----tabs---->
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-md-12" style="text-align: center;margin: auto;">
+                        <h2 style="font-weight: bold;"></h2>
                     </div>
-                </div>
-            </div>
-            <div id="Review" class="tabcontent">
-          <div class="row">
-            <h3>Reviews (@if ($productReviews->isNotEmpty())
 
-                        {{sizeof($productReviews)}}
-                        @else {{'0'}}
-                        @endif)</h3>
-                        @if ($productReviews->isNotEmpty())
+
+                    <div class="container" style="max-width: 1300px;">
+                        <ul class="nav nav-pills" id="nav-pills2" style="margin-left: 150px;margin-bottom: 30px;">
+                            <li id="option" class="active">
+                                <a href="#1a" data-toggle="tab"><button
+                                        style="background-color: transparent; font-weight: bold;font-size: 20px;  border-radius: 0px; "
+                                        class="btn ">Size Guide</button></a>
+                            </li>
+                            <li id="option"><a href="#2a" data-toggle="tab"><button
+                                        style="background-color: transparent; font-weight: bold;font-size: 20px;  border-radius: 0px; "
+                                        class="btn ">FAQ</button></a>
+                            </li>
+                            <li id="option"><a href="#3a" data-toggle="tab"><button
+                                        style="background-color: transparent; font-weight: bold;font-size: 20px;  border-radius: 0px; "
+                                        class="btn ">Additional information</button></a>
+                            </li>
+                            <li id="option"><a href="#4a" data-toggle="tab"><button
+                                        style="background-color: transparent; font-weight: bold;font-size: 20px;  border-radius: 0px; "
+                                        class="btn ">Reviews ({{ sizeof($productReviews) }}) </button></a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content clearfix">
+                            <!----Size Guide----->
+                            <div class="tab-pane active" id="1a">
+
+                                <div class="row">
+                                    <div class="col-md-12 table-responsive" style="padding-right:1px; padding-left:1px;">
+                                        {!! $product->size_guide !!}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-----FAQ----->
+                            <div class="tab-pane" id="2a">
+
+                                <div class="" style=" text-align: center; margin: auto; ">
+                                    <div class="row" style="text-align: center;margin: auto;">
+
+                                        <h4 style="text-align: left;">
+                                            <p style="text-align: justify;">
+                                                @if ($faqText != null)
+                                                    {!! $faqText->text !!}
+
+                                                @endif
+                                            </p>
+                                        </h4>
+                                    </div>
+
+                                    <div class="row">
+                                        @foreach ($faqs as $item)
+
+
+                                            <div class="col-md-12" style="padding: 10px;text-align: left;">
+                                                <details>
+                                                    <summary><span
+                                                            style="font-size: 20px;font-weight: bold;text-align: left;">{{ $item->title }}</span>
+                                                    </summary>
+                                                    <p
+                                                        style="text-align: justify;border: 3px solid white; padding: 10px;border-radius: 10px;">
+                                                        {!! $item->text !!}
+                                                    </p>
+                                                </details>
+                                            </div>
+                                        @endforeach
+                                        <br><br>
+                                        <div class="col-md-12">
+                                            <a href="{{ route('faq') }}" class="btn btn"
+                                                style="margin-top: 50px;background: black;text-decoration: none;color: white;">CLICK
+                                                TO SEE FAQ </a>
+                                        </div>
+                                    </div>
+
+
+                                    <br><br>
+                                </div>
+                            </div>
+
+                            <!----Additional information----->
+                            <div class="tab-pane" id="3a">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {!! $product->description !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-----Reviews (0)----->
+                            <div class="tab-pane" id="4a">
+                                <div class="row">
+                                    <h3>Reviews (@if ($productReviews->isNotEmpty())
+
+                                            {{ sizeof($productReviews) }}
+                                        @else {{ '0' }}
+                                        @endif)</h3>
+                                        <div class="col-md-12">
+                                            @if ($productReviews->isNotEmpty())
+                                            @foreach ($productReviews as $review)
+
+
+                                                <div class="card">
+                                                    <p style="overflow-y: scroll;padding: 10px; height: 80px;">
+                                                        <b><i>{{ $review->name }} :</i></b>
+                                                        <span>{{ $review->review_text }}</span>
+                                                    </p>
+                                                </div>
+
+                                            @endforeach
+                                            @else
+                                                <p>
+                                                    Be the first to review “{{ $product->name }}”
+                                                </p>
+                                            @endif
+                                            <br>
+                                            <p>Your email address will not be published. Required fields are marked *</p>
+                                        </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <!-----Ratting ----->
+                                    {{-- <div class="col-12">
+                                        <div id="dtl-ratting">
+                                            <button name="1star" class="btn dtl">1 <span><i class="fa fa-star"></i></span> </button>
+                                            <button name="2star" class="btn dtl ">2 <span><i class="fa fa-star"></i><i
+                                                class="fa fa-star"></i></span></button>
+                                            <button name="3star" class="btn dtl">3 <span><i class="fa fa-star"></i></span><span><i
+                                                class="fa fa-star"></i><i class="fa fa-star"></i></span> </button>
+                                            <button name="4star" class="btn dtl">4 <span><i class="fa fa-star"></i><i
+                                                class="fa fa-star"></i></span><span><i class="fa fa-star"></i><i
+                                                class="fa fa-star"></i></span></button>
+                                            <button name="5star" class="btn dtl">5 <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                class="fa fa-star"></i></span><span><i class="fa fa-star"></i><i
+                                                class="fa fa-star"></i></span></button>
+                                        </div>
+                                        <script>
+                                            // Add active class to the current button (highlight it)
+                                            var header = document.getElementById("dtl-ratting");
+                                            var btns = header.getElementsByClassName("dtl");
+                                            for (var i = 0; i < btns.length; i++) {
+                                            btns[i].addEventListener("click", function () {
+                                                var current = document.getElementsByClassName("active");
+                                                current[0].className = current[0].className.replace(" active", "");
+                                                this.className += " active";
+                                            });
+                                            }
+                                        </script>
+                                    </div> --}}
+                                    <div class="col-12">
+                                        Your review *
+                                    </div>
+                                    <span id="form_output"></span>
+                                    <form action="" method="post" id="contact-form">
+                                        @csrf
+                                        <div class="col-12">
+                                            <textarea name="review_text" id="" style="width: 95%;background-color: none 0;"
+                                                rows="10"></textarea>
+                                        </div>
+                                        <div class="col-12" style="margin-top: 15px;">
+                                            Name* :
+                                            <input style="width: 95%;" type="text" name="name" id="">
+                                        </div>
+                                        <div class="col-12" style="margin-top: 15px;">
+                                            Email* :
+                                            <input style="width: 95%;" type="text" name="email""" id="">
+                                            <input style="width: 95%;" type="hidden" name="product_id"
+                                                value="{{ $product->id }}" required>
+                                        </div>
+                                        <br>
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Save my name, email, and website in this browser for the next time I
+                                            comment.</label>
+                                        <div class="col-4" style="margin-top: 15px;">
+                                            <button type="submit" style="width: 95%;border-radius: 25px;"
+                                                class="btn btn-info">SUBMIT</button>
+                                        </div>
+                                        <br>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-----tabs---->
+            </div>
+        </div>
+
+    </div>
+
+
+    <!---MAIN CONTENT-->
+    <br><br><br><br><br>
+
+    <!--------Featured Items---------->
+
+
+
+
+    <div class="container featured-items">
+        <div class="row" style="text-align: center;">
             <div class="col-md-12">
-              @foreach ($productReviews as $review)
-                            
-                        
-                        <div class="card">
-                            <p style="overflow-y: scroll;padding: 10px; height: 80px;" ><b><i>{{$review->name}} :</i></b> <span>{{$review->review_text}}</span> </p>
-                        </div>
+                <h2>Retaled Items</h2>
+                <p>Find a bright ideal to suit your taste with our great selection.</p>
+            </div>
+        </div>
 
-                        @endforeach
-            </div>
-           
-            <br>
-            @else
-            <p>
-              Be the first to review “{{$product->name}}”
-            </p>
-            @endif
-            <br>
-            <p>Your email address will not be published. Required fields are marked *</p>
-            
-          </div>
-          <div class="row">
-            <!-----Ratting ----->
-            {{-- <div class="col-12">
-              <div id="dtl-ratting">
-                <button name="1star" class="btn dtl">1 <span><i class="fa fa-star"></i></span> </button>
-                <button name="2star" class="btn dtl ">2 <span><i class="fa fa-star"></i><i
-                      class="fa fa-star"></i></span></button>
-                <button name="3star" class="btn dtl">3 <span><i class="fa fa-star"></i></span><span><i
-                      class="fa fa-star"></i><i class="fa fa-star"></i></span> </button>
-                <button name="4star" class="btn dtl">4 <span><i class="fa fa-star"></i><i
-                      class="fa fa-star"></i></span><span><i class="fa fa-star"></i><i
-                      class="fa fa-star"></i></span></button>
-                <button name="5star" class="btn dtl">5 <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                      class="fa fa-star"></i></span><span><i class="fa fa-star"></i><i
-                      class="fa fa-star"></i></span></button>
-              </div>
-              <script>
-                // Add active class to the current button (highlight it)
-                var header = document.getElementById("dtl-ratting");
-                var btns = header.getElementsByClassName("dtl");
-                for (var i = 0; i < btns.length; i++) {
-                  btns[i].addEventListener("click", function () {
-                    var current = document.getElementsByClassName("active");
-                    current[0].className = current[0].className.replace(" active", "");
-                    this.className += " active";
-                  });
-                }
-              </script>
-            </div> --}}
-            <div class="col-12">
-              Your review *
-            </div>
-            <span id="form_output"></span>
-                <form action="" method="post" id="contact-form">
-                    @csrf
-              <div class="col-12">
-                <textarea name="review_text" id="" style="width: 95%;background-color: none 0;" rows="10"></textarea>
-              </div>
-              <div class="col-12" style="margin-top: 15px;">
-                Name* :
-                <input style="width: 95%;" type="text" name="name" id="">
-              </div>
-              <div class="col-12" style="margin-top: 15px;">
-                Email* :
-                <input style="width: 95%;" type="text" name="email""" id="">
-                <input style="width: 95%;" type="hidden" name="product_id" value="{{$product->id}}" required>
-              </div>
-              <br>
-              <input type="checkbox" name="" id="">
-              <label for="">Save my name, email, and website in this browser for the next time I comment.</label>
-              <div class="col-4" style="margin-top: 15px;">
-                <button type="submit" style="width: 95%;border-radius: 25px;" class="btn btn-info">SUBMIT</button>
-              </div>
-              <br>
-            </form>
-          </div>
-        </div>
-        </div>
-    </div>
-</div>
-<hr>
-<br><br><br><br><br><br>
-<div class="container featured-items">
-    <div class="row" style="text-align: center;">
-        <div class="col-md-12">
-            <h2>Retaled Items</h2>
-            <p>Find a bright ideal to suit your taste with our great selection.</p>
-        </div>
-    </div>
-    <div class="row">
-        @foreach ($relatedProducts as $related)
+        <div class="row">
+            @foreach ($relatedProducts as $related)
         <div class="col-md-3" style="padding-right:1px; padding-left:1px;">
-            <div class="containe" style="margin-left: 16px;">
+            <div class="containe" style="margin-left: 0px;">
                 <img src="{{asset($related->cover)}}" alt="Avatar" class="image">
                 <div class="overlay">
                     <div class="btn-group">
@@ -354,29 +498,14 @@
             </div>
         </div>
         @endforeach
+        </div>
+
+
     </div>
-</div>
-<br><br>
+    <br><br>
 @endsection
+
 @section('footer')
-<script>
-    function openCity(evt, cityName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
-    
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
-</script>
 <script>
     function addToCart() {
     
@@ -541,4 +670,3 @@
     });
 </script>
 @endsection
-

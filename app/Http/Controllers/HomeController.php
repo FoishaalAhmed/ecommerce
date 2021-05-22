@@ -51,7 +51,7 @@ class HomeController extends Controller
                 $wishlist->user_id    = auth()->user()->id;
                 $wishlist->save();
 
-                session()->forget('product_id');
+                Session::forget('product_id');
                 Session::save();
                 return redirect(route('wishlists'));
             } 

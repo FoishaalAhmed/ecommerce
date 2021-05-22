@@ -9,7 +9,7 @@ use DB;
 class FrontCategoryShow extends Model
 {
     protected $fillable = [
-        'category_id', 'title', 'photo', 'type', 'background',
+        'category_id', 'title', 'photo', 'type', 'background', 'position', 
     ];
 
     public function getFrontCategoryShow($limit = null, $type = null)
@@ -17,7 +17,7 @@ class FrontCategoryShow extends Model
         $query = DB::table('front_category_shows')
                           ->join('categories', 'front_category_shows.category_id', '=', 'categories.id')
                           ->select('front_category_shows.*', 'categories.name')
-                          ->oldest();
+                          ->orderBy('front_category_shows.position', 'asc');
         if($type != null) $query->where('front_category_shows.type', $type);
         if($limit != null) $query->take($limit);
         $categories = $query->get();
@@ -53,6 +53,7 @@ class FrontCategoryShow extends Model
         $this->category_id = $request->category_id;
         $this->title       = $request->title;
         $this->type        = $request->type;
+        $this->position    = $request->position;
         $storeCategoryShow = $this->save();
 
         $storeCategoryShow ?
@@ -105,6 +106,7 @@ class FrontCategoryShow extends Model
         $categoryShow->category_id = $request->category_id;
         $categoryShow->title       = $request->title;
         $categoryShow->type        = $request->type;
+        $categoryShow->position    = $request->position;
         $updateCategoryShow        = $categoryShow->save();
 
         $updateCategoryShow ?

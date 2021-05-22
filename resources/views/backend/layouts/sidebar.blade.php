@@ -71,6 +71,14 @@
                 </ul>
             </li>
 
+            <li class="@if(request()->is('admin/coupons')) {{'active'}} @endif">
+
+                <a href="{{route('coupons.index')}}">
+                <i class="fa fa-gift"></i> <span>{{__('Coupons')}}</span>
+                </a>
+
+            </li>
+
             <li class="@if(request()->is('admin/sliders')) {{'active'}} @endif">
 
                 <a href="{{route('sliders.index')}}">

@@ -41,7 +41,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <!-- jQuery 3 -->
 <script src="{{asset('public/backend/bower_components/jquery/dist/jquery.min.js')}}"></script>
-<link rel="icon" href="{{asset('public/frontend/img/logo-1.png')}}" type="image/gif" sizes="16x16">
+<link rel="shortcut icon" href="{{asset('public/images/fav.png')}}" type="image/x-icon">
 @section('head')
 @show
 

@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
             $table->float('saving')->nullable();
             $table->integer('quantity');
             $table->mediumText('description')->nullable();
+            $table->mediumText('short')->nullable();
+            $table->longText('size_guide')->nullable();
             $table->string('cover');
             $table->mediumText('tags');
             $table->timestamps();

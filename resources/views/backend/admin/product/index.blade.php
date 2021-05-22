@@ -30,9 +30,10 @@
                                 <tr>
                                     <th style="width: 10%;">{{__('Sl.')}}</th>
                                     <th style="width: 35%;">{{__('Name')}}</th>
-                                    <th style="width: 25%;">{{__('Price')}}</th>
+                                    <th style="width: 15%;">{{__('Price')}}</th>
                                     <th style="width: 10%;">{{__('Quantity')}}</th>
                                     <th style="width: 10%;">{{__('Photo')}}</th>
+                                    <th style="width: 10%;">{{__('Views')}}</th>
                                     <th style="width: 10%;">{{__('Action')}}</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                         <img src="{{asset($product->cover)}}" alt="" style="width: 50px; height: 50px;">
                                         
                                     </td>
+                                    <td>{{$product->view}}</td>
                                     <td>
                                     	<a class="btn btn-sm bg-teal" href="{{route('products.edit',[$product->id])}}"><span class="glyphicon glyphicon-edit"></span></a>
 

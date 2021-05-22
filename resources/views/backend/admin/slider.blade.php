@@ -62,7 +62,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <label for="">{{__('Coupon')}} ({{__('Under 10 Letter')}})</label>
-                                                    <input type="text" class="form-control" name="coupon"  placeholder="{{__('Coupon')}}" value="{{$slider->coupon}}" required="" autocomplete="off">
+                                                    <input type="text" class="form-control" name="coupon"  placeholder="{{__('Coupon')}}" value="{{$slider->coupon}}" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <label for="">{{__('Coupon')}} ({{__('Under 10 Letter')}})</label>
-                                                    <input type="text" class="form-control" name="coupon"  placeholder="{{__('Coupon')}}" value="{{old('coupon')}}" required="" autocomplete="off">
+                                                    <input type="text" class="form-control" name="coupon"  placeholder="{{__('Coupon')}}" value="{{old('coupon')}}" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>

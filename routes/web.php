@@ -43,10 +43,12 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::get('/checkout', 'CheckoutController@index')->name('checkout');
     Route::post('/place-order', 'CheckoutController@order')->name('place.order');
+    route::post('/get-coupon', 'CheckoutController@coupon')->name('get.coupon');
 
     Route::group(['prefix' => '/user', 'middleware' => 'auth'], function () {
 
         Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
+        Route::get('/order-details/{order_id}', 'DashboardController@detail')->name('order.detail');
         Route::get('/profile', 'DashboardController@profile')->name('user.profile');
         Route::get('/update-profile', 'DashboardController@update')->name('user.profile.update');
         Route::get('/wishlists', 'WishlistController@index')->name('wishlists');

@@ -136,13 +136,25 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label>{{__('Description')}}</label>
-                                        <textarea name="description" class="form-control textarea" >{{old('description')}}</textarea>
+                                        <textarea name="description" id="editor1" class="form-control" >{{old('description')}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>{{__('Short Description')}}</label>
+                                        <textarea name="short" class="form-control textarea" >{{old('short')}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>{{__('Size Guide')}}</label>
+                                        <textarea name="size_guide" id="editor2" class="form-control" >{{old('size_guide')}}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <label>{{__('Tags')}}</label>
-                                        <textarea name="tags" class="form-control" rows="3" placeholder="{{__('Tags')}}" required> {{old('tags')}}</textarea>
+                                        <textarea name="tags" class="form-control" rows="3" placeholder="{{__('Tags')}}" required=""> {{old('tags')}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -214,8 +226,7 @@
 
         $(function () {
             CKEDITOR.replace('editor1')
-            //bootstrap WYSIHTML5 - text editor
-            $('.textarea').wysihtml5()
+            CKEDITOR.replace('editor2')
         });
 
         $("#name").keyup(function(){

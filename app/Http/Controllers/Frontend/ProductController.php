@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Model\Category;
-use App\Model\General;
 use App\Model\Product;
 use App\Model\CategoryProduct;
 use App\Model\ColorProduct;
+use App\Model\Faq;
 use App\Model\ProductPhoto;
 use App\Model\ProductReview;
 use App\Model\ProductSize;
+use App\Model\Size;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -40,12 +41,20 @@ class ProductController extends Controller
         $productSizeObject     = new ProductSize();
         $productColorObject    = new ColorProduct();
         $productCategoryObject = new CategoryProduct();
-
+        Product::where('slug', $slug)->increment('view');
         $product           = Product::where('slug', $slug)->firstOrFail();
         $productPhotos     = ProductPhoto::where('product_id', $product->id)->select('photo')->get();
         $productCategories = $productCategoryObject->getProductCategories($product->id);
         $productSizes      = $productSizeObject->getProductSizes($product->id);
         $productColors     = $productColorObject->getProductColors($product->id);
+        $sizes = Size::select('name')->orderBy('name', 'asc')->get();
+
+        $productSize = array();
+
+        foreach ($productSizes as $key => $value) {
+
+            array_push($productSize, $value->name);
+        }
 
         $categories = array();
         
@@ -56,12 +65,14 @@ class ProductController extends Controller
 
         $relatedProducts = $this->productObject->getRelatedProducts($categories, $product->id);
         $productReviews  = ProductReview::where('product_id', $product->id)->get();
-        $deliveryTime    = General::where('name', 'delivery-time')->first();
-        $returnPolicy    = General::where('name', 'return-policy')->first();
+        $faqText         = Faq::where('id', 3)->first();
+        $faqs            = Faq::oldest()->take(5)->get();
         return view('frontend.product', compact(
             'product', 'productPhotos', 'productCategories', 
-            'productSizes', 'productColors', 'relatedProducts', 
-            'productReviews', 'deliveryTime', 'returnPolicy'));
+            'productSize', 'productColors', 'relatedProducts', 
+            'productReviews',
+            'faqs', 'faqText',
+            'sizes'));
     }
 
     public function filter(Request $request)

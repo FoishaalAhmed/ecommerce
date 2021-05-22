@@ -60,9 +60,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($orderDetails as $item)
-                            
-                        
+                        @php
+                            $order_total = 0;
+                        @endphp
+                        @foreach ($orderDetails as $item)  
                         <tr>
                             <td>{{$loop->index + 1}}</td>
                             <td>
@@ -80,7 +81,7 @@
                             </td>
                             <td>{{$item->quantity}}</td>
                             <td>{{$item->price}}</td>
-                            <td>{{$item->total}}</td>
+                            <td>{{$item->total}} </td>
                         </tr>
 
                         @endforeach
@@ -103,6 +104,10 @@
                         <tr>
                             <th>Shipping:</th>
                             <td>৳ {{$order->shipping_charge}}</td>
+                        </tr>
+                        <tr>
+                            <th>Coupon:</th>
+                            <td>৳ {{$order->coupon_amount}}</td>
                         </tr>
                         <tr>
                             <th>Total:</th>

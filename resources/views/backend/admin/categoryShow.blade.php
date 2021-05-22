@@ -68,6 +68,12 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label for="">{{__('Position')}}</label>
+                                                <input type="text" class="form-control" name="position"  placeholder="{{__('Position')}}" value="{{$categoryShow->position}}" required="" autocomplete="off">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="box box-teal box-solid">
@@ -144,6 +150,12 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label for="">{{__('Position')}}</label>
+                                                <input type="text" class="form-control" name="position"  placeholder="{{__('Position')}}" value="{{old('position')}}" required="" autocomplete="off">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="box box-teal box-solid">
@@ -187,7 +199,8 @@
                                             <th style="width: 5%">Sl.</th>
                                             <th style="width: 20%">Category</th>
                                             <th style="width: 35%">Title</th>
-                                            <th style="width: 20%">Type</th>
+                                            <th style="width: 10%">Type</th>
+                                            <th style="width: 10%">Position</th>
                                             <th style="width: 10%">Photo</th>
                                             <th style="width: 10%">Action</th>
                                         </tr>
@@ -198,11 +211,14 @@
                                             <td>{{$loop->index + 1}}</td>
                                             <td>{{$categoryShow->name}} </td>
                                             <td>{{$categoryShow->title}} </td>
-                                            <td>@if ($categoryShow->type == 1)
+                                            <td>
+                                                @if ($categoryShow->type == 1)
                                                 {{'First Four'}}
-                                            @else
+                                                @else
                                                 {{'Last One'}}
-                                            @endif </td>
+                                                @endif 
+                                            </td>
+                                            <td>{{$categoryShow->position}} </td>
                                             <td>
                                                 <img src="{{asset($categoryShow->photo)}}" alt="" style="width: 50px; height:50px;">  
                                             </td>

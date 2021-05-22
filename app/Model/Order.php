@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Session;
+use DB;
 
 class Order extends Model
 {
@@ -21,22 +22,40 @@ class Order extends Model
         'address' => 'required|string|max:255',
     ];
 
+    public function getUserAllOrder()
+    {
+        $orders = DB::table('orders')
+                            ->where('orders.user_id', auth()->id())
+                            ->latest()
+                            ->select('orders.*')
+                            ->get();
+        return $orders;
+    }
+
     public function storeOrder($request)
     {
 
-        //exit('asche');
-
         $shippingCharge  = General::where('name', 'shipping-charge')->first();
-
-        $shipping_charge = $shippingCharge != null ? $shippingCharge->value : 0 ;
-
-        if($shippingCharge != null) $shipping = (int)$shippingCharge->value; else $shipping = 0; 
         
-        $amount = $shipping + (int)str_replace(',', '',Cart::total());
+        $coupon = Session::get('coupon_amount') ? Session::get('coupon_amount') : 0 ;
+
+
+        if ($request->delivery_option == 'Courier') {
+            $shipping_charge = $shippingCharge != null ? $shippingCharge->value : 0;
+            $amount = $shipping_charge + (int)str_replace(',', '',Cart::total()) - $coupon;
+
+        } else {
+            $shipping_charge = 0;
+            $amount = (int)str_replace(',', '', Cart::total()) - $coupon;
+        }
+        
+        
 
         $this->user_id         = auth()->user()->id;
         $this->order_date_time = date('Y-m-d H: i: s');
         $this->shipping_charge = $shipping_charge;
+        $this->coupon_amount   = $coupon;
+        $this->delivery_option = $request->delivery_option;
         $this->amount          = $amount;
         $this->status          = 0;
         $this->save();
@@ -70,6 +89,8 @@ class Order extends Model
         $shippingObject->save();
 
         Cart::destroy();
+        Session::forget('product_id');
+        Session::save();
 
     }
 

@@ -10,11 +10,10 @@
         <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('public/frontend/css/responsive.css')}}">
         <link rel="stylesheet" href="{{asset('public/frontend/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-            integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-            
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> 
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,800;1,800&display=swap" rel="stylesheet"> 
+        <link rel="shortcut icon" href="{{asset('public/images/fav.png')}}" type="image/x-icon">
     </head>
     <body>
         <div class="container-fluid" style="border-top: 2px solid red;">
@@ -26,7 +25,7 @@
                         
                         
                             <div class="col-md-2">
-                            <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{asset('public/frontend/img/logo.jpg')}}" style="width: 100px; height: 50px;" alt=""></a>
+                            <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{asset('public/frontend/img/01.png')}}" style="width: 175px; height: 75px;" alt=""></a>
                         </div>
                         
                         <div class="col-md-1"></div>
@@ -40,7 +39,7 @@
                             
                             <div class="col-md-11" style="text-align: center;margin: auto;">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{URL::to('/')}}">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     @php
@@ -349,7 +348,7 @@
         </div>
         <br><br>
         <!-----Footer desktop---->
-        <div class="container-fluid footer-desktop" style="background-color: #2b2f32; margin-top: 20px; ">
+        <div class="container-fluid footer-desktop" style="background-color: #3a3a3c; margin-top: 20px; ">
             <div class="row">
                 <img style="padding: 0px; width: 100% !important;" src="{{asset('public/frontend/img/footerbg-1.jpg')}}" alt="">
             </div>
@@ -359,7 +358,7 @@
                     <div class="col-4">
                         <div class="">
                             <a href="{{URL::to('/')}}">
-                            <img src="{{asset('public/frontend/img/logo.jpg')}}" alt="" style="width: 100px; height:50px;">
+                            <img src="{{asset('public/frontend/img/02.png')}}" alt="" style="width: 175px; height:75px;">
                             </a>
                         </div>
                         <br><br><br>
@@ -479,7 +478,7 @@
                     <div class="" style="color: white;">
                         <p style="margin: 0px; color: white;font-size: 12px;">{!!$contact->address!!}</p>
                         <p style="margin: 0px; color: white;font-size: 12px;">Phone: {{$contact->phone}}</p>
-                        <p style="margin: 0px; color: white;font-size: 12px;">Email: {{$contact->email}}</p>
+                        <p style="margin: 0px; color: white;font-size: 12px;word-wrap: anywhere;">Email: {{$contact->email}}</p>
                     </div>
                     <div class="footer-icon">
                         <div class="row">

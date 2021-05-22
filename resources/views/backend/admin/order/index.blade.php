@@ -29,12 +29,14 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%;">{{__('Sl.')}}</th>
-                                    <th style="width: 15%;">{{__('Order DateTime')}}</th>
-                                    <th style="width: 15%;">{{__('Shipping Charge')}}</th>
-                                    <th style="width: 20%;">{{__('Amount')}}</th>
-                                    <th style="width: 20%;">{{__('Delivery DateTime')}}</th>
-                                    <th style="width: 10%;">{{__('Status')}}</th>
-                                    <th style="width: 15%;">{{__('Action')}}</th>
+                                    <th style="width: 15%;">{{__('Order')}}</th>
+                                    <th style="width: 10%;">{{__('Shipping')}}</th>
+                                    <th style="width: 10%;">{{__('Coupon')}}</th>
+                                    <th style="width: 10%;">{{__('Amount')}}</th>
+                                    <th style="width: 10%;">{{__('Delivery')}}</th>
+                                    <th style="width: 15%;">{{__('Delivered')}}</th>
+                                    <th style="width: 13%;">{{__('Status')}}</th>
+                                    <th style="width: 12%;">{{__('Action')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +45,9 @@
                                     <td>{{$loop->index + 1}}</td>
                                     <td>{{date('d M, Y h:i A', strtotime($order->order_date_time))}}</td>
                                     <td>{{$order->shipping_charge}}</td>
+                                    <td>{{$order->coupon_amount}}</td>
                                     <td>{{$order->amount}}</td>
+                                    <td>{{$order->delivery_option}}</td>
                                     <td>
                                         @if ($order->delivered_date_time != null)
                                              {{date('d M, Y h:i A', strtotime($order->delivered_date_time))}}

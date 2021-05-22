@@ -19,6 +19,7 @@ class CreateFrontCategoryShowsTable extends Migration
             $table->string('title');
             $table->string('photo');
             $table->tinyInteger('type');
+            $table->tinyInteger('position')->nullable();
             $table->string('background')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
